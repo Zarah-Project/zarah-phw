@@ -1,0 +1,26 @@
+{
+  "name": "zarah-phw",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "dev": "next dev --turbopack",
+    "build": "next build",
+    "start": "next start",
+    "lint": "next lint"
+  },
+  "dependencies": {
+    "motion": "^12.6.3",
+    "next": "15.1.7",
+    "normalize-wheel": "^1.0.1",
+    "react": "^19.0.0",
+    "react-dom": "^19.0.0",
+    "react-grid-system": "^8.2.1",
+    "react-use": "^17.6.0",
+    "sass": "^1.85.0"
+  },
+  "devDependencies": {
+    "@eslint/eslintrc": "^3",
+    "eslint": "^9",
+    "eslint-config-next": "15.1.7"
+  }
+}

@@ -1,0 +1,65 @@
+@import "@/styles/colours";
+
+.Section {
+  height: calc(100vh - 80px);
+  background-color: $darkBack;
+  // overflow: hidden;
+
+  .scrollingText {
+    position: absolute;
+    top: 40%;
+    left: 0;
+  }
+
+  .Marquee {
+    display: flex;
+    align-items: center;
+    cursor: -webkit-grab;
+    height: 100%;
+    z-index: 1;
+
+    .MarqueeItem {
+      font-family: var(--font-editorialNew), serif;
+      font-weight: 400;
+      font-size: 200px;
+      line-height: 100%;
+      white-space: nowrap;
+      -webkit-user-select: none;
+      user-select: none;
+      color: $fontOnDark;
+      padding-right: 100px;
+      /* will-change: transform; */
+
+      &.Front {
+        z-index: 20;
+      }
+
+      &.Back {
+        z-index: 1;
+      }
+    }
+  }
+
+  .imageContainer {
+    position: absolute;
+    height: 100%;
+    width: 100%;
+    top: calc(50% - 160px);
+    left: calc(50% - 200px);
+    z-index: 10;
+
+    .imageWrapper {
+      width: 400px;
+      height: 400px;
+      border-radius: 50%;
+      overflow: hidden;
+      border: 4px solid gray;
+
+      .image {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+      }
+    }
+  }
+}

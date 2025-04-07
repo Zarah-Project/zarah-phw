@@ -1,0 +1,11 @@
+@use "@/styles/colours" as *;
+
+.Section {
+  min-height: 800px;
+  background-color: $darkBack;
+}
+
+.Section2 {
+  min-height: 800px;
+  background-color: $lightBack;
+}
