@@ -32,7 +32,7 @@ const ImageHoverText = ({ text, imageUrl }) => {
             <div className={style.innerContainer} ref={wrapperRef}>
                 <motion.h3
                     className={style.textLeft}
-                    animate={{x: hovered ? -50 : 0}}
+                    animate={{x: hovered ? -70 : 0}}
                     transition={{type: "ease"}}
                 >
                     {parts[0]}
@@ -47,14 +47,14 @@ const ImageHoverText = ({ text, imageUrl }) => {
                         initial={{ opacity: 0 }}
                         animate={{ opacity: hovered ? 1 : 0 }}
                         exit={{ opacity: 0 }}
-                        style={{ left: imgPosition - 15 }}
+                        style={{ left: imgPosition - 25 }}
                         transition={{ duration: 0.3 }}
                     />
                 </AnimatePresence>
 
                 <motion.h3
                     className={style.textRight}
-                    animate={{ x: hovered ? 50 : 0 }}
+                    animate={{ x: hovered ? 70 : 0 }}
                     transition={{ type: "ease" }}
                 >
                     {parts[1]}
