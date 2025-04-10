@@ -1,0 +1,28 @@
+@use "@/styles/colours" as *;
+@use "@/styles/variables" as *;
+
+.Footer {
+  display: flex;
+  align-items: center;
+  background-color: $darkBack;
+  color: $fontOnDark;
+  min-height: 352px;
+  padding: 0 $spacing-xl;
+
+  .Left {
+    flex: 4;
+  }
+
+  .Right {
+    display: flex;
+    flex: 2;
+
+    div {
+      padding: 8px 0;
+    }
+
+    .Menu {
+      flex: 1;
+    }
+  }
+}

@@ -1,10 +1,13 @@
 import Head from "next/head";
 import Layout from "@/components/Layout/Layout";
-import style from "./index.module.scss";
 import OpeningAnimation from "@/components/Sections/OpeningAnimation/OpeningAnimation";
+import HorizontalScrollSection from "@/components/Sections/SectionTitleAnimation/SectionTitleAnimation";
+import PeopleGroupSelector from "@/components/Sections/PeopleGroupSelector/PeopleGroupSelector";
+import PeopleSection from "@/components/Sections/PeopleSection/PeopleSection";
+import EssaySection from "@/components/Sections/EssaySection/EssaySection";
 
 export default function Home() {
-  return (
+    return (
     <>
       <Head>
         <title>Labour History Activism</title>
@@ -12,12 +15,14 @@ export default function Home() {
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
-        <Layout theme={'dark'}>
+        <Layout theme={'dark'} id={'#layout'}>
             <OpeningAnimation/>
-            <div className={style.Section2}>
-                adfadf
-            </div>
+            <HorizontalScrollSection text={'Activism'} />
+            <PeopleGroupSelector />
+            <HorizontalScrollSection text={'People'} />
+            <PeopleSection />
+            <EssaySection />
         </Layout>
     </>
-  );
+  )
 }

@@ -1,5 +1,6 @@
 import Head from "next/head";
 import TopMenu from "@/components/Layout/Desktop/TopMenu";
+import Footer from "@/components/Layout/Desktop/Footer";
 
 const Layout = ({ children, theme }) => {
    return(
@@ -10,6 +11,7 @@ const Layout = ({ children, theme }) => {
             <>
                 <TopMenu theme={theme} />
                 {children}
+                <Footer />
             </>
         </>
    )

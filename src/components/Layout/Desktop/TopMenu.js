@@ -3,7 +3,7 @@ import IconSearch from "@/components/Icons/IconSearch";
 
 const TopMenu = ({theme}) => {
     return (
-        <div className={`${style.TopMenu} ${theme === 'dark' ? style.Dark : style.Light}`}>
+        <div className={`${style.TopMenu} ${theme === 'dark' ? style.Dark : style.Light} nav-link`}>
             <div className={style.Left}>
                 <div>Home</div>
             </div>

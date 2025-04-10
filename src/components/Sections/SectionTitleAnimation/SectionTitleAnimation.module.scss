@@ -1,0 +1,14 @@
+@use "@/styles/colours" as *;
+
+.Section {
+  background-color: $darkBack;
+}
+
+.Title {
+  font-family: var(--font-editorialNew), serif;
+  font-weight: 400;
+  font-size: 540px;
+  line-height: 100%;
+  color: $fontOnDark;
+  user-select: none;
+}

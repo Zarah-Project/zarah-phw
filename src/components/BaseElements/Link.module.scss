@@ -1,0 +1,15 @@
+@use "@/styles/colours" as *;
+
+.Link {
+  text-decoration: none;
+
+  &.Dark {
+    color: $fontOnDark;
+    background-color: $darkBack;
+  }
+
+  &.Light {
+    color: $fontOnLight;
+    background-color: $lightBack;
+  }
+}

@@ -1,0 +1,8 @@
+@use "@/styles/colours" as *;
+
+.Section {
+  min-height: calc(100vh - 80px);
+  background-color: $darkBack;
+  padding: 0 48px;
+  color: $fontOnDark;
+}

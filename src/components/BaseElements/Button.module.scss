@@ -1,0 +1,87 @@
+@use "@/styles/colours" as *;
+
+.Button {
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: var(--font-neueMontreal), serif;
+  font-size: 14px;
+  height: 48px;
+  text-transform: uppercase;
+
+  .Label {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    letter-spacing: 1.4px;
+    transition: letter-spacing 0.3s ease;
+  }
+
+  &:hover {
+    .Label {
+      letter-spacing: 3.5px;
+    }
+  }
+
+  .Icon {
+    display: flex;
+    align-items: center;
+    padding: 4px;
+    border-radius: 16px;
+  }
+
+  &.light {
+    background-color: $fontOnDark;
+    color: $fontOnLight;
+  }
+
+  &.dark {
+    background-color: $darkBack;
+    color: $fontOnDark;
+  }
+
+  &.Secondary {
+    &.light {
+        background-color: transparent;
+        color: $fontOnDark;
+
+        .Icon {
+          border: 1px solid $fontOnDark;
+        }
+
+        &:hover {
+          .Icon {
+            background-color: $fontOnDark;
+
+            svg {
+              path {
+                stroke: $fontOnLight;
+              }
+            }
+          }
+        }
+    }
+
+    &.dark {
+        background-color: transparent;
+        color: $fontOnLight;
+
+        .Icon {
+          border: 1px solid $fontOnLight;
+        }
+
+        &:hover {
+          .Icon {
+            background-color: $fontOnLight;
+
+            svg {
+              path {
+                stroke: $fontOnDark;
+              }
+            }
+          }
+        }
+    }
+  }
+}

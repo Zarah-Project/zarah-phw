@@ -1,0 +1,23 @@
+@use "@/styles/colours" as *;
+
+.Section {
+  min-height: calc(100vh - 80px);
+  background-color: $lightBack;
+  padding: 0 48px;
+  color: $fontOnLight;
+
+  .Header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  .Content {
+    display: flex;
+    gap: 32px;
+
+    .CardWrapper {
+      flex: 1;
+    }
+  }
+}
