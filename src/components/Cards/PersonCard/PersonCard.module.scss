@@ -1,0 +1,12 @@
+@use "@/styles/colours" as *;
+
+.Buttons {
+  display: flex;
+  align-items: center;
+  gap: 48px;
+}
+
+.PersonGroup {
+  color: rgba($fontOnDark, 0.7);
+  font-size: 14px;
+}

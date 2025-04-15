@@ -1,22 +1,13 @@
 import style from "./EssayCard.module.scss";
-import Image from "next/image";
 import React from "react";
-import Button from "@/components/BaseElements/Button";
+import Photo from "@/components/BaseElements/Photo";
 
 const EssayCard = ({ essay }) => {
     const { title, shortDescription, id, image} = essay;
 
     return (
         <div className={style.Card}>
-            <div className={style.ImageWrapper}>
-                <Image
-                    src={`/images/examples/${image}`}
-                    alt="Card Image"
-                    fill
-                    className={style.image}
-                    priority
-                />
-            </div>
+            <Photo image={image} minHeight={576} />
             <div className={style.Content}>
                 <h4>{title}</h4>
                 <p>{shortDescription}</p>

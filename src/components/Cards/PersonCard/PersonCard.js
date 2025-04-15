@@ -1,10 +1,10 @@
 import style from "./PersonCard.module.scss";
 import Spacer from "@/components/BaseElements/Spacer";
 import React from "react";
-import Image from "next/image";
 import Button from "@/components/BaseElements/Button";
-import IconSearch from "@/components/Icons/IconSearch";
 import IconRightArrow from "@/components/Icons/IconRightArrow";
+import Photo from "@/components/BaseElements/Photo";
+import TwoColumnCard from "@/components/Cards/Base/TwoColumnCard";
 
 const PersonCard = ({ person, photoAlign = 'left' }) => {
     const { personGroup, name, bio, id, image} = person;
@@ -48,29 +48,13 @@ const PersonCard = ({ person, photoAlign = 'left' }) => {
         )
     }
 
-    const photo = () => {
-        return (
-            <div className={style.ImageWrapper}>
-                <Image
-                    src={`/images/examples/${image}`}
-                    alt="Card Image"
-                    fill
-                    className={style.image}
-                    priority
-                />
-            </div>
-        )
-    }
-
     return (
-        <div className={style.Card}>
-            <div className={style.Left}>
-                {photoAlign === 'left' ? photo() : dataSheet()}
-            </div>
-            <div className={style.Right}>
-                {photoAlign === 'left' ? dataSheet() : photo()}
-            </div>
-        </div>
+        <TwoColumnCard
+            minHeight={'800'}
+            photoAlign={photoAlign}
+            content={dataSheet()}
+            image={<Photo image={image} minHeight={800}/>}
+        />
     )
 }
 

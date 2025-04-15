@@ -1,0 +1,19 @@
+.Card {
+  display: flex;
+  width: 100%;
+  gap: 80px;
+
+  .Left {
+    flex: 1;
+    height: 100%;
+    display: flex;
+    align-items: center;
+  }
+
+  .Right {
+    flex: 1;
+    height: 100%;
+    display: flex;
+    align-items: center;
+  }
+}

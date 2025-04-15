@@ -1,0 +1,25 @@
+@use "@/styles/colours" as *;
+
+.Section {
+  min-height: 800px;
+  background-color: $darkBack;
+  padding: 0 48px;
+  color: $fontOnDark;
+
+  .AboutText {
+    display: flex;
+    justify-content: center;
+    font-family: var(--font-neueMontreal), serif;
+    font-weight: 400;
+    font-size: 24px;
+    line-height: 120%;
+
+    .Left {
+      flex: 1;
+    }
+
+    .Right {
+      flex: 1;
+    }
+  }
+}

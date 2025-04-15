@@ -3,7 +3,7 @@ import Spacer from "@/components/BaseElements/Spacer";
 import Button from "@/components/BaseElements/Button";
 import React from "react";
 import IconRightArrow from "@/components/Icons/IconRightArrow";
-import EssayCard from "@/components/Cards/EssayCard";
+import EssayCard from "@/components/Cards/EssayCard/EssayCard";
 import {essays} from "@/mockData/essays";
 
 const EssaySection = ({header = true, max = 3}) => {
@@ -11,10 +11,10 @@ const EssaySection = ({header = true, max = 3}) => {
 
     return (
       <div className={style.Section}>
-        <Spacer size={header ? 'xxlarge' : 'medium'} />
         {
           header && (
               <>
+                  <Spacer size={'xxlarge'}/>
                   <div className={style.Header}>
                       <h1>Essays</h1>
                       <Button

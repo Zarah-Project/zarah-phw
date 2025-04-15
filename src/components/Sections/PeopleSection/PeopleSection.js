@@ -1,5 +1,5 @@
 import {people} from "@/mockData/people";
-import PersonCard from "@/components/Cards/PersonCard";
+import PersonCard from "@/components/Cards/PersonCard/PersonCard";
 import Spacer from "@/components/BaseElements/Spacer";
 import style from "./PeopleSection.module.scss";
 

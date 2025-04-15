@@ -17,7 +17,7 @@ const TopMenu = ({theme}) => {
             </div>
             <div className={style.Right}>
                 <div><IconSearch theme={theme} /></div>
-                <Link href={'#'} className={style.Link}>About</Link>
+                <Link href={'/about'} className={style.Link}>About</Link>
             </div>
         </div>
     )

@@ -1,0 +1,24 @@
+@use "@/styles/colours" as *;
+
+.Section {
+  min-height: calc(100vh - 80px);
+  background-color: $darkBack;
+  color: $fontOnDark;
+
+  .Header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  .Content {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-column-gap: 32px;
+    grid-row-gap: 64px;
+
+    .CardWrapper {
+      flex: 1;
+    }
+  }
+}
