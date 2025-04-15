@@ -20,7 +20,7 @@ const PeopleGroupSelector = () => {
         <div className={style.Section}>
             <div className={style.PeopleGroupSelector}>
                 {GROUPS.map((group, index) => (
-                    <PeopleGroupElement text={group} imageUrl={'images/examples/activism_menu.jpg'} />
+                    <PeopleGroupElement key={`peoplegroup${index}`} text={group} imageUrl={'images/examples/activism_menu.jpg'} />
                 ))}
             </div>
         </div>

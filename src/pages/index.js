@@ -1,10 +1,10 @@
 import Head from "next/head";
-import Layout from "@/components/Layout/Layout";
 import OpeningAnimation from "@/components/Sections/OpeningAnimation/OpeningAnimation";
 import HorizontalScrollSection from "@/components/Sections/SectionTitleAnimation/SectionTitleAnimation";
 import PeopleGroupSelector from "@/components/Sections/PeopleGroupSelector/PeopleGroupSelector";
 import PeopleSection from "@/components/Sections/PeopleSection/PeopleSection";
 import EssaySection from "@/components/Sections/EssaySection/EssaySection";
+import LayoutDark from "@/components/Layout/LayoutDark";
 
 export default function Home() {
     return (
@@ -15,14 +15,20 @@ export default function Home() {
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
-        <Layout theme={'dark'} id={'#layout'}>
-            <OpeningAnimation/>
-            <HorizontalScrollSection text={'Activism'} />
-            <PeopleGroupSelector />
-            <HorizontalScrollSection text={'People'} />
-            <PeopleSection />
-            <EssaySection />
-        </Layout>
+        <OpeningAnimation/>
+        <HorizontalScrollSection text={'Activism'} />
+        <PeopleGroupSelector />
+        <HorizontalScrollSection text={'People'} />
+        <PeopleSection />
+        <EssaySection />
     </>
+  )
+}
+
+Home.getLayout = function getLayout(page) {
+  return (
+      <LayoutDark>
+        {page}
+      </LayoutDark>
   )
 }

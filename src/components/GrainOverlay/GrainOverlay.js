@@ -1,15 +1,15 @@
 import React, { useEffect, useRef } from 'react';
 
 const GrainOverlay = ({
-                          patternWidth = 231.53,
-                          patternHeight = 263.95,
-                          grainOpacity = 0.03,
+                          patternWidth = 100,
+                          patternHeight = 100,
+                          grainOpacity = 0.1,
                           grainDensity = 1,
                           grainWidth = 1,
                           grainHeight = 1,
                           animate = true,
                           fps = 30,
-                          zIndex = 1000,
+                          zIndex = 1,
                           style = {},
                       }) => {
     const canvasRef = useRef(null);
@@ -24,24 +24,52 @@ const GrainOverlay = ({
             canvas.height = window.innerHeight;
         };
 
-        const generateGrain = () => {
-            const imageData = ctx.createImageData(canvas.width, canvas.height);
-            const buffer = new Uint32Array(imageData.data.buffer);
+        const generateGrainPattern = () => {
+            const patternCanvas = document.createElement('canvas');
+            patternCanvas.width = patternWidth;
+            patternCanvas.height = patternHeight;
 
-            for (let i = 0; i < buffer.length; i++) {
-                const alpha = Math.floor(Math.random() * 256 * grainOpacity);
-                buffer[i] = (alpha << 24) | 0x000000; // black grain with variable alpha
+            const pctx = patternCanvas.getContext('2d');
+
+            const grains = Math.floor(patternWidth * patternHeight * grainDensity);
+            for (let i = 0; i < grains; i++) {
+                const x = Math.random() * patternWidth;
+                const y = Math.random() * patternHeight;
+                const alpha = Math.random() * grainOpacity;
+
+                pctx.fillStyle = `rgba(0, 0, 0, ${alpha})`;
+                pctx.fillRect(x, y, grainWidth, grainHeight);
             }
 
-            ctx.putImageData(imageData, 0, 0);
+            return ctx.createPattern(patternCanvas, 'repeat');
+        };
+
+        let pattern = generateGrainPattern();
+
+        let offsetX = 0;
+        let offsetY = 0;
+
+        const draw = () => {
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+            ctx.save();
+            ctx.translate(offsetX, offsetY);
+            ctx.fillStyle = pattern;
+            ctx.fillRect(-offsetX, -offsetY, canvas.width, canvas.height);
+            ctx.restore();
+        };
+
+        const animateGrain = () => {
+            offsetX = Math.random() * patternWidth;
+            offsetY = Math.random() * patternHeight;
+            draw();
         };
 
         resize();
+        draw();
 
         if (animate) {
-            animationInterval.current = setInterval(generateGrain, 1000 / fps);
-        } else {
-            generateGrain();
+            animationInterval.current = setInterval(animateGrain, 1000 / fps);
         }
 
         window.addEventListener('resize', resize);
@@ -49,7 +77,16 @@ const GrainOverlay = ({
             clearInterval(animationInterval.current);
             window.removeEventListener('resize', resize);
         };
-    }, [grainOpacity, animate, fps]);
+    }, [
+        patternWidth,
+        patternHeight,
+        grainOpacity,
+        grainDensity,
+        grainWidth,
+        grainHeight,
+        animate,
+        fps,
+    ]);
 
     return (
         <canvas

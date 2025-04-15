@@ -10,14 +10,48 @@
     padding: 0 $spacing-xl;
     z-index: 100;
 
+    .Link {
+        color: inherit;
+        font-family: var(--font-editorialNew), serif;
+        font-size: 16px;
+        position: relative;
+        text-decoration: none;
+        // display: inline-block;
+    }
+
+    .Link::after
+     {
+        content: '';
+        position: absolute;
+        width: 100%;
+        height: 1px;
+        bottom: -5px;
+        left: 0;
+        transform: scaleX(0);
+        transform-origin: right;
+        transition: transform 0.2s ease-out;
+    }
+
+    .Link:hover::after {
+        transform: scaleX(1);
+    }
+    
     &.Dark {
         color: $fontOnDark;
         background-color: $darkBack;
+
+        .Link:after, .Link:before {
+            background: $fontOnDark;
+        }
     }
 
     &.Light {
         color: $fontOnLight;
         background-color: $lightBack;
+
+        .Link:after, .Link:before  {
+            background: $fontOnLight;
+        }
     }
 
     .Left {

@@ -10,10 +10,10 @@ const PeopleSection = () => {
             {
                 people.map((person, index) => {
                     return (
-                        <>
+                        <div key={person.id}>
                             <PersonCard person={person} key={person.id} photoAlign={index % 2 === 0 ? 'left' : 'right'}/>
                             <Spacer size={'large'} />
-                        </>
+                        </div>
                     )
                 })
             }

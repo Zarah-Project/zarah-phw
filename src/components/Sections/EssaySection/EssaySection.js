@@ -6,25 +6,33 @@ import IconRightArrow from "@/components/Icons/IconRightArrow";
 import EssayCard from "@/components/Cards/EssayCard";
 import {essays} from "@/mockData/essays";
 
-const EssaySection = () => {
-  return (
+const EssaySection = ({header = true, max = 3}) => {
+    const slicedArray = max !== 0 ? essays.slice(0, max) : essays;
+
+    return (
       <div className={style.Section}>
-          <Spacer size={'xxlarge'} />
-          <div className={style.Header}>
-              <h1>Essays</h1>
-              <Button
-                  icon={<IconRightArrow theme={'dark'}/>}
-                  iconPlacement={'back'}
-                  theme={'dark'}
-                  type={'secondary'}
-                  width={210}
-                  text={'See All Essays'}
-              />
-          </div>
-          <Spacer size={'large'} />
+        <Spacer size={header ? 'xxlarge' : 'medium'} />
+        {
+          header && (
+              <>
+                  <div className={style.Header}>
+                      <h1>Essays</h1>
+                      <Button
+                          icon={<IconRightArrow theme={'dark'}/>}
+                          iconPlacement={'back'}
+                          theme={'dark'}
+                          type={'secondary'}
+                          width={210}
+                          text={'See All Essays'}
+                      />
+                  </div>
+                  <Spacer size={'large'} />
+              </>
+          )
+        }
           <div className={style.Content}>
               {
-                  essays.map((essay, index) => {
+                  slicedArray.map((essay, index) => {
                     return (
                         <div className={style.CardWrapper} key={index}>
                             <EssayCard essay={essay} />
