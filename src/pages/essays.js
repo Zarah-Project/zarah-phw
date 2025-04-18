@@ -15,7 +15,7 @@ export default function Essays() {
                 <link rel="icon" href="/favicon.ico"/>
             </Head>
             <div className={style.Section}>
-                <Spacer size={'medium'}/>
+                <Spacer size={'l'}/>
                 <EssaySection header={false} max={0}/>
             </div>
         </>

@@ -1,16 +1,22 @@
 const Spacer = ({ size }) => {
     const getHeight = () => {
         switch (size) {
-            case 'small':
+            case 'xxs':
+                return '4px';
+            case 'xs':
+                return '8px';
+            case 's':
+                return '16px';
+            case 'm':
                 return '24px';
-            case 'medium':
+            case 'l':
                 return '32px';
-            case 'large':
+            case 'xl':
                 return '48px';
-            case 'xlarge':
-                return '64px';
-            case 'xxlarge':
-                return '96px';
+            case 'xxl':
+                return '80px';
+            case 'xxxl':
+                return '120px';
         }
     }
 

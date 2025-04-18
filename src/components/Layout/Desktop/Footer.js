@@ -12,7 +12,7 @@ const Footer = () => {
                     in Central and Eastern Europe,<br/>
                     late 19th–late 20th century
                 </h3>
-                <Spacer size={'large'}/>
+                <Spacer size={'xl'}/>
                 <p style={{opacity: 0.5}}>
                     © 2024 Zarah. All rights reserved.
                 </p>

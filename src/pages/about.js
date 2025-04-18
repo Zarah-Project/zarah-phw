@@ -4,6 +4,7 @@ import style from "./about.module.scss";
 import Spacer from "@/components/BaseElements/Spacer";
 import React from "react";
 import FurtherReadingSection from "@/components/Sections/FurtherReadingSection/FurtherReadingSection";
+import { motion } from "motion/react";
 
 export default function About() {
     return (
@@ -15,15 +16,26 @@ export default function About() {
                 <link rel="icon" href="/favicon.ico" />
             </Head>
             <div className={style.Section}>
-                <Spacer size={'medium'}/>
-                <h1>
+                <Spacer size={'l'}/>
+                <motion.h1
+                    viewport={{ once: true }}
+                    initial={{ opacity: 0, y: 40 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    transition={{ duration: 0.4, delay: 0.1 }}
+                >
                     Women’s Labour Activism is a public history project that tells the stories of women
                     activists from Eastern and Central Europe who fought for the improvement of women’s
                     position in the world of labour. It aims to amplify their contribution to the struggle
                     for a fairer world.
-                </h1>
-                <Spacer size={'xxlarge'}/>
-                <div className={style.AboutText}>
+                </motion.h1>
+                <Spacer size={'xxxl'}/>
+                <motion.div
+                    viewport={{ once: true }}
+                    initial={{ opacity: 0, y: 40 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    transition={{ duration: 0.4, delay: 0.2 }}
+                    className={style.AboutText}
+                >
                     <div className={style.Left}/>
                     <div className={style.Right}>
                             It bases on the path-breaking academic research conducted by a team of ten scholars within
@@ -32,8 +44,8 @@ export default function About() {
                             Susan Zimmermann and based at Central European University (Vienna, Austria) between
                             February 2020 and January 2026, and funded by an ERC Advanced Grant (Grant agreement no. 833691).
                     </div>
-                </div>
-                <Spacer size={'large'}/>
+                </motion.div>
+                <Spacer size={'xxxl'}/>
                 <FurtherReadingSection />
             </div>
         </>

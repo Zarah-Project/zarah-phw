@@ -6,13 +6,13 @@ import style from "./PeopleSection.module.scss";
 const PeopleSection = () => {
     return (
         <div className={style.Section}>
-            <Spacer size={'large'} />
+            <Spacer size={'xl'} />
             {
                 people.map((person, index) => {
                     return (
                         <div key={person.id}>
                             <PersonCard person={person} key={person.id} photoAlign={index % 2 === 0 ? 'left' : 'right'}/>
-                            <Spacer size={'large'} />
+                            <Spacer size={'xl'} />
                         </div>
                     )
                 })

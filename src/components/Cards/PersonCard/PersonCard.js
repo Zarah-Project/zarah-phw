@@ -20,14 +20,14 @@ const PersonCard = ({ person, photoAlign = 'left' }) => {
         return (
             <div>
                 <p className={style.PersonGroup}>{personGroup}</p>
-                <Spacer size={'medium'} />
+                <Spacer size={'l'} />
                 <h2>
                     {getName()['firstName']}<br/>
                     {getName()['lastName']}
                 </h2>
-                <Spacer size={'medium'} />
+                <Spacer size={'l'} />
                 <p>{bio}</p>
-                <Spacer size={'medium'} />
+                <Spacer size={'l'} />
                 <div className={style.Buttons}>
                     <Button
                         text={'Read Biography'}

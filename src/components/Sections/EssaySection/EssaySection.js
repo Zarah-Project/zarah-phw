@@ -14,7 +14,7 @@ const EssaySection = ({header = true, max = 3}) => {
         {
           header && (
               <>
-                  <Spacer size={'xxlarge'}/>
+                  <Spacer size={'xxl'}/>
                   <div className={style.Header}>
                       <h1>Essays</h1>
                       <Button
@@ -26,7 +26,7 @@ const EssaySection = ({header = true, max = 3}) => {
                           text={'See All Essays'}
                       />
                   </div>
-                  <Spacer size={'large'} />
+                  <Spacer size={'l'} />
               </>
           )
         }
@@ -35,13 +35,13 @@ const EssaySection = ({header = true, max = 3}) => {
                   slicedArray.map((essay, index) => {
                     return (
                         <div className={style.CardWrapper} key={index}>
-                            <EssayCard essay={essay} />
+                            <EssayCard essay={essay} index={index} />
                         </div>
                     )
                   })
               }
           </div>
-          <Spacer size={'xxlarge'} />
+          <Spacer size={'xxxl'} />
       </div>
   )
 };
