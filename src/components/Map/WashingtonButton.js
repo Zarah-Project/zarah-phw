@@ -14,7 +14,7 @@ function WashingtonButton() {
             onClick={handleClick}
             className={style.Button}
         >
-            <IconLeftArrow theme={'light'}/> <h5>Washington</h5>
+            <IconLeftArrow theme={'light'}/> <h5>Washington DC</h5>
         </button>
     );
 }
