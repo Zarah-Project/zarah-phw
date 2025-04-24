@@ -22,7 +22,7 @@ export default function App({ Component, pageProps }) {
             className={`${editorialNew.variable} ${neueMontreal.variable}`}
             style={{height: '100%'}}
         >
-          <GrainOverlayV1 grainOpacity={0.1} />
+          <GrainOverlayV1 grainOpacity={0.07} />
           { getLayout(<Component {...pageProps} />) }
         </main>
       </>

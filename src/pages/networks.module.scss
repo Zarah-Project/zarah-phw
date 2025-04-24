@@ -1,0 +1,21 @@
+@use "@/styles/colours" as *;
+
+.Section {
+  min-height: 800px;
+  background-color: $lightBack;
+  color: $fontOnLight;
+
+  .NetworksHeader {
+    display: flex;
+    align-items: flex-start;
+    padding: 0 48px;
+
+    .Left {
+      flex: 1;
+    }
+
+    .Right {
+      flex: 1;
+    }
+  }
+}

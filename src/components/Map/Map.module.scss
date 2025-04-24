@@ -1,0 +1,11 @@
+@use "@/styles/colours" as *;
+
+.Gradient {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 150px;
+  background: linear-gradient(to bottom, rgba($lightBack, 1) 0%, rgba(255, 255, 255, 0) 100%);
+  z-index: 999;
+}

@@ -10,8 +10,8 @@ const TopMenu = ({theme}) => {
             </div>
             <div className={style.Center}>
                 <Link href={'#'} className={style.Link}>Activism</Link>
-                <Link href={'#'} className={style.Link}>People</Link>
-                <Link href={'#'} className={style.Link}>Networks</Link>
+                <Link href={'/people'} className={style.Link}>People</Link>
+                <Link href={'/networks'} className={style.Link}>Networks</Link>
                 <Link href={'#'} className={style.Link}>Sources</Link>
                 <Link href={'/essays'} className={style.Link}>Essays</Link>
             </div>

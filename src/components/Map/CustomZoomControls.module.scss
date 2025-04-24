@@ -1,0 +1,11 @@
+@use "@/styles/colours" as *;
+
+.ZoomButtonStyle {
+  background-color: $fontOnDark;
+  color: #000000;
+  border: none;
+  font-size: 24px;
+  height: 40px;
+  width: 40px;
+  cursor: pointer;
+}

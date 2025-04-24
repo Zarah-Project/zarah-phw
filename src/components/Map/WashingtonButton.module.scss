@@ -1,0 +1,29 @@
+@use "@/styles/colours" as *;
+
+.Button {
+  position: absolute;
+  top: 20px;
+  left: 20px;
+  background-color: $lightBack;
+  color: $fontOnLight;
+  border: none;
+  height: 40px;
+  cursor: pointer;
+  z-index: 1000;
+  padding: 0 20px;
+  box-shadow: 0px 10px 30px 0px #3F0E140D;
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+  width: 200px;
+
+  h5 {
+    transition: letter-spacing 0.3s ease;
+  }
+
+  &:hover {
+    h5 {
+      letter-spacing: 1.5px;
+    }
+  }
+}
