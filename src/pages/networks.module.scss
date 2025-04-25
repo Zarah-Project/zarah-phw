@@ -4,6 +4,7 @@
   min-height: 800px;
   background-color: $lightBack;
   color: $fontOnLight;
+  scroll-snap-type: y mandatory;
 
   .NetworksHeader {
     display: flex;
@@ -17,5 +18,9 @@
     .Right {
       flex: 1;
     }
+  }
+
+  .MapContainer {
+    scroll-snap-align: start;
   }
 }

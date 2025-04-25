@@ -1,0 +1,14 @@
+@use "@/styles/colours" as *;
+
+.Section {
+  min-height: calc(100vh - 80px);
+  background-color: $darkBack;
+  color: $fontOnDark;
+  padding: 0 48px;
+
+  .Header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+}

@@ -1,0 +1,11 @@
+@use "@/styles/colours" as *;
+
+.CardWrapper {
+    padding: 96px 0;
+
+    .Line {
+        background-color: rgba($fontOnDark, 0.3);
+        border: none;
+        height: 1px;
+    }
+}

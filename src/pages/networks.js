@@ -37,7 +37,9 @@ export default function Networks() {
                     </div>
                 </div>
                 <Spacer size={'xxl'} />
-                <SVGMap />
+                <div className={style.MapContainer}>
+                    <SVGMap />
+                </div>
             </div>
         </>
     )

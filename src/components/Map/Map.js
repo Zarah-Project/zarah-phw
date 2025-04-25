@@ -65,7 +65,7 @@ const SVGMap = () => {
             minZoom={3}
             scrollWheelZoom={true}
             zoomControl={false}
-            style={{height: "calc(100vh - 200px)", width: "100%", zIndex: 1, background: "transparent"}}
+            style={{height: "calc(100vh - 80px)", width: "100%", zIndex: 1, background: "transparent"}}
         >
             <GeoJSON
                 key={JSON.stringify(geoData)}
