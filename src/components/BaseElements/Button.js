@@ -1,9 +1,11 @@
 import style from "./Button.module.scss";
 
-const Button = ({text, type = 'primary', theme = 'dark', icon, width = 250, iconPlacement = 'front'}) => {
+const Button = ({text, type = 'primary', theme = 'dark', icon, width = 250, iconPlacement = 'front', onClick}) => {
 
     return (
-        <div className={`${style.Button} ${style[theme]} ${type === 'secondary' ? style.Secondary : ''}`} style={{width: width}}>
+        <div
+            className={`${style.Button} ${style[theme]} ${type === 'secondary' ? style.Secondary : ''}`} style={{width: width}}
+            onClick={onClick}>
             <div className={style.Label}>
                 {icon && iconPlacement === 'front' && <div className={style.Icon}>{icon}</div>}
                 {text}

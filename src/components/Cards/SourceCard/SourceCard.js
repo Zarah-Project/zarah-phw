@@ -14,15 +14,15 @@ const SourceCard = ({source}) => {
             <div>
                 <hr className={style.Line}/>
                 <Spacer size={'xl'} />
-                <h4>{title}</h4>
-                <Spacer size={'xl'} />
+                <h2>{title}</h2>
+                <Spacer size={'xxl'} />
                 <p>{shortDescription}</p>
                 <Spacer size={'xl'} />
                 <Button
                     text={'See Source'}
                     theme={'light'}
                     type={'primary'}
-                    width={140}
+                    width={150}
                 />
             </div>
         )
@@ -39,7 +39,7 @@ const SourceCard = ({source}) => {
             <TwoColumnCard
                 contentAlign={'flex-start'}
                 photoAlign={'right'}
-                image={<Photo image={image} minHeight={576} imageFit={'cover'}/>}
+                image={<Photo image={image} minHeight={768} imageFit={'cover'}/>}
                 content={dataSheet()}
             />
         </motion.div>

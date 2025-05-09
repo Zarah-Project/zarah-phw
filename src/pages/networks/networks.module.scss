@@ -1,0 +1,29 @@
+@use "@/styles/colours" as *;
+
+.Section {
+  height: calc(100vh - 80px);
+  overflow-y: auto;
+  background-color: $lightBack;
+  color: $fontOnLight;
+  scroll-snap-type: y mandatory;
+  scrollbar-width: none; /* Firefox */
+
+  .NetworksHeader {
+    display: flex;
+    align-items: flex-start;
+    padding: 0 48px;
+    scroll-snap-align: center;
+
+    .Left {
+      flex: 1;
+    }
+
+    .Right {
+      flex: 1;
+    }
+  }
+
+  .MapContainer {
+    scroll-snap-align: center;
+  }
+}

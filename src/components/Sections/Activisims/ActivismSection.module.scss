@@ -1,0 +1,66 @@
+@use "@/styles/colours" as *;
+
+.Section {
+  display: flex;
+  flex-direction: row;
+  overflow-x: auto;
+  scrollbar-width: none; /* Firefox */
+  gap: 128px;
+  padding: 0 96px;
+
+  .SectionPiece {
+    overflow-x: auto;
+    // scroll-snap-type: x mandatory;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: none; /* Firefox */
+    color: $fontOnDark;
+
+    &.TitleSection {
+      position: relative;
+      min-width: 60vw;
+      display: flex;
+
+      .TitleWrapper {
+        flex: 1;
+        position: relative;
+      }
+
+      .Title {
+        position: absolute;
+        width: 70%;
+        z-index: 1;
+        top: 50%;
+        transform: translateY(-50%);
+      }
+
+      .ImageWrapper {
+        flex: 1;
+      }
+    }
+
+    &.Description {
+      display: flex;
+      align-items: center;
+      width: 40vw;
+      font-family: var(--font-neueMontreal), serif;
+      font-weight: 400;
+      font-size: 24px;
+      line-height: 120%;
+    }
+
+    &.Cards {
+      display: flex;
+      flex-shrink: 0;
+      gap: 48px;
+
+      .Card {
+        width: 320px;
+        display: flex;
+        align-items: center;
+        flex: 1;
+      }
+    }
+  }
+
+
+}

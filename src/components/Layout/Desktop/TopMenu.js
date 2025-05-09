@@ -9,7 +9,7 @@ const TopMenu = ({theme}) => {
                 <Link href={'/'} className={style.Link}>Home</Link>
             </div>
             <div className={style.Center}>
-                <Link href={'#'} className={style.Link}>Activism</Link>
+                <Link href={'/activism'} className={style.Link}>Activism</Link>
                 <Link href={'/people'} className={style.Link}>People</Link>
                 <Link href={'/networks'} className={style.Link}>Networks</Link>
                 <Link href={'/sources'} className={style.Link}>Sources</Link>

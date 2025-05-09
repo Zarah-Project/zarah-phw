@@ -12,30 +12,24 @@ import CustomZoomControls from "@/components/Map/CustomZoomControls";
 import DatasetSwitcher from "@/components/Map/DataSetSwitcher";
 import WashingtonButton from "@/components/Map/WashingtonButton";
 import style from "./Map.module.scss";
+import MapDrawer from "@/components/Map/MapDrawer";
 
 // Custom orange circle icon factory
 const createCircleIcon = (label) => {
     return L.divIcon({
-        html: `<div style="
-      background-color: orange;
-      width: ${label !== '' ? `32px` : `20px`};
-      height: ${label !== '' ? `32px` : `20px`};
-      border-radius: 50%;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      color: white;
-      font-size: 12px;
-      font-weight: bold;">
-        ${label || ""}
-      </div>`,
-        className: "",
-        iconSize: [20, 20],
-        iconAnchor: [10, 10],
+        className: `${style.Marker} ${label !== '' ? style.WithNumber : style.WithoutNumber}`,
+        html: `
+        <div class="${style.CircleOuter}">
+            <div class="${style.CircleInner}"></div>
+            ${label !== '' ? `<span class="${style.Label}">${label}</span>` : ''}
+        </div>
+        `,
+        iconSize: [label !== '' ? 32 : 20, label !== '' ? 32 : 20],
+        iconAnchor: [label !== '' ? 16 : 10, label !== '' ? 16 : 10],
     });
 };
 
-const CityMarkers = () => {
+const CityMarkers = ({onMarkerClick, onDrawerClose}) => {
     const allMarkers = [
         { pos: [48.864716, 2.349014], label: "3" },
         { pos: [47.497913, 19.040236], label: "" },
@@ -49,23 +43,28 @@ const CityMarkers = () => {
                     key={idx}
                     position={marker.pos}
                     icon={createCircleIcon(marker.label)}
+                    eventHandlers={{
+                        click: () => {
+                            onMarkerClick(<MapDrawer onDrawerClose={onDrawerClose}/>);
+                        },
+                    }}
                 />
             ))}
         </>
     );
 };
 
-const SVGMap = () => {
+const SVGMap = ({onMarkerClick, onDrawerClose}) => {
     const [geoData, setGeoData] = useState(world1930);
 
     return (
         <MapContainer
-            center={[42.436541, 9.111284]}
+            center={[45.436541, 9.111284]}
             zoom={5}
             minZoom={3}
             scrollWheelZoom={true}
             zoomControl={false}
-            style={{height: "calc(100vh - 80px)", width: "100%", zIndex: 1, background: "transparent"}}
+            style={{height: "calc(100vh - 160px)", width: "100%", zIndex: 1, background: "transparent"}}
         >
             <GeoJSON
                 key={JSON.stringify(geoData)}
@@ -77,7 +76,7 @@ const SVGMap = () => {
                     fillOpacity: 0.6,
                 }}
             />
-            <CityMarkers/>
+            <CityMarkers onMarkerClick={onMarkerClick} onDrawerClose={onDrawerClose}/>
             <CustomZoomControls />
             <DatasetSwitcher switchDataset={setGeoData}/>
             <WashingtonButton />
