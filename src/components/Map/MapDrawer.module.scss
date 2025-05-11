@@ -1,6 +1,16 @@
+@use "@/styles/colours" as *;
 
-.Header {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
+.DrawerWrapper {
+  position: relative;
+  
+  .Header {
+    position: sticky;
+    padding: 36px 0;
+    top: 0;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background-color: $lightBack;
+    height: 50px;
+  }  
 }

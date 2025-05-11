@@ -1,0 +1,33 @@
+.Card {
+  cursor: pointer;
+
+  .Content {
+    font-family: var(--font-neueMontreal), serif;
+    font-size: 14px;
+    line-height: 100%;
+    padding-top: 36px;
+
+    .Place {
+      display: flex;
+      align-items: center;
+      gap: 48px;
+      padding: 24px 0;
+
+      div {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+      }
+    }
+
+    .Tags {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .Description {
+      padding: 24px 0;
+    }
+  }
+}

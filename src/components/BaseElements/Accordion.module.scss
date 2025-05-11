@@ -1,0 +1,56 @@
+@use "@/styles/colours" as *;
+
+.accordion {
+  width: 100%;
+}
+
+.accordionItem {
+  overflow: hidden;
+  border-top: 1px solid #D0C0BE;
+}
+
+.Header {
+  background-color: $lightBack;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 12px;
+  cursor: pointer;
+  width: 100%;
+  color: $fontOnLight;
+  border: none;
+  outline: none;
+
+  &:hover {
+    .Icon {
+      background-color: $fontOnDark;
+    }
+  }
+
+  .Icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 32px;
+    height: 32px;
+    border: 1px solid $darkBack;
+    border-radius: 50%;
+    transition: background-color 0.3s ease;
+  }
+}
+
+.chevron {
+  transition: transform 0.3s ease;
+}
+
+.rotate {
+  transform: rotate(180deg);
+}
+
+.motionWrapper {
+  overflow: hidden;
+}
+
+.content {
+  padding: 12px;
+}

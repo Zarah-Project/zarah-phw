@@ -65,6 +65,7 @@ const SVGMap = ({onMarkerClick, onDrawerClose}) => {
             scrollWheelZoom={true}
             zoomControl={false}
             style={{height: "calc(100vh - 160px)", width: "100%", zIndex: 1, background: "transparent"}}
+            attributionControl={false}
         >
             <GeoJSON
                 key={JSON.stringify(geoData)}

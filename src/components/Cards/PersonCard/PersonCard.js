@@ -41,7 +41,7 @@ const PersonCard = ({ person, photoAlign = 'left' }) => {
                         text={'See All Stories'}
                         theme={'light'}
                         type={'secondary'}
-                        width={220}
+                        width={240}
                     />
                 </div>
             </div>
