@@ -4,6 +4,7 @@ import style from "./OpeningAnimation.module.scss";
 import React, {useRef, useEffect, useState} from "react";
 import {useBoolean, useInterval, useRafLoop, useWindowSize} from "react-use";
 import {useSpring, useTransform} from "framer-motion";
+import CircleImageSlider from "@/components/Sections/OpeningAnimation/CircleImageSlider";
 
 /**
  * @see https://14islands.com/blog/interactive-marquee-with-framer-motion/
@@ -153,13 +154,7 @@ const OpeningAnimation = (props) => {
         <div className={style.Section}>
             {/* Centered Image */}
             <div className={style.imageContainer}>
-                <div className={style.imageWrapper}>
-                    <img
-                        src="https://placehold.co/200x200"
-                        alt="Centered Image"
-                        className={style.image}
-                    />
-                </div>
+                <CircleImageSlider />
             </div>
 
             {/* Scrolling Text */}
