@@ -12,13 +12,11 @@ function DatasetSwitcher({ switchDataset }) {
         setActiveDataset(datasetName);
         switchDataset(dataset); // Update the map with the new dataset
 
-        /*
         if (datasetName === 'world1960') {
             map.setZoom(2); // Reset zoom level
         } else {
             map.setZoom(5);
         }
-        */
     };
 
     return (

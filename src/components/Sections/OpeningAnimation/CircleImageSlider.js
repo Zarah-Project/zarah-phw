@@ -15,7 +15,7 @@ const CircleImageSlider = () => {
     useEffect(() => {
         const interval = setInterval(() => {
             setIndex(prev => (prev + 1) % images.length);
-        }, 200);
+        }, 500);
         return () => clearInterval(interval);
     }, []);
 

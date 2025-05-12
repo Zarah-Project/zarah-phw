@@ -173,17 +173,12 @@ const OpeningAnimation = (props) => {
                 >
                     <MarqueeItem speed={speedSpring}>
                         <div draggable={false}>
-                            Women’s Labour Activism in
-                            Central and Eastern Europe,
-                            late 19th–late
-                            20th century
+                            Women’s Labour Activism
                         </div>
                     </MarqueeItem>
                     <MarqueeItem speed={speedSpring}>
                         <div draggable={false}>
-                            Women’s Labour Activism in
-                            Central and Eastern Europe,
-                            late 19th–late 20th century
+                            Women’s Labour Activism
                         </div>
                     </MarqueeItem>
                 </motion.div>
