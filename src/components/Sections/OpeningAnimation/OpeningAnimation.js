@@ -66,11 +66,10 @@ const OpeningAnimation = (props) => {
     const {
         speed = 2,
         threshold = 0.014,
-        dragFactor = 1.2,
     } = props;
 
     const [zIndex, setZIndex] = useState(20);
-    const [delay, setDelay] = React.useState(5000);
+    const [delay, setDelay] = React.useState(6000);
     const [isRunning, toggleIsRunning] = useBoolean(true);
 
     const marqueeRef = useRef(null);
@@ -84,33 +83,11 @@ const OpeningAnimation = (props) => {
         mass: 5
     });
 
-    const opacity = useTransform(
-        speedSpring,
-        [-width * 0.05, 0, width * 0.05],
-        [1, 0, 1]
-    );
     const skewX = useTransform(
         speedSpring,
         [-width * 0.05, 0, width * 0.05],
         [1, 0, 1]
     );
-
-    const handleDragStart = () => {
-        slowDown.current = true;
-        marqueeRef.current.classList.add("drag");
-        speedSpring.set(0);
-    };
-
-    const handleOnDrag = (_, info) => {
-        speedSpring.set(dragFactor * -info.delta.x);
-    };
-
-    const handleDragEnd = (_) => {
-        slowDown.current = false;
-        marqueeRef.current.classList.remove("drag");
-        //rest to the original speed
-        x.current = speed;
-    };
 
     const loop = () => {
         /**
@@ -163,13 +140,6 @@ const OpeningAnimation = (props) => {
                     className={style.Marquee}
                     ref={marqueeRef}
                     style={{ skewX }}
-                    drag="x"
-                    dragPropagation={true}
-                    dragConstraints={{ left: 0, right: 0 }}
-                    onDragStart={handleDragStart}
-                    onDrag={handleOnDrag}
-                    onDragEnd={handleDragEnd}
-                    dragElastic={0.000001} // needs to be > 0 ¯\_(ツ)_/¯
                 >
                     <MarqueeItem speed={speedSpring}>
                         <div draggable={false}>

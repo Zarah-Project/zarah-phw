@@ -1,12 +1,16 @@
 import React, { useEffect, useState } from 'react';
 
 const images = [
-    'person00.jpg',
-    'person01.jpg',
-    'person02.jpg',
-    'activismStories01.png',
-    'activismStories02.jpg',
-    'activismStories04.jpg'
+    'opening01.png',
+    'opening02.png',
+    'opening03.png',
+    'opening04.png',
+    'opening05.png',
+    'opening06.png',
+    'opening07.png',
+    'opening08.png',
+    'opening09.png',
+    'opening10.png'
 ];
 
 const CircleImageSlider = () => {
