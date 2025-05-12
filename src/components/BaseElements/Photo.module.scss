@@ -1,3 +1,5 @@
+@use "@/styles/colours" as *;
+
 .ImageWrapper {
   position: relative;
   width: 100%;
@@ -6,4 +8,12 @@
   .image {
     object-fit: cover; /* or 'fill' or 'contain', depending on your use case */
   }
+}
+
+.Caption {
+  font-family: var(--font-neueMontreal), serif;
+  font-size: 14px;
+  line-height: 120%;
+  color: rgba($fontOnLight, 0.8);
+  padding: 8px 0;
 }
