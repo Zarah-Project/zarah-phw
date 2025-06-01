@@ -1,6 +1,9 @@
-.Card {
-  cursor: pointer;
+.Link {
+  text-decoration: none;
+  color: inherit; /* Ensures the link inherits the text color */
+}
 
+.Card {
   .ImageWrapper {
     position: relative;
     width: 100%;

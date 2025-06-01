@@ -4,10 +4,10 @@ import Button from "@/components/BaseElements/Button";
 import React from "react";
 import IconRightArrow from "@/components/Icons/IconRightArrow";
 import EssayCard from "@/components/Cards/EssayCard/EssayCard";
-import {essays} from "@/mockData/essays";
+import {useRouter} from "next/router";
 
-const EssaySection = ({header = true, max = 3}) => {
-    const slicedArray = max !== 0 ? essays.slice(0, max) : essays;
+const EssaySection = ({data=[], header = true, max = 3}) => {
+    const router = useRouter();
 
     return (
       <div className={style.Section}>
@@ -22,7 +22,8 @@ const EssaySection = ({header = true, max = 3}) => {
                           iconPlacement={'back'}
                           theme={'dark'}
                           type={'secondary'}
-                          width={210}
+                          width={220}
+                          onClick={() => router.push('/essays')}
                           text={'See All Essays'}
                       />
                   </div>
@@ -32,7 +33,7 @@ const EssaySection = ({header = true, max = 3}) => {
         }
           <div className={style.Content}>
               {
-                  slicedArray.map((essay, index) => {
+                  data.map((essay, index) => {
                     return (
                         <div className={style.CardWrapper} key={index}>
                             <EssayCard essay={essay} index={index} />

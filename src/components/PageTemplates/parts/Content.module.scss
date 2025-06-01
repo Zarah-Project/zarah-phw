@@ -1,0 +1,21 @@
+@use "@/styles/colours" as *;
+
+.Blocks {
+  p {
+    padding-bottom: 16px;
+  }
+
+  h4 {
+    padding-bottom: 24px;
+  }
+
+  h5 {
+    padding-bottom: 24px;
+  }
+
+  a {
+    text-decoration: none;
+    color: inherit;
+    border-bottom: 1px solid $fontOnLight;
+  }
+}

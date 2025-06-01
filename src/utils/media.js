@@ -4,7 +4,8 @@ const AppMedia = createMedia({
     breakpoints: {
         xs: 0,
         sm: 700,
-        md: 1200
+        md: 1200,
+        lg: 1600
     },
 })
 

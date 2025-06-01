@@ -52,13 +52,13 @@ const NetworkWrapper = () => {
                 animate={{
                     x: showList ? "-100vw" : "0vw",
                 }}
-                transition={{type: "tween", duration: 0.6}}
+                transition={{type: "tween", duration: 0.3}}
             >
                 <motion.div
                     animate={{
                         opacity: showList ? 0 : 1
                     }}
-                    transition={{type: "tween", duration: 0.6}}
+                    transition={{type: "tween", duration: 0.3}}
                     className={`${style.Column}`}>
                     <SVGMap onMarkerClick={openDrawerWithContent} onDrawerClose={closeDrawer} />
                     <div className={`${style.Drawer} ${drawerOpen ? style.Open : ''}`}>

@@ -10,6 +10,11 @@
 
   .RelatedContent {
     width: 420px;
+
+    hr {
+      color: $fontOnDark;
+      border-top: 1px solid rgba($fontOnDark, 0.3)
+    }
   }
 
   .PageContent {

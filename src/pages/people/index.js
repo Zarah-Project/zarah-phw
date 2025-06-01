@@ -4,11 +4,19 @@ import Spacer from "@/components/BaseElements/Spacer";
 import React, {useEffect, useRef, useState} from "react";
 import styles from "./people.module.scss";
 import {useRouter} from "next/router";
-import {peopleGroup} from "@/mockData/peopleGroup";
-import Photo from "@/components/BaseElements/Photo";
 import PersonTile from "@/components/Cards/PersonTile/PersonTile";
+import {fetchPersonGroupsList} from "@/utils/api/fetchPersonGroups";
 
-const groupNames = peopleGroup.map((group => group.group));
+export const getServerSideProps = (async (context) => {
+    const [personGroupData] = await Promise.all([
+        fetchPersonGroupsList(),
+    ]);
+    return {
+        props: {
+            personGroupData,
+        }
+    }
+})
 
 const generatePeople = (group) =>
     Array.from({ length: 8 }, (_, i) => ({
@@ -16,7 +24,9 @@ const generatePeople = (group) =>
         id: `${group}-${i}`,
     }));
 
-export default function PeoplePage() {
+export default function PeoplePage({ personGroupData }) {
+    const groupNames = personGroupData['data'].map(group => group['Group']);
+
     const sectionRefs = useRef([]);
     const [activeGroup, setActiveGroup] = useState(groupNames[0]);
     const router = useRouter();
@@ -89,35 +99,35 @@ export default function PeoplePage() {
             </Head>
             <div className={styles.Section}>
                 <header className={styles.Header}>
-                    {groupNames.map((group, index) => (
+                    {personGroupData['data'].map((group, index) => (
                         <p
                             key={group}
                             className={`${styles.GroupButton} ${
-                                activeGroup === group ? styles.Active : ""
+                                activeGroup === group['Group'] ? styles.Active : ""
                             }`}
                             onClick={() => scrollToGroup(index)}
                         >
-                            {group}
+                            {group['Group']} ({group['People'].length})
                         </p>
                     ))}
                 </header>
 
                 <main className={styles.Main}>
-                    {peopleGroup.map((group, index) => (
+                    {personGroupData['data'].map((group, index) => (
                         <section
                             key={group['id']}
                             ref={(el) => (sectionRefs.current[index] = el)}
                             className={styles.GroupSection}
                         >
                             <div className={styles.GroupHeader}>
-                                <h2 className={styles.GroupTitle}>{group['group']}</h2>
-                                <p className={styles.GroupDescription}>{group['description']}</p>
+                                <h2 className={styles.GroupTitle}>{group['Group']}</h2>
+                                <p className={styles.GroupDescription}>{group['Description']}</p>
                             </div>
                             <Spacer size={'xl'}/>
                             <div className={styles.PeopleGrid}>
-                            {generatePeople(group).map((person) => (
+                            {generatePeople(group).map(person => (
                                  <PersonTile key={person.id} person={person} />
-                                ))}
+                            ))}
                             </div>
                             <Spacer size={'xl'}/>
                         </section>

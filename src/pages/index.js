@@ -1,12 +1,27 @@
 import Head from "next/head";
 import OpeningAnimation from "@/components/Sections/OpeningAnimation/OpeningAnimation";
 import HorizontalScrollSection from "@/components/Sections/SectionTitleAnimation/SectionTitleAnimation";
-import PeopleGroupSelector from "@/components/Sections/ActivisimsSelector/ActivismsSelector";
+import ActivismTypeSelector from "@/components/Sections/ActivisimsSelector/ActivismsSelector";
 import PeopleSection from "@/components/Sections/PeopleSection/PeopleSection";
 import EssaySection from "@/components/Sections/EssaySection/EssaySection";
 import LayoutDark from "@/components/Layout/LayoutDark";
+import {fetchEssaysFrontPage} from "@/utils/api/fetchEassys";
+import {fetchActivismTypesFrontPage} from "@/utils/api/fetchActivismTypes";
 
-export default function Home() {
+export const getServerSideProps = (async (context) => {
+  const [essayData, activismTypeData] = await Promise.all([
+    fetchEssaysFrontPage(),
+    fetchActivismTypesFrontPage()
+  ]);
+  return {
+    props: {
+      essayData,
+      activismTypeData
+    }
+  }
+})
+
+export default function Home({essayData, activismTypeData}) {
     return (
     <>
       <Head>
@@ -17,10 +32,10 @@ export default function Home() {
       </Head>
         <OpeningAnimation/>
         <HorizontalScrollSection text={'Activism'} />
-        <PeopleGroupSelector />
+        <ActivismTypeSelector data={activismTypeData['data']} />
         <HorizontalScrollSection text={'People'} />
         <PeopleSection />
-        <EssaySection />
+        <EssaySection data={essayData['data']} />
     </>
   )
 }

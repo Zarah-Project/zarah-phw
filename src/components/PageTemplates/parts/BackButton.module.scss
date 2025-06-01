@@ -1,0 +1,30 @@
+@use "@/styles/colours" as *;
+
+.BackButton {
+  color: $fontOnDark;
+
+  a {
+    color: inherit;
+    display: flex;
+    gap: 24px;
+    align-items: center;
+    text-decoration: none;
+    font-family: var(--font-neueMontreal), serif;
+    font-weight: 400;
+    font-size: 14px;
+    text-transform: uppercase;
+
+    span {
+      text-align: center;
+      width: 260px;
+      letter-spacing: 1.4px;
+      transition: letter-spacing 0.3s ease-in-out;
+    }
+
+    &:hover {
+      span {
+        letter-spacing: 3px;
+      }
+    }
+  }
+}

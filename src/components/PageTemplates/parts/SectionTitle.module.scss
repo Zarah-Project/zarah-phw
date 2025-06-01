@@ -1,0 +1,9 @@
+@use "@/styles/colours" as *;
+
+.Title {
+  color: $fontOnDark;
+  font-family: var(--font-neueMontreal), serif;
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 120%;
+}

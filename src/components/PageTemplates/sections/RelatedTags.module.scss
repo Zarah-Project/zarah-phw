@@ -1,0 +1,13 @@
+@use "@/styles/colours" as *;
+
+.Wrapper {
+  display: flex;
+  flex-flow: row wrap;
+  text-decoration: none;
+  color: inherit;
+  gap: 8px;
+
+  h4 {
+    padding-bottom: 8px;
+  }
+}

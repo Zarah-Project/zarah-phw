@@ -4,8 +4,20 @@ import LayoutLight from "@/components/Layout/LayoutLight";
 import Spacer from "@/components/BaseElements/Spacer";
 import React from "react";
 import style from "./essays.module.scss";
+import {fetchEssaysList} from "@/utils/api/fetchEassys";
 
-export default function EssaysPage() {
+export const getServerSideProps = (async (context) => {
+    const [essayData] = await Promise.all([
+        fetchEssaysList(),
+    ]);
+    return {
+        props: {
+            essayData,
+        }
+    }
+})
+
+export default function EssaysPage({essayData}) {
     return (
         <>
             <Head>
@@ -16,7 +28,7 @@ export default function EssaysPage() {
             </Head>
             <div className={style.Section}>
                 <Spacer size={'l'}/>
-                <EssaySection header={false} max={0}/>
+                <EssaySection header={false} data={essayData['data']} />
             </div>
         </>
     )
