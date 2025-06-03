@@ -13,7 +13,7 @@
     "@strapi/blocks-react-renderer": "^1.0.2",
     "leaflet": "^1.9.4",
     "motion": "^12.6.3",
-    "next": "15.1.7",
+    "next": "15.2.4",
     "normalize-wheel": "^1.0.1",
     "react": "^19.0.0",
     "react-dom": "^19.0.0",
