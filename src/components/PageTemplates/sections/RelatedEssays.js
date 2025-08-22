@@ -3,32 +3,38 @@ import Link from "next/link";
 import SectionTitle from "@/components/PageTemplates/parts/SectionTitle";
 import truncateWithEllipses from "@/utils/truncateWithEllipsis";
 import Photo from "@/components/BaseElements/Photo";
+import Spacer from "@/components/BaseElements/Spacer";
+import getImageData from "@/utils/content/getImageData";
 
-const essays = [
-    {
-        id: 1,
-        title: 'Through the Lens of Women’s Work and Activism',
-        shortDescription: 'This year’s ZARAH Blog Series gives the floor to invited contributors and their inspiring ' +
-            'explorations, thus publicizing relevant research that takes place beyond the scope of the ZARAH project.',
-        image: 'essay01.jpg',
-    },
-]
+const RelatedEssays = ({data}) => {
+    const renderEssay = (essay) => {
+        const image = getImageData(essay['Image'], 'medium')
 
-const RelatedEssays = () => {
-    return (
-        <>
-            <SectionTitle title={'Connected Essays'}/>
-            {
-                essays.map((essay) => (
-                    <Link key={essay.id} href={'#'} className={style.Wrapper}>
-                        <h4>{essay.title}</h4>
-                        <p>{truncateWithEllipses(essay.shortDescription, 150)}</p>
-                        <Photo image={essay.image} height={315} />
-                    </Link>
-                ))
-            }
-        </>
-    )
+        return (
+            <Link key={essay['id']} href={`/essays/${essay['Slug']}`} className={style.Wrapper}>
+                <h4>{essay['Title']}</h4>
+                <p>{truncateWithEllipses(essay['ShortDescription'], 150)}</p>
+                <Photo image={image} minHeight={315} />
+            </Link>
+        )
+    }
+
+    if (data.length > 0) {
+        return (
+            <>
+                <Spacer size={'xl'} />
+                <SectionTitle title={'Connected Essays'}/>
+                {
+                    data.map((essay) => (renderEssay(essay)))
+                }
+                <Spacer size={'xl'} />
+                <hr />
+            </>
+        )
+    } else {
+        return ""
+    }
+
 }
 
 export default RelatedEssays;

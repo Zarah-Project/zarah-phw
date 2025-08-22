@@ -6,36 +6,31 @@ import RelatedNetworks from "@/components/PageTemplates/sections/RelatedNetworks
 import RelatedEssays from "@/components/PageTemplates/sections/RelatedEssays";
 import RelatedSources from "@/components/PageTemplates/sections/RelatedSources";
 import RelatedTags from "@/components/PageTemplates/sections/RelatedTags";
-import {BlocksRenderer} from "@strapi/blocks-react-renderer";
 import Content from "@/components/PageTemplates/parts/Content";
+import RelatedActivismStories from "@/components/PageTemplates/sections/RelatedActivismStories";
 
-const EssayPageTemplate = ({data}) => {
-    const title = data['Title'];
+
+const PageTemplate = ({data, titleField = 'Title', module}) => {
+    const title = data[titleField];
     const content = data['Content'];
+
+    const people = data['People'] || [];
+    const stories = data['ActivismStories'] || [];
+    const networks = data['Networks'] || [];
+    const essays = data['Essays'] || [];
+    const sources = data['Sources'] || [];
+    const tags = data['Tags'] || [];
 
     return (
         <div className={style.PageWrapper}>
             <div className={style.RelatedContent}>
-                <BackButton module={"essays"}/>
-                <Spacer size={'xl'}/>
-                <RelatedPeople />
-                <Spacer size={'l'}/>
-                <hr />
-                <Spacer size={'xl'}/>
-                <RelatedNetworks />
-                <Spacer size={'l'} />
-                <hr />
-                <Spacer size={'xl'} />
-                <RelatedEssays />
-                <Spacer size={'xl'} />
-                <hr />
-                <Spacer size={'xl'} />
-                <RelatedSources />
-                <Spacer size={'xl'} />
-                <hr />
-                <Spacer size={'xl'} />
-                <RelatedTags />
-                <Spacer size={'xl'} />
+                <BackButton module={module}/>
+                <RelatedActivismStories data={stories} />
+                <RelatedPeople data={people} />
+                <RelatedNetworks data={networks} />
+                <RelatedEssays data={essays}/>
+                <RelatedSources data={sources}/>
+                <RelatedTags data={tags}/>
             </div>
             <div className={style.PageContent}>
                 <h2>{title}</h2>
@@ -46,4 +41,4 @@ const EssayPageTemplate = ({data}) => {
     )
 }
 
-export default EssayPageTemplate;
+export default PageTemplate;

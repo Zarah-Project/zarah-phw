@@ -18,4 +18,16 @@
     color: inherit;
     border-bottom: 1px solid $fontOnLight;
   }
+
+  blockquote {
+    padding: 24px;
+
+    &::before {
+      content: '“';
+    }
+
+    &::after {
+      content: '”';
+    }
+  }
 }

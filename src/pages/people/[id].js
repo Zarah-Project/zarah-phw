@@ -2,15 +2,16 @@ import React from "react";
 import LayoutLight from "@/components/Layout/LayoutLight";
 import {fetchEssayDetail} from "@/utils/api/fetchEassys";
 import PageTemplate from "@/components/PageTemplates/PageTemplate";
+import {fetchPersonDetail} from "@/utils/api/fetchPeople";
 
 export const getServerSideProps = (async (context) => {
     const { id } = context.query;
 
-    const [essayData] = await Promise.all([
-        fetchEssayDetail(id)
+    const [personData] = await Promise.all([
+        fetchPersonDetail(id)
     ])
 
-    if (essayData['data'] === null) {
+    if (personData['data'] === null) {
         return {
             notFound: true,
         }
@@ -18,16 +19,16 @@ export const getServerSideProps = (async (context) => {
 
     return {
         props: {
-            essayData
+            personData
         }
     }
 })
 
-export default function EssayPage({essayData}) {
-    return <PageTemplate data={essayData['data']} module={'essays'}/>
+export default function PersonPage({personData}) {
+    return <PageTemplate data={personData['data']} titleField={'Name'} module={'people'}/>
 }
 
-EssayPage.getLayout = function getLayout(page) {
+PersonPage.getLayout = function getLayout(page) {
     return (
         <LayoutLight>
             {page}

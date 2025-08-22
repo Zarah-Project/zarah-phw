@@ -5,9 +5,12 @@ import React from "react";
 import truncateWithEllipses from "@/utils/truncateWithEllipsis";
 import Button from "@/components/BaseElements/Button";
 import Spacer from "@/components/BaseElements/Spacer";
+import getImageData from "@/utils/content/getImageData";
 
-const ActivismCard = ({ activism, index }) => {
-    const { title, shortDescription, id, image} = activism;
+const ActivismCard = ({ activismStory, index }) => {
+    const { Title, ShortDescription, Slug, Image} = activismStory;
+
+    const image = getImageData(Image, 'medium')
 
     return (
         <motion.div
@@ -19,8 +22,8 @@ const ActivismCard = ({ activism, index }) => {
         >
             <Photo image={image} minHeight={240} />
             <div className={style.Content}>
-                <h5>{title}</h5>
-                <p>{truncateWithEllipses(shortDescription, 150)}</p>
+                <h5>{Title}</h5>
+                <p>{truncateWithEllipses(ShortDescription, 150)}</p>
                 <Spacer size={'l'} />
                 <Button
                     text={'Read Story'}

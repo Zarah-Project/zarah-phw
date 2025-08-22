@@ -1,45 +1,43 @@
 import style from "./RelatedPeople.module.scss";
 import Link from "next/link";
 import SectionTitle from "@/components/PageTemplates/parts/SectionTitle";
+import getImageData from "@/utils/content/getImageData";
+import Spacer from "@/components/BaseElements/Spacer";
 
-const people = [
-    {
-        id: '1',
-        name: 'Full Name',
-        group: 'People Cluster Category',
-        image: 'person00.jpg'
-    }, {
-        id: '2',
-        name: 'Full Name',
-        group: 'People Cluster Category',
-        image: 'person01.jpg'
-    }, {
-        id: '3',
-        name: 'Full Name',
-        group: 'People Cluster Category',
-        image: 'person02.jpg'
+const RelatedPeople = ({data}) => {
+    const renderPerson = (person) => {
+        const image = getImageData(person['Image'], 'small')
+        const group = person['PersonGroup']?.['Group']
+
+        return (
+            <Link key={person.id} href={`/people/${person['Slug']}`} className={style.PersonWrapper}>
+                <div className={style.ImageWrapper}>
+                    <img src={image['url']} alt={person['Name']} className={style.Image} />
+                </div>
+                <div className={style.Data}>
+                    <h5>{person['Name']}</h5>
+                    <p className={style.Group}>{group}</p>
+                </div>
+            </Link>
+        )
     }
-]
 
-const RelatedPeople = () => {
-    return (
-        <>
-            <SectionTitle title={'Connected People'}/>
-            {
-                people.map((person) => (
-                    <Link key={person.id} href={'#'} className={style.PersonWrapper}>
-                        <div className={style.ImageWrapper}>
-                            <img src={`/images/examples/${person.image}`} alt={person.name} className={style.Image} />
-                        </div>
-                        <div className={style.Data}>
-                            <h5>{person.name}</h5>
-                            <p className={style.Group}>{person.group}</p>
-                        </div>
-                    </Link>
-                ))
-            }
-        </>
-    )
+    if (data.length > 0) {
+        return (
+            <>
+                <Spacer size={'xl'}/>
+                <SectionTitle title={'Connected People'}/>
+                {
+                    data.map((person) => renderPerson(person))
+                }
+                <Spacer size={'l'}/>
+                <hr />
+            </>
+        )
+    } else {
+        return ""
+    }
+
 }
 
 export default RelatedPeople;

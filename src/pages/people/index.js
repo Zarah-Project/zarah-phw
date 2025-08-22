@@ -6,25 +6,23 @@ import styles from "./people.module.scss";
 import {useRouter} from "next/router";
 import PersonTile from "@/components/Cards/PersonTile/PersonTile";
 import {fetchPersonGroupsList} from "@/utils/api/fetchPersonGroups";
+import {fetchPeopleList} from "@/utils/api/fetchPeople";
 
 export const getServerSideProps = (async (context) => {
-    const [personGroupData] = await Promise.all([
+    const [personGroupData, peopleData] = await Promise.all([
         fetchPersonGroupsList(),
+        fetchPeopleList()
     ]);
     return {
         props: {
             personGroupData,
+            peopleData
         }
     }
 })
 
-const generatePeople = (group) =>
-    Array.from({ length: 8 }, (_, i) => ({
-        name: `${group} - Person ${i + 1}`,
-        id: `${group}-${i}`,
-    }));
 
-export default function PeoplePage({ personGroupData }) {
+export default function PeoplePage({ personGroupData, peopleData }) {
     const groupNames = personGroupData['data'].map(group => group['Group']);
 
     const sectionRefs = useRef([]);
@@ -88,6 +86,12 @@ export default function PeoplePage({ personGroupData }) {
             setTimeout(() => scrollToGroup(index), 300); // slight delay for layout to settle
         }
     }, []);
+
+    const generatePeople = (group) => {
+        return peopleData['data'].filter(person => {
+            return person['PersonGroup']['Group'] === group['Group'];
+        });
+    }
 
     return (
         <>

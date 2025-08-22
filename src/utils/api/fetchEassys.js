@@ -31,15 +31,24 @@ export const fetchEssaysList = (page) => {
 
 export const fetchEssayDetail = (id) => {
     let params = {
-        'populate[0]': 'Image',
-        'populate[1]': 'ActivismStories',
-        'populate[2]': 'Networks',
-        'populate[3]': 'People',
         'fields[0]': 'Title',
-        'fields[2]': 'ShortDescription',
-        'fields[3]': 'Slug',
-        'fields[4]': 'Content',
-        'fields[5]': 'Tags'
+        'fields[1]': 'ShortDescription',
+        'fields[2]': 'Slug',
+        'fields[3]': 'Content',
+        'fields[4]': 'Tags',
+        'populate[Image][fields][0]': 'formats',
+        'populate[People][fields][0]': 'Name',
+        'populate[People][fields][1]': 'Slug',
+        'populate[People][populate][Image][fields][0]': 'formats',
+        'populate[People][populate][PersonGroup][fields][1]': 'Group',
+        'populate[ActivismStories][fields][0]': 'Title',
+        'populate[ActivismStories][fields][1]': 'Slug',
+        'populate[ActivismStories][populate][ActivismType][fields][0]': 'Type',
+        'populate[Networks][fields][0]': 'Title',
+        'populate[Networks][fields][1]': 'Slug',
+        'populate[Networks][fields][2]': 'Place',
+        'populate[Networks][fields][3]': 'StartDate',
+        'populate[Networks][fields][4]': 'EndDate',
     }
 
     if (isNaN(Number(id))) {

@@ -1,14 +1,22 @@
 import React, { useEffect, useRef, useState } from "react";
 import styles from "./activism.module.scss";
 import LayoutDark from "@/components/Layout/LayoutDark";
-import {activismGroups} from "@/mockData/activismGroups";
+import {fetchActivismTypes} from "@/utils/api/fetchActivismTypes";
+import ActivismSection from "@/components/Sections/Activisims/ActivismSection";
 
-const sections = Array.from({ length: 8 }, (_, i) => ({
-    title: `Section ${i + 1}`,
-    content: Array.from({ length: 5 }, (_, j) => `Column ${j + 1}`),
-}));
 
-export default function ActivismPage() {
+export const getServerSideProps = (async (context) => {
+    const [activismTypeData] = await Promise.all([
+        fetchActivismTypes()
+    ]);
+    return {
+        props: {
+            activismTypeData
+        }
+    }
+})
+
+export default function ActivismPage({activismTypeData}) {
     const [activeSection, setActiveSection] = useState(0);
     const [progress, setProgress] = useState(0); // NEW
     const sectionRefs = useRef([]);
@@ -112,7 +120,7 @@ export default function ActivismPage() {
         sectionRefs.current[index]?.scrollIntoView({ behavior: "smooth", block: 'center' });
     };
 
-    const indicatorTop = `${(activeSection / activismGroups.length) * 100}%`;
+    const indicatorTop = `${(activeSection / activismTypeData['data'].length) * 100}%`;
 
     return (
         <div className={styles.container}>
@@ -120,13 +128,13 @@ export default function ActivismPage() {
             {/* Sidebar */}
             <div className={styles.sidebar} ref={sidebarRef}>
                 <div className={styles.sidebarContent}>
-                    {activismGroups.map((group, index) => (
+                    {activismTypeData['data'].map((group, index) => (
                         <div
                             key={index}
                             className={`${styles.sidebarItem} ${index === activeSection ? styles.active : ""}`}
                             onClick={() => scrollToSection(index)}
                         >
-                            <div>{group.title.replaceAll('[IMG]', '')}</div>
+                            <div>{group['Type']}</div>
                         </div>
                     ))}
                     <div className={styles.scrollLine}></div>
@@ -139,7 +147,7 @@ export default function ActivismPage() {
 
             {/* Content */}
             <div className={styles.content}>
-                {activismGroups.map((group, index) => (
+                {activismTypeData['data'].map((group, index) => (
                     <div
                         key={index}
                         ref={(el) => (sectionRefs.current[index] = el)}
@@ -166,7 +174,7 @@ export default function ActivismPage() {
                             onScroll={(e) => handleScroll(e, index)}
                         >
                             <div className={styles.column}>
-                                {group.description}
+                                <ActivismSection group={group} />
                             </div>
                         </div>
                     </div>

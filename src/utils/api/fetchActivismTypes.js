@@ -13,16 +13,17 @@ export const fetchActivismTypesFrontPage = () => {
     return fetcher('activism-types', params)
 }
 
-export const fetchEssaysList = (page) => {
+export const fetchActivismTypes = (page) => {
     const params = {
-        'sort[0]': 'createdAt:desc',
-        'populate[0]': 'Image',
+        'sort[0]': 'Sort',
         'pagination[start]': 0,
-        'pagination[limit]': 50,
-        'fields[0]': 'Title',
-        'fields[2]': 'ShortDescription',
-        'fields[3]': 'Slug',
+        'pagination[limit]': 20,
+        'fields[0]': 'Type',
+        'fields[1]': 'Description',
+        'populate[ActivismStories][fields][0]': 'Title',
+        'populate[ActivismStories][fields][1]': 'ShortDescription',
+        'populate[ActivismStories][populate][Image][fields][0]': 'formats',
     }
 
-    return fetcher('essays', params)
+    return fetcher('activism-types', params)
 }
