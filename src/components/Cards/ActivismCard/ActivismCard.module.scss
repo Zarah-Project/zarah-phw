@@ -1,5 +1,7 @@
 .Card {
-  cursor: pointer;
+  display: flex;
+  flex-direction: column;
+  height: 100%;
 
   .ImageWrapper {
     position: relative;
@@ -13,7 +15,16 @@
   }
 
   .Content {
+    flex: 1;
     padding-top: 24px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+
+    .Link {
+      text-decoration: none;
+      color: inherit; /* Ensures the link inherits the text color */
+    }
 
     p {
       padding-top: 24px;

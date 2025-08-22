@@ -5,7 +5,7 @@ import style from "./BackButton.module.scss"
 const BackButton = ({ module }) => {
     const getBackText = () => {
         switch (module) {
-            case "activism":
+            case "activism-story":
                 return "Activism Stories"
             case "people":
                 return "People"
@@ -22,7 +22,7 @@ const BackButton = ({ module }) => {
 
     const getLink = () => {
         switch (module) {
-            case "activism":
+            case "activism-story":
                 return "/activism"
             case "people":
                 return "/people"

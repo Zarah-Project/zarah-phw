@@ -22,6 +22,7 @@ export const fetchActivismTypes = (page) => {
         'fields[1]': 'Description',
         'populate[ActivismStories][fields][0]': 'Title',
         'populate[ActivismStories][fields][1]': 'ShortDescription',
+        'populate[ActivismStories][fields][2]': 'Slug',
         'populate[ActivismStories][populate][Image][fields][0]': 'formats',
     }
 

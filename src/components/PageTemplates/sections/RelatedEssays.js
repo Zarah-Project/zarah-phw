@@ -15,6 +15,7 @@ const RelatedEssays = ({data}) => {
                 <h4>{essay['Title']}</h4>
                 <p>{truncateWithEllipses(essay['ShortDescription'], 150)}</p>
                 <Photo image={image} minHeight={315} />
+                <Spacer size={'xl'} />
             </Link>
         )
     }
@@ -27,7 +28,6 @@ const RelatedEssays = ({data}) => {
                 {
                     data.map((essay) => (renderEssay(essay)))
                 }
-                <Spacer size={'xl'} />
                 <hr />
             </>
         )

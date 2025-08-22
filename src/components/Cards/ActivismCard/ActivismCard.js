@@ -1,5 +1,5 @@
 import {motion} from "motion/react";
-import style from "@/components/Cards/EssayCard/EssayCard.module.scss";
+import style from "./ActivismCard.module.scss";
 import Photo from "@/components/BaseElements/Photo";
 import React from "react";
 import truncateWithEllipses from "@/utils/truncateWithEllipsis";
@@ -20,20 +20,22 @@ const ActivismCard = ({ activismStory, index }) => {
             transition={{ duration: 0.4, delay: index * 0.1 }}
             className={style.Card}
         >
-            <Photo image={image} minHeight={240} />
+            <Photo image={image} height={240} />
             <div className={style.Content}>
                 <h5>{Title}</h5>
                 <p>{truncateWithEllipses(ShortDescription, 150)}</p>
-                <Spacer size={'l'} />
-                <Button
-                    text={'Read Story'}
-                    theme={'light'}
-                    type={'primary'}
-                    width={150}
-                />
+                <Spacer size={'l'}/>
+                <a href={`/activism/story/${Slug}`} className={style.Link} rel="noopener noreferrer">
+                    <Button
+                        text={'Read Story'}
+                        theme={'light'}
+                        type={'primary'}
+                        width={150}
+                    />
+                </a>
             </div>
         </motion.div>
-    )
+)
 }
 
 export default ActivismCard;

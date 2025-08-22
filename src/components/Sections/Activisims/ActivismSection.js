@@ -21,13 +21,13 @@ const ActivismSection = ({group}) => {
                 {group['Description']}
             </div>
             <div className={`${style.Cards} ${style.SectionPiece}`}>
-                    {
-                        group['ActivismStories'].map((story, index) => (
-                            <div className={style.Card}>
-                                <ActivismCard key={index} index={index} activismStory={story}/>
-                            </div>
-                        ))
-                    }
+                {
+                    group['ActivismStories'].map((story, index) => (
+                        <div className={style.Card}>
+                            <ActivismCard key={index} index={index} activismStory={story}/>
+                        </div>
+                    ))
+                }
             </div>
         </div>
     )
