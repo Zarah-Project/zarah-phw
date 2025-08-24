@@ -7,21 +7,25 @@ import EssaySection from "@/components/Sections/EssaySection/EssaySection";
 import LayoutDark from "@/components/Layout/LayoutDark";
 import {fetchEssaysFrontPage} from "@/utils/api/fetchEassys";
 import {fetchActivismTypesFrontPage} from "@/utils/api/fetchActivismTypes";
+import {fetchPeopleFrontPage} from "@/utils/api/fetchPeople";
 
 export const getServerSideProps = (async (context) => {
-  const [essayData, activismTypeData] = await Promise.all([
+  const [essayData, activismTypeData, peopleData] = await Promise.all([
     fetchEssaysFrontPage(),
-    fetchActivismTypesFrontPage()
+    fetchActivismTypesFrontPage(),
+    fetchPeopleFrontPage()
   ]);
+
   return {
     props: {
       essayData,
-      activismTypeData
+      activismTypeData,
+      peopleData
     }
   }
 })
 
-export default function Home({essayData, activismTypeData}) {
+export default function Home({essayData, activismTypeData, peopleData}) {
     return (
     <>
       <Head>
@@ -34,7 +38,7 @@ export default function Home({essayData, activismTypeData}) {
         <HorizontalScrollSection text={'Activism'} />
         <ActivismTypeSelector data={activismTypeData['data']} />
         <HorizontalScrollSection text={'People'} />
-        <PeopleSection />
+        <PeopleSection data={peopleData['data']} />
         <EssaySection data={essayData['data']} />
     </>
   )

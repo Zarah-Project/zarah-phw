@@ -5,16 +5,20 @@ import Button from "@/components/BaseElements/Button";
 import IconRightArrow from "@/components/Icons/IconRightArrow";
 import Photo from "@/components/BaseElements/Photo";
 import TwoColumnCard from "@/components/Cards/Base/TwoColumnCard";
+import getImageData from "@/utils/content/getImageData";
+import Link from "next/link";
 
 const PersonCard = ({ person, photoAlign = 'left' }) => {
-    const { personGroup, name, bio, id, image} = person;
+    const { personGroup, Name, CardText, Slug, Image} = person;
 
     const getName = () => {
-        const nameArray = name.split(' ');
+        const nameArray = Name.split(' ');
         const firstName = nameArray[0];
         const lastName = nameArray.slice(1).join(' ');
         return { firstName, lastName };
     }
+
+    const image = getImageData(Image, 'large');
 
     const dataSheet = () => {
         return (
@@ -26,23 +30,27 @@ const PersonCard = ({ person, photoAlign = 'left' }) => {
                     {getName()['lastName']}
                 </h2>
                 <Spacer size={'l'} />
-                <p>{bio}</p>
+                <p>{CardText}</p>
                 <Spacer size={'l'} />
                 <div className={style.Buttons}>
-                    <Button
-                        text={'Read Biography'}
-                        theme={'light'}
-                        type={'primary'}
-                        width={220}
-                    />
-                    <Button
-                        icon={<IconRightArrow theme={'light'}/>}
-                        iconPlacement={'back'}
-                        text={'See All Stories'}
-                        theme={'light'}
-                        type={'secondary'}
-                        width={240}
-                    />
+                    <Link href={`/people/${Slug}`} className={style.Link}>
+                        <Button
+                            text={'Read Biography'}
+                            theme={'light'}
+                            type={'primary'}
+                            width={220}
+                        />
+                    </Link>
+                    <Link href={`/people`} className={style.Link}>
+                        <Button
+                            icon={<IconRightArrow theme={'light'}/>}
+                            iconPlacement={'back'}
+                            text={'See All Stories'}
+                            theme={'light'}
+                            type={'secondary'}
+                            width={240}
+                        />
+                    </Link>
                 </div>
             </div>
         )

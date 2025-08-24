@@ -1,6 +1,20 @@
 import fetcher from "@/utils/api/fetcher";
 import fetcherSlug from "@/utils/api/fetcherSlug";
 
+export const fetchPeopleFrontPage = () => {
+    const params = {
+        'sort[0]': 'createdAt:desc',
+        'populate[0]': 'Image',
+        'pagination[start]': 0,
+        'pagination[limit]': 2,
+        'fields[0]': 'Name',
+        'fields[1]': 'CardText',
+        'fields[2]': 'Slug',
+    }
+
+    return fetcher('people', params)
+}
+
 export const fetchPeopleList = () => {
     const params = {
         'sort[0]': 'Name',
@@ -42,6 +56,6 @@ export const fetchPersonDetail = (id) => {
         params['filters[Slug][$eq]'] = id
         return fetcherSlug(`people`, params)
     } else {
-        return fetcher(`essays/${id}`, params)
+        return fetcher(`people/${id}`, params)
     }
 }
