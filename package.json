@@ -19,7 +19,9 @@
     "react-dom": "^19.0.0",
     "react-grid-system": "^8.2.1",
     "react-leaflet": "^5.0.0",
+    "react-markdown": "^10.1.0",
     "react-use": "^17.6.0",
+    "rehype-external-links": "^3.0.0",
     "sass": "^1.85.0",
     "swr": "^2.3.3",
     "yet-another-react-lightbox": "^3.23.4"

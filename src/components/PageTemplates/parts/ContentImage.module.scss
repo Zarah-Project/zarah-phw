@@ -1,0 +1,10 @@
+@use "@/styles/colours" as *;
+
+.Caption {
+  font-family: var(--font-neueMontreal), serif;
+  font-size: 16px;
+  line-height: 150%;
+  font-style: italic;
+  color: rgba($fontOnLight, 0.8);
+  padding: 8px 0;
+}

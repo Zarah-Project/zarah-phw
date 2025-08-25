@@ -1,9 +1,10 @@
 import Image from 'next/image';
 import React from 'react';
+import style from './ContentImage.module.scss'
+import Markdown from "react-markdown";
+import rehypeExternalLinks from "rehype-external-links";
 
 const ContentImage = ({ image, size = 'full', maxHeight, ...props }) => {
-    console.log(image)
-
     const getImageData = () => {
         if (size !== 'full') {
             if (image['formats'].hasOwnProperty(size)) {
@@ -24,12 +25,25 @@ const ContentImage = ({ image, size = 'full', maxHeight, ...props }) => {
         }
     }
 
+    const getCaption = () => {
+        const {caption} = image;
+
+        if (caption && caption !== '') {
+            return (
+                <div className={style.Caption}>
+                    <Markdown rehypePlugins={[[rehypeExternalLinks, {target: '_blank'}]]}>{caption}</Markdown>
+                </div>
+            )
+        }
+    }
+
     const {width, height, alt, src} = getImageData()
 
     const aspectRatio = width / height;
     const maxH = typeof maxHeight === 'number' ? `${maxHeight}px` : maxHeight;
 
     return (
+        <>
         <div style={{
             display: 'flex',
             alignItems: 'center',
@@ -58,7 +72,9 @@ const ContentImage = ({ image, size = 'full', maxHeight, ...props }) => {
                 />
             </div>
         </div>
-    );
+        {getCaption()}
+        </>
+);
 };
 
 export default ContentImage;
