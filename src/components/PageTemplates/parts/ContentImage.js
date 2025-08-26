@@ -25,12 +25,12 @@ const ContentImage = ({ image, size = 'full', maxHeight, ...props }) => {
         }
     }
 
-    const getCaption = () => {
+    const getCaption = (width) => {
         const {caption} = image;
 
         if (caption && caption !== '') {
             return (
-                <div className={style.Caption}>
+                <div className={style.Caption} style={{width: width}}>
                     <Markdown rehypePlugins={[[rehypeExternalLinks, {target: '_blank'}]]}>{caption}</Markdown>
                 </div>
             )
@@ -72,7 +72,7 @@ const ContentImage = ({ image, size = 'full', maxHeight, ...props }) => {
                 />
             </div>
         </div>
-        {getCaption()}
+        {getCaption(`calc(${maxH} * ${aspectRatio})`)}
         </>
 );
 };
