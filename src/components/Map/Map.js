@@ -32,25 +32,27 @@ const createCircleIcon = (label) => {
 const CityMarkers = ({mapData, activeDataset, onMarkerClick, onDrawerClose}) => {
     const renderDatasetMarkers = () => {
         const markers = [];
+        let filteredItems = [];
 
         mapData.forEach(item => {
-            let numberOfItems = 0;
             if (activeDataset === 'world1930') {
-                numberOfItems = item['Networks'].filter(item => {
+                filteredItems = item['Networks'].filter(item => {
                     const year = parseInt(item['StartDate'].split("-")[0], 10);
                     return year < 1945;
-                }).length;
+                });
             } else {
-                numberOfItems = item['Networks'].filter(item => {
+                filteredItems = item['Networks'].filter(item => {
                     const year = parseInt(item['StartDate'].split("-")[0], 10);
                     return year >= 1945;
-                }).length;
+                });
             }
 
-            if (numberOfItems > 0) {
+            if (filteredItems.length > 0) {
                 markers.push({
                     pos: [item['Latitude'], item['Longitude']],
-                    label: numberOfItems
+                    label: filteredItems.length,
+                    city: item['City'],
+                    events: filteredItems
                 });
             }
         });
@@ -67,7 +69,7 @@ const CityMarkers = ({mapData, activeDataset, onMarkerClick, onDrawerClose}) => 
                     icon={createCircleIcon(marker.label)}
                     eventHandlers={{
                         click: () => {
-                            onMarkerClick(<MapDrawer onDrawerClose={onDrawerClose}/>);
+                            onMarkerClick(<MapDrawer city={marker.city} events={marker.events} onDrawerClose={onDrawerClose}/>);
                         },
                     }}
                 />

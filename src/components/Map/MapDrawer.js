@@ -6,11 +6,11 @@ import {events} from "@/mockData/events";
 import EventCard from "@/components/Cards/EventCard/EventCard";
 import Spacer from "@/components/BaseElements/Spacer";
 
-const MapDrawer = ({onDrawerClose}) => {
+const MapDrawer = ({events, city, onDrawerClose}) => {
     return (
         <div className={style.DrawerWrapper}>
             <div className={style.Header}>
-                <h5>City</h5>
+                <h5>{city}</h5>
                 <Button
                     text="Close"
                     type={'secondary'}
@@ -21,10 +21,12 @@ const MapDrawer = ({onDrawerClose}) => {
                 />
             </div>
             <div className={style.Content}>
-                <EventCard event={events[0]} index={1} />
-                <Spacer size={'xxl'} />
-                <EventCard event={events[1]} index={2} />
-                <Spacer size={'xxl'} />
+                {events.map((event, idx) => (
+                    <>
+                        <EventCard city={city} event={event} index={1} />
+                        <Spacer size={'xxl'} />
+                    </>
+                ))}
             </div>
         </div>
     )
