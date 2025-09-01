@@ -10,7 +10,7 @@ const SVGMap = dynamic(() => import("@/components/Map/Map"), {
     ssr: false,
 });
 
-const NetworkWrapper = () => {
+const NetworkWrapper = ({data}) => {
     const [showList, setShowList] = useState(false);
     const [drawerOpen, setDrawerOpen] = useState(false)
     const [drawerContent, setDrawerContent] = useState(null);
@@ -60,7 +60,7 @@ const NetworkWrapper = () => {
                     }}
                     transition={{type: "tween", duration: 0.3}}
                     className={`${style.Column}`}>
-                    <SVGMap onMarkerClick={openDrawerWithContent} onDrawerClose={closeDrawer} />
+                    <SVGMap mapData={data['data']} onMarkerClick={openDrawerWithContent} onDrawerClose={closeDrawer} />
                     <div className={`${style.Drawer} ${drawerOpen ? style.Open : ''}`}>
                         {drawerContent}
                     </div>
@@ -71,7 +71,7 @@ const NetworkWrapper = () => {
                     }}
                     transition={{type: "tween", duration: 0.6}}
                     className={`${style.Column}`}>
-                    <NetworkList />
+                    <NetworkList mapData={data['data']} />
                 </motion.div>
             </motion.div>
         </>

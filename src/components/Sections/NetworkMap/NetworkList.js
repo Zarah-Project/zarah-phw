@@ -24,13 +24,24 @@ const Geneva = () => {
 }
 
 
-const NetworkList = () => {
-    const items = [
-        { title: 'Washington DC', content: <Washington /> },
-        { title: 'Geneva', content: <Geneva /> },
-        { title: 'Paris', content: '' },
-        { title: 'Rome', content: '' },
-    ];
+const NetworkList = ({mapData}) => {
+    const renderCards = (eventsData, city) => {
+        return eventsData.map(event => {
+            return (
+                <>
+                    <EventCard key={event['documentId']} city={city} event={event} truncate={false} />
+                    <Spacer size={'xxl'} />
+                </>
+            )
+        })
+    }
+
+    const items = mapData.map((network) => {
+        return {
+            title: network['City'],
+            content: renderCards(network['Networks'], network['City'])
+        }
+    });
 
     return (
         <div className={style.List}>

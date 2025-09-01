@@ -6,9 +6,21 @@ import LayoutLight from "@/components/Layout/LayoutLight";
 import dynamic from "next/dynamic";
 import NetworkMapList from "@/components/Sections/NetworkMap/NetworkWrapper";
 import NetworkWrapper from "@/components/Sections/NetworkMap/NetworkWrapper";
+import {fetchEssaysList} from "@/utils/api/fetchEassys";
+import {fetchNetworksList} from "@/utils/api/fetchNetworks";
 
+export const getServerSideProps = (async (context) => {
+    const [networksData] = await Promise.all([
+        fetchNetworksList(),
+    ]);
+    return {
+        props: {
+            networksData,
+        }
+    }
+})
 
-export default function NetworksPage() {
+export default function NetworksPage({networksData}) {
     return (
         <>
             <Head>
@@ -36,7 +48,7 @@ export default function NetworksPage() {
                 </div>
                 <Spacer size={'xxl'} />
                 <div className={style.MapContainer}>
-                    <NetworkWrapper />
+                    <NetworkWrapper data={networksData} />
                 </div>
             </div>
         </>

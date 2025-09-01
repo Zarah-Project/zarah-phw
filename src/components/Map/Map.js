@@ -1,13 +1,13 @@
 import React, {useEffect, useState} from "react";
 import {
     MapContainer,
-    ImageOverlay,
     Marker,
-    useMap, GeoJSON,
+    GeoJSON,
 } from "react-leaflet";
 import L from "leaflet";
 import "leaflet/dist/leaflet.css";
 import world1930 from '../../../public/maps/world_1930_simplified.json';
+import world1960 from '../../../public/maps/world_1960_simplified.json';
 import CustomZoomControls from "@/components/Map/CustomZoomControls";
 import DatasetSwitcher from "@/components/Map/DataSetSwitcher";
 import WashingtonButton from "@/components/Map/WashingtonButton";
@@ -29,16 +29,38 @@ const createCircleIcon = (label) => {
     });
 };
 
-const CityMarkers = ({onMarkerClick, onDrawerClose}) => {
-    const allMarkers = [
-        { pos: [48.864716, 2.349014], label: "3" },
-        { pos: [47.497913, 19.040236], label: "" },
-        { pos: [41.902782, 12.496366], label: "" },
-    ];
+const CityMarkers = ({mapData, activeDataset, onMarkerClick, onDrawerClose}) => {
+    const renderDatasetMarkers = () => {
+        const markers = [];
+
+        mapData.forEach(item => {
+            let numberOfItems = 0;
+            if (activeDataset === 'world1930') {
+                numberOfItems = item['Networks'].filter(item => {
+                    const year = parseInt(item['StartDate'].split("-")[0], 10);
+                    return year < 1945;
+                }).length;
+            } else {
+                numberOfItems = item['Networks'].filter(item => {
+                    const year = parseInt(item['StartDate'].split("-")[0], 10);
+                    return year >= 1945;
+                }).length;
+            }
+
+            if (numberOfItems > 0) {
+                markers.push({
+                    pos: [item['Latitude'], item['Longitude']],
+                    label: numberOfItems
+                });
+            }
+        });
+
+        return markers
+    }
 
     return (
         <>
-            {allMarkers.map((marker, idx) => (
+            {renderDatasetMarkers().map((marker, idx) => (
                 <Marker
                     key={idx}
                     position={marker.pos}
@@ -54,8 +76,17 @@ const CityMarkers = ({onMarkerClick, onDrawerClose}) => {
     );
 };
 
-const SVGMap = ({onMarkerClick, onDrawerClose}) => {
+const SVGMap = ({mapData, onMarkerClick, onDrawerClose}) => {
+    const [activeDataset, setActiveDataset] = useState('world1930');
     const [geoData, setGeoData] = useState(world1930);
+
+    useEffect(() => {
+        if (activeDataset === 'world1930') {
+            setGeoData(world1930);
+        } else {
+            setGeoData(world1960)
+        }
+    }, [activeDataset])
 
     return (
         <MapContainer
@@ -77,10 +108,10 @@ const SVGMap = ({onMarkerClick, onDrawerClose}) => {
                     fillOpacity: 0.6,
                 }}
             />
-            <CityMarkers onMarkerClick={onMarkerClick} onDrawerClose={onDrawerClose}/>
+            <CityMarkers mapData={mapData} activeDataset={activeDataset} onMarkerClick={onMarkerClick} onDrawerClose={onDrawerClose}/>
             <CustomZoomControls />
-            <DatasetSwitcher switchDataset={setGeoData}/>
-            <WashingtonButton />
+            <DatasetSwitcher activeDataset={activeDataset} switchDataset={setActiveDataset}/>
+            {activeDataset === 'world1930' && <WashingtonButton />}
             <div className={style.Gradient}/>
         </MapContainer>
     );

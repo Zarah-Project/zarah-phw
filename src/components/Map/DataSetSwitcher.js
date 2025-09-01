@@ -4,13 +4,12 @@ import style from "./DataSetSwitcher.module.scss"
 import {useState} from "react";
 import {useMap} from "react-leaflet";
 
-function DatasetSwitcher({ switchDataset }) {
-    const [activeDataset, setActiveDataset] = useState('world1930');
+function DatasetSwitcher({ activeDataset, switchDataset }) {
+    // const [activeDataset, setActiveDataset] = useState('world1930');
     const map = useMap();
 
-    const handleDatasetChange = (dataset, datasetName) => {
-        setActiveDataset(datasetName);
-        switchDataset(dataset); // Update the map with the new dataset
+    const handleDatasetChange = (datasetName) => {
+        switchDataset(datasetName);
 
         if (datasetName === 'world1960') {
             map.setZoom(2); // Reset zoom level
@@ -22,12 +21,12 @@ function DatasetSwitcher({ switchDataset }) {
     return (
         <div className={style.ButtonWrapper}>
             <button
-                onClick={() => handleDatasetChange(world1930, "world1930")}
+                onClick={() => handleDatasetChange("world1930")}
                 className={`${style.SwitchButtonStyle} ${activeDataset === 'world1930' ? style.Active : ''}`}>
                 Pre 1945
             </button>
             <button
-                onClick={() => handleDatasetChange(world1960, "world1960")}
+                onClick={() => handleDatasetChange("world1960")}
                 className={`${style.SwitchButtonStyle} ${activeDataset === 'world1960' ? style.Active : ''}`}>
                 Post 1945
             </button>

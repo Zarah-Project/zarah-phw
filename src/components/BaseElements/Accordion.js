@@ -37,7 +37,7 @@ const Accordion = ({ items }) => {
     return (
         <div className={style.accordion}>
             {items.map((item, i) => (
-                <AccordionItem key={i} title={item.title} content={item.content} />
+                <AccordionItem key={`#${item.title}`} title={item.title} content={item.content} />
             ))}
         </div>
     );

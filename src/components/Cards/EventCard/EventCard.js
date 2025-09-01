@@ -5,9 +5,25 @@ import IconLocation from "@/components/Icons/IconLocation";
 import IconCalendar from "@/components/Icons/IconCalendar";
 import TagButton from "@/components/BaseElements/TagButton";
 import truncateWithEllipses from "@/utils/truncateWithEllipsis";
+import formatEventDate from "@/utils/formatEventDate";
 
-const EventCard = ({ event, truncate = true, index = 0 }) => {
-    const { id, title, date, city, tags, description } = event;
+const EventCard = ({ event, city, truncate = true, index = 0 }) => {
+    const { id, Title, StartDate, EndDate, Content, Tags } = event;
+
+    const renderDate = (startDate, endDate) => {
+        const sd = startDate ? formatEventDate(startDate) : "";
+        const ed = endDate ? formatEventDate(endDate) : "";
+
+        return ed !== "" ? `${sd} - ${ed}` : ed
+    }
+
+    const getFirstParagraph = () => {
+        const paragraphBlock = Content.find(block => block.type === "paragraph");
+        if (!paragraphBlock) return "";
+
+        const text = paragraphBlock['children'][0]['text'];
+        return truncate ? truncateWithEllipses(text, 150) : text;
+    }
 
     return (
         <motion.div
@@ -18,19 +34,19 @@ const EventCard = ({ event, truncate = true, index = 0 }) => {
             className={style.Card}
         >
             <div className={style.Content}>
-                <h4>{title}</h4>
+                <h4>{Title}</h4>
                 <div className={style.Place}>
                     <div><IconLocation theme={'light'}/> {city}</div>
-                    <div><IconCalendar theme={'light'}/> {date}</div>
+                    <div><IconCalendar theme={'light'}/> {renderDate(StartDate, EndDate)}</div>
                 </div>
                 <div className={style.Tags}>
-                    {tags.map((tag, index) => (
-                        <TagButton text={tag} />
+                    {Tags && Tags.map((tag, index) => (
+                        <TagButton text={tag['name']} />
                     ))}
                 </div>
                 <div className={style.Description}>
                     <p>
-                        {truncate ? truncateWithEllipses(description, 200) : description}
+                        {getFirstParagraph()}
                     </p>
                 </div>
             </div>

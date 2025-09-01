@@ -5,22 +5,12 @@ import IconLocation from "@/components/Icons/IconLocation";
 import IconCalendar from "@/components/Icons/IconCalendar";
 import React from "react";
 import Spacer from "@/components/BaseElements/Spacer";
+import formatEventDate from "@/utils/formatEventDate";
 
 const RelatedNetworks = ({data}) => {
-    const formatDate = (dateString) => {
-        const [year, month, day] = dateString.split("-").map(Number);
-        const date = new Date(year, month - 1, day); // months are 0-based!
-
-        return new Intl.DateTimeFormat("en-GB", {
-            day: "numeric",
-            month: "long",
-            year: "numeric",
-        }).format(date);
-    };
-
     const renderDate = (startDate, endDate) => {
-        const sd = startDate ? formatDate(startDate) : "";
-        const ed = endDate ? formatDate(endDate) : "";
+        const sd = startDate ? formatEventDate(startDate) : "";
+        const ed = endDate ? formatEventDate(endDate) : "";
 
         return ed !== "" ? `${sd} - ${ed}` : ed
     }
