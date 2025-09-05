@@ -45,96 +45,42 @@
       }
     }
 
-    button {
+    .SearchButton {
       margin-left: 24px;
       font-size: 1.5rem;
       color: #ff6a5c;
       background: none;
       border: none;
       cursor: pointer;
-    }
-  }
 
-  .AlphabetNav {
-    position: sticky;
-    background-color: $lightBack;
-    height: 40px;
-    top: 80px;
-    padding: 0 34px;
-    margin: 0px -40px 24px -40px;
-    font-size: 1rem;
-    letter-spacing: 0.2rem;
-    color: $fontOnLight;
-    -webkit-touch-callout: none; /* iOS Safari */
-    -webkit-user-select: none; /* Safari */
-    -khtml-user-select: none; /* Konqueror HTML */
-    -moz-user-select: none; /* Old versions of Firefox */
-    -ms-user-select: none; /* Internet Explorer/Edge */
-    user-select: none;
-
-    .Letter {
-      font-family: var(--font-editorialNew), serif;
-      font-weight: 400;
-      font-size: 20px;
-      line-height: 120%;
-      letter-spacing: 0;
-      margin: 0 8px;
-      cursor: pointer;
-
-      &.Disabled {
-        cursor: not-allowed;
-        color: #CCC;
+      &:hover {
+        color: $fontOnLight;
       }
     }
   }
 
-  .Facets {
-    display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    gap: 40px;
+  .ViewChanger {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 16px 0;
 
-    .Columns {
+    .SelectedTags {
       display: flex;
-      flex-direction: column;
-      gap: 24px;
+      align-items: center;
+      gap: 8px;
+    }
 
-      .FacetGroup {
-        scroll-margin-top: 130px;
-        margin-top: 24px;
+    .ViewChangerButton {
+      margin-left: 24px;
+      font-size: 1.5rem;
+      color: #ff6a5c;
+      background: none;
+      border: none;
+      cursor: pointer;
 
-        h2 {
-          font-size: 2rem;
-          color: #ff6a5c;
-          margin-bottom: 16px;
-        }
-
-        ul {
-          list-style: none;
-
-          li {
-            cursor: pointer;
-            font-family: var(--font-neueMontreal), serif;
-            font-weight: 400;
-            font-size: 16px;
-            line-height: 150%;
-          }
-
-          li::after {
-              content: '';
-              position: absolute;
-              width: 100%;
-              height: 1px;
-              bottom: -5px;
-              left: 0;
-              transform: scaleX(0);
-              transform-origin: right;
-              transition: transform 0.2s ease-out;
-          }
-
-          li:hover::after {
-              transform: scaleX(1);
-          }
-        }
+      &:hover {
+        color: $fontOnLight;
       }
     }
   }

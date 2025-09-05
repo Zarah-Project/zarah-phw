@@ -1,0 +1,18 @@
+.Wrapper {
+  display: block;
+  color: inherit;
+  text-decoration: none;
+  padding-bottom: 24px;
+
+  .Tags {
+    display: flex;
+    flex-flow: row wrap;
+    text-decoration: none;
+    color: inherit;
+    gap: 8px;
+
+    h4 {
+      padding-bottom: 8px;
+    }
+  }
+}

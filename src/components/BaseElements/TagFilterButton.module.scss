@@ -1,0 +1,28 @@
+@use "@/styles/colours" as *;
+
+.Tag {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background-color: $fontOnDark; /* soft red tone */
+  color: black;
+  padding: 6px 12px;
+  font-family: var(--font-neueMontreal), serif;
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 150%;
+
+  .CloseButton {
+    background: none;
+    border: none;
+    font-size: 16px;
+    cursor: pointer;
+    line-height: 1;
+    color: black;
+    transition: color 0.2s ease-in-out;
+
+    &:hover {
+      color: #333;
+    }
+    }
+}
