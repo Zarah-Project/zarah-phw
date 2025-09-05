@@ -16,7 +16,7 @@ const TopMenu = ({theme}) => {
                 <Link href={'/essays'} className={style.Link}>Essays</Link>
             </div>
             <div className={style.Right}>
-                <div><IconSearch theme={theme} /></div>
+                <Link href={'/search'} className={style.Link}><IconSearch theme={theme} /></Link>
                 <Link href={'/about'} className={style.Link}>About</Link>
             </div>
         </div>

@@ -12,6 +12,7 @@
     "@artsy/fresnel": "^8.1.0",
     "@strapi/blocks-react-renderer": "^1.0.2",
     "leaflet": "^1.9.4",
+    "meilisearch": "^0.52.0",
     "motion": "^12.6.3",
     "next": "14.2.29",
     "normalize-wheel": "^1.0.1",
