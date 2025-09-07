@@ -9,23 +9,105 @@ import FiltersPage from "@/components/Search/FiltersPage";
 import {useList, useSet} from "react-use";
 import TagFilterButton from "@/components/BaseElements/TagFilterButton";
 import ResultsPage from "@/components/Search/ResultsPage";
+import Loading from "@/components/BaseElements/Loading";
 
 const server = process.env.NEXT_PUBLIC_MEILISEARCH_URL
 const apiKey = process.env.NEXT_PUBLIC_MEILISEARCH_API_KEY
 
 export default function SearchPage() {
-    const [query, setQuery] = useState("");
-    const [searchQuery, setSearchQuery] = useState("");
-    const [selectedTags, { add, remove }] = useSet(new Set([]));
+    const router = useRouter();
+    const { q, tags } = router.query;
 
-    const [hits, setHits] = useState([]);
+    const [query, setQuery] = useState("");
+    const [selectedTags, { set, clear }] = useList([]);
+
+    const [results, setResults] = useState([]);
     const [facets, setFacets] = useState({});
+    const [totalHits, setTotalHits] = useState(0);
+
+    const [loading, setLoading] = useState(false);
 
     const [view, setView] = useState("filters");
 
-    const router = useRouter();
+    // 🔹 Sync URL → state (input + tags)
+    useEffect(() => {
+        if (!router.isReady) return;
 
-    async function doSearch() {
+        // Handle input
+        if (typeof q === "string") {
+            setQuery(q);
+            setView('results')
+        } else {
+            setQuery("");
+        }
+
+        // Handle tags
+        if (typeof tags === "string") {
+            const fromUrl = tags.split(",").filter(Boolean);
+            set(fromUrl);
+            setView('results')
+        } else {
+            clear();
+        }
+
+    }, [router.isReady, q, tags]);
+
+    // 🔹 Run search whenever URL changes
+    useEffect(() => {
+        if (!router.isReady) return;
+
+        const runSearch = async () => {
+            setLoading(true);
+
+            const client = new Meilisearch({
+                host: server,
+                apiKey: apiKey,
+            })
+
+            const index = client.index('labouractivism')
+
+            const options = {
+                facets: ['Tags'],
+                limit: 20
+            }
+
+            const getFilters = () => {
+                if (typeof tags !== "string") return [];
+                const tagsFromUrl = tags.split(",").filter(Boolean);
+                const filters = []
+                tagsFromUrl.forEach ((tag) => {
+                    filters.push(`Tags='${tag}'`)
+                })
+                return filters.join(' AND ')
+            }
+
+            const filterOptions = getFilters()
+            if (filterOptions.length > 0) {
+                options['filter'] = filterOptions
+            }
+
+            const search = await index.search(q, options)
+            const tagFacets = Object.keys(search['facetDistribution']['Tags'] || [])
+
+            setResults(search['hits'])
+
+            // Group tags alphabetically
+            const grouped = {};
+            tagFacets.forEach(tag => {
+                const letter = tag[0].toUpperCase();
+                if (!grouped[letter]) grouped[letter] = [];
+                grouped[letter].push(tag);
+            });
+            setFacets(grouped);
+            setLoading(false);
+        };
+
+        runSearch();
+    }, [router.isReady, q, tags]);
+
+    async function doSearch(q, tags) {
+        setLoading(true);
+
         const client = new Meilisearch({
             host: server,
             apiKey: apiKey,
@@ -35,7 +117,7 @@ export default function SearchPage() {
 
         const getFilters = () => {
             const filters = []
-            selectedTags.forEach ((tag) => {
+            tags.forEach ((tag) => {
                 filters.push(`Tags='${tag}'`)
             })
             return filters.join(' AND ')
@@ -49,38 +131,82 @@ export default function SearchPage() {
             options['filter'] = getFilters()
         }
 
-        const search = await index.search(searchQuery, options)
-        const tags = Object.keys(search['facetDistribution']['Tags'] || [])
+        const search = await index.search(q, options)
+        const tagFacets = Object.keys(search['facetDistribution']['Tags'] || [])
 
-        setHits(search['hits'])
+        setResults(search['hits'])
 
         // Group tags alphabetically
         const grouped = {};
-        tags.forEach(tag => {
+        tagFacets.forEach(tag => {
             const letter = tag[0].toUpperCase();
             if (!grouped[letter]) grouped[letter] = [];
             grouped[letter].push(tag);
         });
         setFacets(grouped);
+        setLoading(false);
     }
 
-    // Simulating Meilisearch response (replace with real API call)
-    useEffect(() => {
-        doSearch();
-    }, []);
+    // 🔹 Update URL when searching
+    const handleSearch = () => {
+        const queryParams= {};
+        if (query) queryParams.q = query;
+        if (selectedTags.length > 0) {
+            queryParams.tags = selectedTags.join(",");
+        }
 
-    useEffect(() => {
-        doSearch()
-        changeRoute()
-    }, [searchQuery, selectedTags]);
+        router.push({ pathname: "/search", query: queryParams }, undefined, {
+            shallow: true,
+        });
+    };
 
-    const changeRoute = () => {
+    // 🔹 Toggle a tag
+    const toggleTag = (tag) => {
+        const newTags = new Array(...selectedTags);
+
+        if (newTags.includes(tag)) {
+            const idx = newTags.indexOf(tag);
+            newTags.splice(idx, 1);
+        } else {
+            newTags.push(tag);
+        }
+
+        const queryParams = {};
+        if (query) queryParams.q = query;
+        if (newTags.length > 0) {
+            queryParams.tags = newTags.join(",");
+        }
+
+        router.push({ pathname: "/search", query: queryParams }, undefined, {
+            shallow: true,
+        });
+    };
+
+    // 🔹 Clear search
+    const handleClear = () => {
+        setQuery("");
+        setResults([]);
+
+        const queryParams= {};
+        if (selectedTags.length > 0) {
+            queryParams.tags = selectedTags.join(",");
+        }
+
+        router.push({ pathname: "/search", query: queryParams }, undefined, {
+            shallow: true,
+        });
+    };
+
+    /*
+    const changeRoute = (deleteQuery=false) => {
         const params = {}
 
-        if (searchQuery === "") {
-            delete params['query']
+        if (deleteQuery) {
+            delete params['q']
         } else {
-            params['q'] = searchQuery
+            if (query !== '') {
+                params['q'] = query
+            }
         }
 
         if ([...selectedTags].length > 0) {
@@ -90,23 +216,26 @@ export default function SearchPage() {
         router.push({
             pathname: "/search",
             query: params,
-        }, undefined, { shallow: true });
+        });
     };
 
     const addTag = (tag) => {
         add(tag)
+        changeRoute()
         setView('results')
     }
 
     const removeTag = (tag) => {
         remove(tag)
+        changeRoute()
     }
+    */
 
     const renderSearchContent = () => {
         if (view === 'filters') {
-            return <FiltersPage facets={facets} onSetSelectedTags={addTag} />
+            return <FiltersPage facets={facets} onSetSelectedTags={toggleTag} />
         } else {
-            return <ResultsPage hits={hits} />
+            return loading ? <Loading/> : <ResultsPage hits={results} />
         }
     }
 
@@ -132,11 +261,11 @@ export default function SearchPage() {
                         onKeyDown={(e) => {
                             if (e.key === "Escape") {
                                 setQuery("");
-                                setSearchQuery("");
                             }
                             if (e.key === "Enter") {
+                                handleSearch()
+                                setView('results')
                                 e.preventDefault();
-                                setSearchQuery(query);
                             }
                         }}
                       />
@@ -145,16 +274,15 @@ export default function SearchPage() {
                           type="button"
                           className={styles.ClearButton}
                           onClick={() => {
-                              setQuery("")
-                              setSearchQuery("")}
-                          }
+                              handleClear()
+                          }}
                           aria-label="Clear search input"
                         >
                             ×
                         </button>
                       )}
                   </div>
-                  <button onClick={(e) => setSearchQuery(query)} className={styles.SearchButton}>
+                  <button onClick={(e) => handleSearch()} className={styles.SearchButton}>
                       <h1>Search</h1>
                   </button>
               </div>
@@ -162,7 +290,7 @@ export default function SearchPage() {
                   <div className={styles.SelectedTags}>
                       {
                           [...selectedTags].map(tag => {
-                              return <TagFilterButton label={tag} onRemove={removeTag}/>
+                              return <TagFilterButton label={tag} onRemove={toggleTag}/>
                           })
                       }
                   </div>

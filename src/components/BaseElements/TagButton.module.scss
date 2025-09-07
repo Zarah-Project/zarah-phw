@@ -16,4 +16,9 @@
     &:hover {
       background-color: $fontOnDark;
     }
+
+    a {
+        color: inherit;
+        text-decoration: none;
+    }
 }

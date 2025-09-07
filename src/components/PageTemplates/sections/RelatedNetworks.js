@@ -18,7 +18,7 @@ const RelatedNetworks = ({data}) => {
     const renderCity = (city) => {
         return city ? city['City'] : "Location unknown"
     }
-    
+
     if (data.length > 0) {
         return (
             <>
