@@ -46,7 +46,7 @@ export const fetchEssayDetail = (id) => {
         'populate[ActivismStories][populate][ActivismType][fields][0]': 'Type',
         'populate[Networks][fields][0]': 'Title',
         'populate[Networks][fields][1]': 'Slug',
-        'populate[Networks][fields][2]': 'Place',
+        'populate[Networks][populate][NetworkCity][fields][0]': 'City',
         'populate[Networks][fields][3]': 'StartDate',
         'populate[Networks][fields][4]': 'EndDate',
     }

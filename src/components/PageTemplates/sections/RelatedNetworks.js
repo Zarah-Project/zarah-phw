@@ -15,6 +15,10 @@ const RelatedNetworks = ({data}) => {
         return ed !== "" ? `${sd} - ${ed}` : ed
     }
 
+    const renderCity = (city) => {
+        return city ? city['City'] : "Location unknown"
+    }
+    
     if (data.length > 0) {
         return (
             <>
@@ -25,7 +29,7 @@ const RelatedNetworks = ({data}) => {
                         <Link key={network['id']} href={`/networks/${network['Slug']}`} className={style.NetworkWrapper}>
                             <h5>{network['Title']}</h5>
                             <div className={style.Place}>
-                                <div><IconLocation theme={'light'}/> {network['Place']}</div>
+                                <div><IconLocation theme={'light'}/> {renderCity(network['NetworkCity'])}</div>
                                 <div><IconCalendar theme={'light'}/> {renderDate(network['StartDate'], network['EndDate'])}</div>
                             </div>
                         </Link>
