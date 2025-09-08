@@ -8,7 +8,7 @@ const RelatedActivismStories = ({data}) => {
         const type = story['ActivismType']?.['Type']
 
         return (
-            <Link key={story.id} href={`/activism/${story['Slug']}`} className={style.StoryWrapper}>
+            <Link key={story.id} href={`/activism/story/${story['Slug']}`} className={style.StoryWrapper}>
                 <div className={style.Data}>
                     <h5>{story['Title']}</h5>
                     <p className={style.Type}>{type}</p>
