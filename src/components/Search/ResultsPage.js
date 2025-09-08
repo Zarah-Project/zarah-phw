@@ -25,6 +25,18 @@ const ResultsPage = ({ hits, types, total }) => {
 		}
 	}
 
+	const getURL = (type) => {
+		const url_mapping = {
+			'Person': 'people',
+			'Activism Story': 'activism/story',
+			'Network': 'networks',
+			'Essay': 'essays',
+			'Source': 'sources'
+		}
+
+		return url_mapping[type]
+	}
+
 	const renderResult = (record, idx) => {
 		return (
 			<>
@@ -40,7 +52,7 @@ const ResultsPage = ({ hits, types, total }) => {
 						delay: idx < 2 ? idx * 0.15 : 0, // 👈 per-item delay
 					}}
 				>
-					<Link key={record['id']} href={`/networks/${record['Slug']}`}>
+					<Link key={record['id']} href={`/${getURL(record['type'])}/${record['Slug']}`}>
 						<h4>{renderTitle(record)}</h4>
 					</Link>
 					<Spacer size={'s'}/>
