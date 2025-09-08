@@ -6,9 +6,10 @@ import IconCalendar from "@/components/Icons/IconCalendar";
 import TagButton from "@/components/BaseElements/TagButton";
 import truncateWithEllipses from "@/utils/truncateWithEllipsis";
 import formatEventDate from "@/utils/formatEventDate";
+import Link from "next/link";
 
 const EventCard = ({ event, city, truncate = true, index = 0 }) => {
-    const { id, Title, StartDate, EndDate, Content, Tags } = event;
+    const { id, Title, StartDate, EndDate, Slug, Content, Tags } = event;
 
     const renderDate = (startDate, endDate) => {
         const sd = startDate ? formatEventDate(startDate) : "";
@@ -34,7 +35,9 @@ const EventCard = ({ event, city, truncate = true, index = 0 }) => {
             className={style.Card}
         >
             <div className={style.Content}>
-                <h4>{Title}</h4>
+                <Link href={`/networks/${Slug}`}>
+                    <h4>{Title}</h4>
+                </Link>
                 <div className={style.Place}>
                     <div><IconLocation theme={'light'}/> {city}</div>
                     <div><IconCalendar theme={'light'}/> {renderDate(StartDate, EndDate)}</div>

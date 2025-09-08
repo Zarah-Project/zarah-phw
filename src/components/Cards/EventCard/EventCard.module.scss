@@ -1,11 +1,14 @@
 .Card {
-  cursor: pointer;
-
   .Content {
     font-family: var(--font-neueMontreal), serif;
     font-size: 14px;
     line-height: 100%;
     padding-top: 36px;
+
+    a {
+      text-decoration: none;
+      color: inherit;
+    }
 
     .Place {
       display: flex;

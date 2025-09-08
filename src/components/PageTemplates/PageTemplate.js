@@ -8,6 +8,10 @@ import RelatedSources from "@/components/PageTemplates/sections/RelatedSources";
 import RelatedTags from "@/components/PageTemplates/sections/RelatedTags";
 import Content from "@/components/PageTemplates/parts/Content";
 import RelatedActivismStories from "@/components/PageTemplates/sections/RelatedActivismStories";
+import formatEventDate from "@/utils/formatEventDate";
+import IconLocation from "@/components/Icons/IconLocation";
+import IconCalendar from "@/components/Icons/IconCalendar";
+import React from "react";
 
 
 const PageTemplate = ({data, titleField = 'Title', module}) => {
@@ -21,12 +25,35 @@ const PageTemplate = ({data, titleField = 'Title', module}) => {
     const sources = data['Sources'] || [];
     const tags = data['Tags'] || [];
 
+    const renderNetworksInfo = () => {
+        const renderDate = (startDate, endDate) => {
+            const sd = startDate ? formatEventDate(startDate) : "";
+            const ed = endDate ? formatEventDate(endDate) : "";
+
+            return ed !== "" ? `${sd} - ${ed}` : ed
+        }
+
+        const renderCity = (city) => {
+            return city ? city['City'] : "Location unknown"
+        }
+
+        return (
+            <>
+                <div className={style.Place}>
+                    <div><IconLocation theme={'light'}/> {renderCity(data['NetworkCity'])}</div>
+                    <div><IconCalendar theme={'light'}/> {renderDate(data['StartDate'], data['EndDate'])}</div>
+                </div>
+                <Spacer size={"xl"}/>
+            </>
+        )
+    }
+
     return (
         <div className={style.PageWrapper}>
             <div className={style.RelatedContent}>
                 <BackButton module={module}/>
-                <RelatedActivismStories data={stories} />
-                <RelatedPeople data={people} />
+                <RelatedActivismStories data={stories}/>
+                <RelatedPeople data={people}/>
                 <RelatedNetworks data={networks} />
                 <RelatedEssays data={essays}/>
                 <RelatedSources data={sources}/>
@@ -35,6 +62,7 @@ const PageTemplate = ({data, titleField = 'Title', module}) => {
             <div className={style.PageContent}>
                 <h2>{title}</h2>
                 <Spacer size={"xl"}/>
+                {module === 'networks' && renderNetworksInfo()}
                 <Content content={content} />
             </div>
         </div>

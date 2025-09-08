@@ -10,6 +10,7 @@ export const fetchPeopleFrontPage = () => {
         'fields[0]': 'Name',
         'fields[1]': 'CardText',
         'fields[2]': 'Slug',
+        'filters[Image][$null]': false
     }
 
     return fetcher('people', params)

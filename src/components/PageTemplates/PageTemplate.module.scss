@@ -31,5 +31,20 @@
       letter-spacing: 0;
       padding: 0 48px;
     }
+
+    .Place {
+      display: flex;
+      gap: 24px;
+      font-family: var(--font-neueMontreal), serif;
+      font-weight: 400;
+      font-size: 16px;
+      line-height: 100%;
+
+      div {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+      }
+    }
   }
 }
