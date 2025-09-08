@@ -3,16 +3,21 @@ import Link from "next/link";
 import SectionTitle from "@/components/PageTemplates/parts/SectionTitle";
 import getImageData from "@/utils/content/getImageData";
 import Spacer from "@/components/BaseElements/Spacer";
+import PersonImagePlaceholder from "@/components/BaseElements/PersonImagePlaceholder";
 
 const RelatedPeople = ({data}) => {
     const renderPerson = (person) => {
-        const image = getImageData(person['Image'], 'small')
+        const image = getImageData(person['Image'], 'thumbnail')
         const group = person['PersonGroup']?.['Group']
 
         return (
-            <Link key={person.id} href={`/people/${person['Slug']}`} className={style.PersonWrapper}>
+            <Link key={person['documentId']} href={`/people/${person['Slug']}`} className={style.PersonWrapper}>
                 <div className={style.ImageWrapper}>
-                    <img src={image['url']} alt={person['Name']} className={style.Image} />
+                    {
+                        image['url'] ?
+                        <img src={image['url']} alt={person['Name']} className={style.Image} /> :
+                        <PersonImagePlaceholder fontSize={10} />
+                    }
                 </div>
                 <div className={style.Data}>
                     <h5>{person['Name']}</h5>

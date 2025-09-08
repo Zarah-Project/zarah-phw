@@ -4,6 +4,7 @@ import React from "react";
 import { motion } from "motion/react";
 import getImageData from "@/utils/content/getImageData";
 import Link from "next/link";
+import PersonImagePlaceholder from "@/components/BaseElements/PersonImagePlaceholder";
 
 const PersonTile = ({ person }) => {
     const { Name, CardText, Image, Tags } = person;
@@ -25,7 +26,10 @@ const PersonTile = ({ person }) => {
                         }}
                         transition={{duration: 0.3}}
                     >
-                        <Photo image={image} minHeight={50} isExample={false} />
+                        {image['url'] ?
+                            <Photo image={image} minHeight={50} isExample={false} /> :
+                            <PersonImagePlaceholder />
+                        }
                     </motion.div>
 
                     <motion.div

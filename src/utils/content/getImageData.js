@@ -3,12 +3,6 @@ const getImageData = (imageData, size='large') => {
         return {'url': ''}
     }
 
-    /*
-    if (imageData['data'] === null) {
-        return {'url': ''}
-    }
-    */
-
     let data={};
 
     if (imageData['formats'] !== null) {
