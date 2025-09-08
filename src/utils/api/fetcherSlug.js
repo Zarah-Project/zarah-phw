@@ -10,7 +10,6 @@ const fetcherSlug = (url, params) => {
     })
         .then(r => r.json())
         .then(data => {
-            console.log(data)
             if (data['data'].length === 0) {
                 data['data'] = null
             } else {

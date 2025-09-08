@@ -1,6 +1,7 @@
 import styles from "./FiltersPage.module.scss";
 import Spacer from "@/components/BaseElements/Spacer";
 import React from "react";
+import {motion} from "motion/react";
 
 const FiltersPage = ({facets, onSetSelectedTags}) => {
 	const splitIntoColumns = (sortedKeys, numCols) => {
@@ -15,7 +16,16 @@ const FiltersPage = ({facets, onSetSelectedTags}) => {
 	return (
 		<>
 			{/* Alphabet Navigation */}
-			<div className={styles.AlphabetNav}>
+			<motion.div
+				initial={{opacity: 0, y: 30}}
+				whileInView={{opacity: 1, y: 0}}
+				viewport={{once: true, amount: 0.2}}
+				transition={{
+					duration: 0.4,
+					ease: "easeOut",
+					delay: 0, // 👈 per-item delay
+				}}
+				className={styles.AlphabetNav}>
 				{"ABCDEFGHIJKLMNOPQRSTUVWXYZ".split("").map((letter) => (
 					<span
 						key={letter}
@@ -30,25 +40,46 @@ const FiltersPage = ({facets, onSetSelectedTags}) => {
 						className={Object.keys(facets).includes(letter) ? styles.Letter : `${styles.Letter} ${styles.Disabled}`}
 					>{letter}</span>
 				))}
-			</div>
+			</motion.div>
 
 			<Spacer size={'l'}/>
 
 			{/* Facet Groups */}
 			<div className={styles.Facets}>
 				{splitIntoColumns(Object.keys(facets).sort(), 4).map((col, colIdx) => (
-					<div key={colIdx} className={styles.Columns}>
+					<motion.div
+						initial={{opacity: 0, y: 30}}
+						whileInView={{opacity: 1, y: 0}}
+						viewport={{once: true, amount: 0.2}}
+						transition={{
+							duration: 0.4,
+							ease: "easeOut",
+							delay: colIdx * 0.15, // 👈 per-item delay
+						}}
+						key={colIdx} className={styles.Columns}>
 						{col.map((letter) => (
 							<div key={letter} id={`facet-${letter}`} className={styles.FacetGroup}>
 								<h2>{letter}</h2>
 								<ul>
-									{facets[letter].map((tag) => (
-										<li key={tag} onClick={() => onSetSelectedTags(tag)}>{tag}</li>
+									{facets[letter].map((tag, idx) => (
+										<motion.li
+											initial={{opacity: 0, y: 30}}
+											whileInView={{opacity: 1, y: 0}}
+											viewport={{once: true, amount: 0.2}}
+											transition={{
+												duration: 0.4,
+												ease: "easeOut",
+												delay: idx * 0.05, // 👈 per-item delay
+											}}
+											key={tag}
+											onClick={() => onSetSelectedTags(tag)}>
+											{tag}
+										</motion.li>
 									))}
 								</ul>
 							</div>
 						))}
-					</div>
+					</motion.div>
 				))}
 			</div>
 		</>

@@ -1,10 +1,14 @@
 import styles from "./ResultsPage.module.scss"
 import Link from "next/link";
-import React from "react";
+import React, {useState} from "react";
 import TagButton from "@/components/BaseElements/TagButton";
 import Spacer from "@/components/BaseElements/Spacer";
+import {motion} from "motion/react";
 
-const ResultsPage = ({ hits }) => {
+
+const ResultsPage = ({ hits, types, total }) => {
+	const [selectedType, setSelectedType] = useState("All");
+
 	const renderTitle = (record) => {
 		if (record['type'] === 'Person') {
 			return record['Name']
@@ -21,11 +25,24 @@ const ResultsPage = ({ hits }) => {
 		}
 	}
 
-	const renderResult = (record) => {
+	const renderResult = (record, idx) => {
 		return (
 			<>
-				<Link key={record['id']} href={`/networks/${record['Slug']}`} className={styles.Wrapper}>
-					<h4>{renderTitle(record)}</h4>
+				<motion.div
+					key={record.id}
+					className={styles.Wrapper}
+					initial={{opacity: 0, y: 30}}
+					whileInView={{opacity: 1, y: 0}}
+					viewport={{once: true, amount: 0.2}}
+					transition={{
+						duration: 0.4,
+						ease: "easeOut",
+						delay: idx < 2 ? idx * 0.15 : 0, // 👈 per-item delay
+					}}
+				>
+					<Link key={record['id']} href={`/networks/${record['Slug']}`}>
+						<h4>{renderTitle(record)}</h4>
+					</Link>
 					<Spacer size={'s'}/>
 					<div className={styles.Type}>{record['type']}</div>
 					<div className={styles.Tags}>
@@ -39,10 +56,29 @@ const ResultsPage = ({ hits }) => {
 					<p className={styles.Description}>
 						{renderDescription(record)}
 					</p>
-				</Link>
+				</motion.div>
 				<Spacer size={'xl'}/>
 			</>
 		)
+	}
+
+	const renderTypeSelectors = () => {
+		return (
+			<div className={styles.TypeSelectors}>
+				<span className={selectedType === 'All' ? styles.Active : ''} onClick={() => setSelectedType('All')}>All ({total})</span>
+				{
+					Object.keys(types).map((key, idx) => {
+						return (<span className={selectedType === key ? styles.Active : ''} onClick={() => setSelectedType(key)}>{key} ({types[key]})</span>)
+					})
+				}
+			</div>
+		)
+	}
+
+	const renderResults = () => {
+		const results = selectedType === 'All' ? hits : hits.filter(hit => hit.type === selectedType)
+
+		return results.map((record, idx) => renderResult(record, idx))
 	}
 
 	if (hits.length === 0) {
@@ -53,13 +89,15 @@ const ResultsPage = ({ hits }) => {
 				<p>Try adjusting your search or filter to find what you're looking for.</p>
 			</div>
 		)
-	} else {
-		return (
-			<div>
-				{hits.map(record => renderResult(record)) }
-			</div>
-		)
 	}
+
+	return (
+		<div>
+			{renderTypeSelectors()}
+			<Spacer size={'xl'}/>
+			{renderResults()}
+		</div>
+	)
 }
 
 export default ResultsPage;

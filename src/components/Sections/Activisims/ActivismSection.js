@@ -4,8 +4,6 @@ import React from "react";
 import ActivismCard from "@/components/Cards/ActivismCard/ActivismCard";
 
 const ActivismSection = ({group}) => {
-    console.log(group)
-
     return (
         <div className={style.Section}>
             <div className={`${style.TitleSection} ${style.SectionPiece}`}>

@@ -6,7 +6,6 @@ const getTheme = (pathName) => {
 
     Object.entries(mainPaths).forEach(([key, value]) => {
         if (pathName === key) {
-            console.log(value)
             return value;
         }
     })

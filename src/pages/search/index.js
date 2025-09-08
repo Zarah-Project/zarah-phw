@@ -16,13 +16,15 @@ const apiKey = process.env.NEXT_PUBLIC_MEILISEARCH_API_KEY
 
 export default function SearchPage() {
     const router = useRouter();
-    const { q, tags } = router.query;
+    const { q, tags, type } = router.query;
 
     const [query, setQuery] = useState("");
     const [selectedTags, { set, clear }] = useList([]);
 
     const [results, setResults] = useState([]);
     const [facets, setFacets] = useState({});
+    const [types, setTypes] = useState({});
+
     const [totalHits, setTotalHits] = useState(0);
 
     const [loading, setLoading] = useState(false);
@@ -50,6 +52,10 @@ export default function SearchPage() {
             clear();
         }
 
+        if (typeof q !== "string" && typeof tags !== "string") {
+            setView('filters')
+        }
+
     }, [router.isReady, q, tags]);
 
     // 🔹 Run search whenever URL changes
@@ -67,8 +73,8 @@ export default function SearchPage() {
             const index = client.index('labouractivism')
 
             const options = {
-                facets: ['Tags'],
-                limit: 20
+                facets: ['Tags', 'type'],
+                limit: 100
             }
 
             const getFilters = () => {
@@ -87,9 +93,12 @@ export default function SearchPage() {
             }
 
             const search = await index.search(q, options)
+
             const tagFacets = Object.keys(search['facetDistribution']['Tags'] || [])
+            const typeFacets = search['facetDistribution']['type'] || []
 
             setResults(search['hits'])
+            setTotalHits(search['estimatedTotalHits'])
 
             // Group tags alphabetically
             const grouped = {};
@@ -99,53 +108,15 @@ export default function SearchPage() {
                 grouped[letter].push(tag);
             });
             setFacets(grouped);
+
+            // Add document types
+            setTypes(typeFacets);
+
             setLoading(false);
         };
 
         runSearch();
     }, [router.isReady, q, tags]);
-
-    async function doSearch(q, tags) {
-        setLoading(true);
-
-        const client = new Meilisearch({
-            host: server,
-            apiKey: apiKey,
-        })
-
-        const index = client.index('labouractivism')
-
-        const getFilters = () => {
-            const filters = []
-            tags.forEach ((tag) => {
-                filters.push(`Tags='${tag}'`)
-            })
-            return filters.join(' AND ')
-        }
-
-        const options = {
-            facets: ['Tags'],
-            limit: 20
-        }
-        if (getFilters().length > 0) {
-            options['filter'] = getFilters()
-        }
-
-        const search = await index.search(q, options)
-        const tagFacets = Object.keys(search['facetDistribution']['Tags'] || [])
-
-        setResults(search['hits'])
-
-        // Group tags alphabetically
-        const grouped = {};
-        tagFacets.forEach(tag => {
-            const letter = tag[0].toUpperCase();
-            if (!grouped[letter]) grouped[letter] = [];
-            grouped[letter].push(tag);
-        });
-        setFacets(grouped);
-        setLoading(false);
-    }
 
     // 🔹 Update URL when searching
     const handleSearch = () => {
@@ -197,45 +168,16 @@ export default function SearchPage() {
         });
     };
 
-    /*
-    const changeRoute = (deleteQuery=false) => {
-        const params = {}
-
-        if (deleteQuery) {
-            delete params['q']
-        } else {
-            if (query !== '') {
-                params['q'] = query
-            }
-        }
-
-        if ([...selectedTags].length > 0) {
-            params['tags'] = [...selectedTags]
-        }
-
-        router.push({
-            pathname: "/search",
-            query: params,
-        });
-    };
-
-    const addTag = (tag) => {
-        add(tag)
-        changeRoute()
-        setView('results')
-    }
-
-    const removeTag = (tag) => {
-        remove(tag)
-        changeRoute()
-    }
-    */
-
     const renderSearchContent = () => {
         if (view === 'filters') {
             return <FiltersPage facets={facets} onSetSelectedTags={toggleTag} />
         } else {
-            return loading ? <Loading/> : <ResultsPage hits={results} />
+            return loading ? <Loading/> :
+                <ResultsPage
+                    hits={results}
+                    types={types}
+                    total={totalHits}
+                />
         }
     }
 

@@ -2,9 +2,12 @@
 
 .Wrapper {
   display: block;
-  color: inherit;
-  text-decoration: none;
   padding-bottom: 24px;
+
+  a {
+    color: inherit;
+    text-decoration: none;
+  }
 
   .Type {
     padding-bottom: 16px;
@@ -29,5 +32,29 @@
   .Description {
     color: rgba($fontOnLight, 0.8);
     line-height: 150%;
+  }
+}
+
+.TypeSelectors {
+    position: sticky;
+    background-color: $lightBack;
+    height: 40px;
+    top: 80px;
+    padding: 0 42px;
+    margin: 0px -40px 24px -40px;
+    color: rgba($fontOnLight, 0.8);
+    font-family: var(--font-neueMontreal), serif;
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 150%;
+    display: flex;
+    gap: 32px;
+
+  span {
+    cursor: pointer;
+  }
+
+  .Active {
+    color: $fontOnDark
   }
 }
