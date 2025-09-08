@@ -20,6 +20,7 @@ export const fetchActivismTypes = (page) => {
         'pagination[limit]': 20,
         'fields[0]': 'Type',
         'fields[1]': 'Description',
+        'populate[Image][fields][0]': 'formats',
         'populate[ActivismStories][fields][0]': 'Title',
         'populate[ActivismStories][fields][1]': 'ShortDescription',
         'populate[ActivismStories][fields][2]': 'Slug',

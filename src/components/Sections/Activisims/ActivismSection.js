@@ -2,8 +2,11 @@ import style from './ActivismSection.module.scss';
 import Photo from "@/components/BaseElements/Photo";
 import React from "react";
 import ActivismCard from "@/components/Cards/ActivismCard/ActivismCard";
+import getImageData from "@/utils/content/getImageData";
 
 const ActivismSection = ({group}) => {
+    const image = getImageData(group['Image'], 'large')
+
     return (
         <div className={style.Section}>
             <div className={`${style.TitleSection} ${style.SectionPiece}`}>
@@ -12,7 +15,10 @@ const ActivismSection = ({group}) => {
                     <h1>{group['Type']}</h1>
                 </div>
                 <div className={style.ImageWrapper}>
-                    <Photo image={'activismGroup01.png'} isExample={true} minHeight={576}/>
+                    {
+                        image['url'] !== '' &&
+                        <Photo image={image} minHeight={576}/>
+                    }
                 </div>
             </div>
             <div className={`${style.Description} ${style.SectionPiece}`}>

@@ -10,7 +10,6 @@ const SourcesPage = () => {
         <div className={style.Section}>
             <SourcesTopAnimation />
             <Spacer size={"l"} />
-            <SourceSection />
         </div>
     )
 }
