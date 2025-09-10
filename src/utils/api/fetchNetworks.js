@@ -38,6 +38,8 @@ export const fetchNetworkDetail = (id) => {
         'populate[NetworkCity][fields][0]': 'City',
         'populate[Sources][fields][0]': 'Title',
         'populate[Sources][fields][1]': 'Slug',
+        'populate[Sources][fields][2]': 'ShortDescription',
+        'populate[Sources][populate][Image][fields][0]': 'formats',
     }
 
     if (isNaN(Number(id))) {

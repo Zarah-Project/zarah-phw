@@ -5,6 +5,7 @@ import Spacer from "@/components/BaseElements/Spacer";
 import React from "react";
 import style from "./essays.module.scss";
 import {fetchEssaysList} from "@/utils/api/fetchEassys";
+import SourceSection from "@/components/Sections/SourceSection/SourceSection";
 
 export const getServerSideProps = (async (context) => {
     const [essayData] = await Promise.all([

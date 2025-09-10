@@ -21,7 +21,11 @@ export const fetchActivismStory = (id) => {
         'populate[Networks][fields][1]': 'Slug',
         'populate[Networks][populate][NetworkCity][fields][0]': 'City',
         'populate[Networks][fields][3]': 'StartDate',
-        'populate[Networks][fields][4]': 'EndDate'
+        'populate[Networks][fields][4]': 'EndDate',
+        'populate[Sources][fields][0]': 'Title',
+        'populate[Sources][fields][1]': 'Slug',
+        'populate[Sources][fields][2]': 'ShortDescription',
+        'populate[Sources][populate][Image][fields][0]': 'formats',
     }
 
     if (isNaN(Number(id))) {

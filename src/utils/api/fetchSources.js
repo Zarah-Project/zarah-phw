@@ -1,21 +1,7 @@
 import fetcher from "@/utils/api/fetcher";
 import fetcherSlug from "@/utils/api/fetcherSlug";
 
-export const fetchEssaysFrontPage = () => {
-    const params = {
-        'sort[0]': 'createdAt:desc',
-        'populate[0]': 'Image',
-        'pagination[start]': 0,
-        'pagination[limit]': 3,
-        'fields[0]': 'Title',
-        'fields[2]': 'ShortDescription',
-        'fields[3]': 'Slug'
-    }
-
-    return fetcher('essays', params)
-}
-
-export const fetchEssaysList = (page) => {
+export const fetchSourcesList = (page) => {
     const params = {
         'sort[0]': 'createdAt:desc',
         'populate[0]': 'Image',
@@ -26,10 +12,10 @@ export const fetchEssaysList = (page) => {
         'fields[3]': 'Slug',
     }
 
-    return fetcher('essays', params)
+    return fetcher('sources', params)
 }
 
-export const fetchEssayDetail = (id) => {
+export const fetchSourcesDetail = (id) => {
     let params = {
         'fields[0]': 'Title',
         'fields[1]': 'ShortDescription',
@@ -49,16 +35,16 @@ export const fetchEssayDetail = (id) => {
         'populate[Networks][populate][NetworkCity][fields][0]': 'City',
         'populate[Networks][fields][3]': 'StartDate',
         'populate[Networks][fields][4]': 'EndDate',
-        'populate[Sources][fields][0]': 'Title',
-        'populate[Sources][fields][1]': 'Slug',
-        'populate[Sources][fields][2]': 'ShortDescription',
-        'populate[Sources][populate][Image][fields][0]': 'formats',
+        'populate[Essays][fields][0]': 'Title',
+        'populate[Essays][fields][1]': 'Slug',
+        'populate[Essays][fields][2]': 'ShortDescription',
+        'populate[Essays][populate][Image][fields][0]': 'formats',
     }
 
     if (isNaN(Number(id))) {
         params['filters[Slug][$eq]'] = id
-        return fetcherSlug(`essays`, params)
+        return fetcherSlug(`sources`, params)
     } else {
-        return fetcher(`essays/${id}`, params)
+        return fetcher(`sources/${id}`, params)
     }
 }

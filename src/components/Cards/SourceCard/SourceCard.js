@@ -5,25 +5,31 @@ import style from "./SourceCard.module.scss";
 import Spacer from "@/components/BaseElements/Spacer";
 import Button from "@/components/BaseElements/Button";
 import {motion} from "motion/react";
+import getImageData from "@/utils/content/getImageData";
+import Link from "next/link";
 
 const SourceCard = ({source}) => {
-    const { id, title, shortDescription, image } = source;
+    const { id, Title, ShortDescription, Slug, Image } = source;
+
+    const image = getImageData(Image, 'large')
 
     const dataSheet = () => {
         return (
             <div>
                 <hr className={style.Line}/>
                 <Spacer size={'xl'} />
-                <h2>{title}</h2>
+                <h2>{Title}</h2>
                 <Spacer size={'xxl'} />
-                <p>{shortDescription}</p>
+                <p>{ShortDescription}</p>
                 <Spacer size={'xl'} />
-                <Button
-                    text={'See Source'}
-                    theme={'light'}
-                    type={'primary'}
-                    width={150}
-                />
+                <Link href={`/sources/${Slug}`} className={style.Link}>
+                    <Button
+                        text={'See Source'}
+                        theme={'light'}
+                        type={'primary'}
+                        width={150}
+                    />
+                </Link>
             </div>
         )
     }
@@ -39,7 +45,7 @@ const SourceCard = ({source}) => {
             <TwoColumnCard
                 contentAlign={'flex-start'}
                 photoAlign={'right'}
-                image={<Photo image={image} minHeight={768} imageFit={'cover'}/>}
+                image={<Photo image={image} minHeight={576} imageFit={'cover'}/>}
                 content={dataSheet()}
             />
         </motion.div>

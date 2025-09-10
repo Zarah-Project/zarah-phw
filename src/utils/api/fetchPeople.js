@@ -51,6 +51,10 @@ export const fetchPersonDetail = (id) => {
         'populate[Essays][fields][1]': 'Slug',
         'populate[Essays][fields][2]': 'ShortDescription',
         'populate[Essays][populate][Image][fields][0]': 'formats',
+        'populate[Sources][fields][0]': 'Title',
+        'populate[Sources][fields][1]': 'Slug',
+        'populate[Sources][fields][2]': 'ShortDescription',
+        'populate[Sources][populate][Image][fields][0]': 'formats'
     }
 
     if (isNaN(Number(id))) {
