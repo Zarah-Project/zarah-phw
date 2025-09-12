@@ -17,7 +17,9 @@ const LayoutDark = ({ children }) => {
                 <Media lessThan="md">
                     <MenuMobile theme={'dark'} />
                 </Media>
-                {children}
+                <div style={{paddingTop: '80px'}}>
+                    {children}
+                </div>
                 <Footer />
             </>
         </>

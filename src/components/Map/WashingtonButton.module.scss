@@ -18,6 +18,12 @@
   gap: 10px;
   width: 240px;
 
+  @media (max-width: 800px) {
+    top: 90px;
+    left: unset;
+    right: 20px;
+  }
+
   h5 {
     transition: letter-spacing 0.3s ease;
   }

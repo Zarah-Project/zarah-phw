@@ -1,6 +1,7 @@
-import { useRef } from 'react';
+import {useLayoutEffect, useRef, useState} from 'react';
 import { motion, useScroll, useTransform } from 'motion/react';
 import style from "./SourcesTopAnimation.module.scss";
+import {easeIn, easeInOut, easeOut} from "motion";
 
 const images=[
     { src: '/images/examples/sources08.jpeg', bottom: '10%', left: '130%', height: '250px', speed: 0.9 },
@@ -15,16 +16,38 @@ const images=[
 
 export default function SourcesTopAnimation() {
     const containerRef = useRef(null);
+    const textRef = useRef(null);
 
     // Total scroll distance is one full viewport height per word
-    const scrollHeight = 600;
+    const [scrollHeight, setScrollHeight] = useState(200);
+    const [distance, setDistance] = useState(0);
+
+    useLayoutEffect(() => {
+        function updateSizes() {
+            if (textRef.current && window) {
+                const containerWidth = textRef.current.scrollWidth;
+                const viewportWidth = window.innerWidth;
+
+                const distanceToScroll = containerWidth - viewportWidth / 2;
+                setDistance(distanceToScroll);
+
+                // vertical scroll height = base 100vh + extra proportional to distance
+                const extraScreens = distanceToScroll / viewportWidth;
+                setScrollHeight(100 + extraScreens * 100);
+            }
+        }
+
+        updateSizes();
+        window.addEventListener('resize', updateSizes);
+        return () => window.removeEventListener('resize', updateSizes);
+    }, []);
 
     const { scrollYProgress } = useScroll({
         target: containerRef,
         offset: ['start start', 'end start'],
     });
 
-    const x = useTransform(scrollYProgress, [0, 1], ['0%', `-100%`]);
+    const x = useTransform(scrollYProgress, [0, 1], ['0%', `-${distance}px`]);
 
     return (
         <div
@@ -44,14 +67,31 @@ export default function SourcesTopAnimation() {
                 }}
             >
                 {/* Scrolling images */}
-                {
-                    images.map((img, idx) => {
-                    const imageX = useTransform(scrollYProgress, [0, 1], ['0%', `-${scrollHeight * img.speed}%`]);
+                {images.map((img, idx) => {
+                    // Choose easing dynamically based on image speed
+                    let easing;
+                    if (img.speed > 0.8) {
+                        easing = easeOut;     // fast/foreground → quick start
+                    } else if (img.speed < 0.4) {
+                        easing = easeIn;      // slow/background → delayed start
+                    } else {
+                        easing = easeInOut;   // mid-speed → balanced
+                    }
+
+                    // Create eased scroll progress
+                    const easedProgress = useTransform(
+                        scrollYProgress,
+                        [0, 1],
+                        [0, 1],
+                        { ease: easing }
+                    );
+
+                    const imageX = useTransform(easedProgress, v => -v * distance * img.speed);
 
                     const blurAmount = useTransform(
                         scrollYProgress,
                         [0, 1],
-                        [`${(1 - img.speed) * 10}px`, '0px'] // more blur if slower
+                        [`${(1 - img.speed) * 10}px`, '0px']
                     );
 
                     return (
@@ -73,19 +113,16 @@ export default function SourcesTopAnimation() {
                                 filter: blurAmount,
                                 objectFit: 'cover',
                             }}
-                            styleOverrides={{
-                                filter: value => `blur(${value})`,
-                            }}
                             initial={{ opacity: 0, y: 0 }}
-                            whileInView={{ opacity: 1, y: 0 }}
+                            animate={{ opacity: 1, y: 0 }}
                             transition={{ duration: 0.6, delay: (images.length - idx) * 0.2 }}
-                            viewport={{ once: true }}
                         />
                     );
                 })}
 
                 {/* Scrolling text */}
                 <motion.div
+                    ref={textRef}
                     style={{
                         display: 'flex',
                         x: x,
@@ -107,8 +144,8 @@ export default function SourcesTopAnimation() {
                             zIndex: 1000
                         }}
                         initial={{ opacity: 0, y: 40 }}
-                        whileInView={{ opacity: 1, y: 0 }}
-                        transition={{ duration: 0.4, delay: 0.1 }}
+                        animate={{ opacity: 1, y: 0 }}
+                        transition={{ duration: 0.6, delay: 0.2 }}
                     >
                         <span>Finding women in the sources</span>
                     </motion.span>

@@ -5,6 +5,7 @@ import SourcesTopAnimation from "@/components/Sections/SourcesTopAnimation/Sourc
 import Spacer from "@/components/BaseElements/Spacer";
 import {fetchSourcesList} from "@/utils/api/fetchSources";
 import SourceSection from "@/components/Sections/SourceSection/SourceSection";
+import Head from "next/head";
 
 export const getServerSideProps = (async (context) => {
     const [sourcesData] = await Promise.all([
@@ -20,11 +21,19 @@ export const getServerSideProps = (async (context) => {
 
 const SourcesPage = ({sourcesData}) => {
     return (
-        <div className={style.Section}>
-            <SourcesTopAnimation />
-            <Spacer size={"l"} />
-            <SourceSection data={sourcesData['data']} />
-        </div>
+        <>
+            <Head>
+                <title>Labour History Activism - Sources</title>
+                <meta name="description" content="Source materials of Labour History Activism." />
+                <meta name="viewport" content="width=device-width, initial-scale=1" />
+                <link rel="icon" href="/favicon.ico" />
+            </Head>
+            <div className={style.Section}>
+                <SourcesTopAnimation />
+                <Spacer size={"l"} />
+                <SourceSection data={sourcesData['data']} />
+            </div>
+        </>
     )
 }
 

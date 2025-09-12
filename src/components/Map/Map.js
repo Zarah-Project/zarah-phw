@@ -13,6 +13,7 @@ import DatasetSwitcher from "@/components/Map/DataSetSwitcher";
 import WashingtonButton from "@/components/Map/WashingtonButton";
 import style from "./Map.module.scss";
 import MapDrawer from "@/components/Map/MapDrawer";
+import {useMedia} from "react-use";
 
 // Custom orange circle icon factory
 const createCircleIcon = (label) => {
@@ -82,6 +83,8 @@ const SVGMap = ({mapData, onMarkerClick, onDrawerClose}) => {
     const [activeDataset, setActiveDataset] = useState('world1930');
     const [geoData, setGeoData] = useState(world1930);
 
+    const isMobile = useMedia('(max-width: 800px)', true);
+
     useEffect(() => {
         if (activeDataset === 'world1930') {
             setGeoData(world1930);
@@ -97,7 +100,7 @@ const SVGMap = ({mapData, onMarkerClick, onDrawerClose}) => {
             minZoom={3}
             scrollWheelZoom={true}
             zoomControl={false}
-            style={{height: "calc(100vh - 160px)", width: "100%", zIndex: 1, background: "transparent"}}
+            style={{height: isMobile ? "70vh" : "calc(100vh - 160px)", width: "100%", zIndex: 1, background: "transparent"}}
             attributionControl={false}
         >
             <GeoJSON

@@ -4,9 +4,11 @@ import Spacer from "@/components/BaseElements/Spacer";
 import React, {useEffect, useRef, useState} from "react";
 import styles from "./people.module.scss";
 import {useRouter} from "next/router";
-import PersonTile from "@/components/Cards/PersonTile/PersonTile";
+import PersonTile from "@/components/Cards/PersonTile/Desktop/PersonTile";
 import {fetchPersonGroupsList} from "@/utils/api/fetchPersonGroups";
 import {fetchPeopleList} from "@/utils/api/fetchPeople";
+import {Media} from "@/utils/media";
+import PersonTileMobile from "@/components/Cards/PersonTile/Mobile/PersonTileMobile";
 
 export const getServerSideProps = (async (context) => {
     const [personGroupData, peopleData] = await Promise.all([
@@ -129,9 +131,16 @@ export default function PeoplePage({ personGroupData, peopleData }) {
                             </div>
                             <Spacer size={'xl'}/>
                             <div className={styles.PeopleGrid}>
-                            {generatePeople(group).map(person => (
-                                 <PersonTile key={person.id} person={person} />
-                            ))}
+                                {generatePeople(group).map(person => (
+                                     <>
+                                         <Media greaterThanOrEqual="md">
+                                             <PersonTile key={person.id} person={person} />
+                                         </Media>
+                                         <Media lessThan="md">
+                                             <PersonTileMobile key={person.id} person={person} />
+                                         </Media>
+                                     </>
+                                ))}
                             </div>
                             <Spacer size={'xl'}/>
                         </section>

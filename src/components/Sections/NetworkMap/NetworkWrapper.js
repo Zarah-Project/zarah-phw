@@ -5,6 +5,7 @@ import dynamic from "next/dynamic";
 import IconEarth from "@/components/Icons/IconEarth";
 import IconList from "@/components/Icons/IconList";
 import NetworkList from "@/components/Sections/NetworkMap/NetworkList";
+import {useMedia} from "react-use";
 
 const SVGMap = dynamic(() => import("@/components/Map/Map"), {
     ssr: false,
@@ -14,6 +15,8 @@ const NetworkWrapper = ({data}) => {
     const [showList, setShowList] = useState(false);
     const [drawerOpen, setDrawerOpen] = useState(false)
     const [drawerContent, setDrawerContent] = useState(null);
+
+    const isMobile = useMedia('(max-width: 800px)', true);
 
     const openDrawerWithContent = (content) => {
         setDrawerContent(content);

@@ -17,7 +17,9 @@ const LayoutLight = ({ children }) => {
                 <Media lessThan="md">
                   <MenuMobile theme={'light'} />
                 </Media>
-                {children}
+                <div style={{paddingTop: '80px'}}>
+                    {children}
+                </div>
                 <Footer />
             </>
         </>

@@ -1,0 +1,34 @@
+@use "@/styles/colours" as *;
+
+
+.Link {
+  text-decoration: none;
+  color: inherit;
+}
+
+.PhotoWrapper {
+  width: 100%; // or fixed width if needed
+  aspect-ratio: 1 / 1; // ensures height always equals width
+  overflow: hidden;
+  position: relative;
+
+  img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover; // ensures the image fills the square while preserving aspect ratio
+    display: block;
+  }
+}
+
+.Overlay {
+  position: relative;
+  padding: 16px 0;
+
+  .DataWrapper {
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    gap: 8px
+  }
+}

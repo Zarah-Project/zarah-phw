@@ -8,14 +8,29 @@
   scroll-snap-type: y mandatory;
   scrollbar-width: none; /* Firefox */
 
+  @media (max-width: 800px) {
+    scroll-snap-type: unset;
+  }
+
   .NetworksHeader {
     display: flex;
     align-items: flex-start;
     padding: 0 48px;
     scroll-snap-align: center;
 
+    @media (max-width: 800px) {
+      flex-direction: column;
+      padding: 0 16px;
+      scroll-snap-align: none;
+      gap: 16px;
+    }
+
     .Left {
       flex: 1;
+
+      @media (max-width: 800px) {
+        display: none;
+      }
     }
 
     .Right {
@@ -25,5 +40,9 @@
 
   .MapContainer {
     scroll-snap-align: center;
+
+    @media (max-width: 800px) {
+      scroll-snap-align: none;
+    }
   }
 }
