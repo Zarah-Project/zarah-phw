@@ -6,6 +6,10 @@
   color: $fontOnDark;
   padding: 0 48px;
 
+  @media(max-width: 800px) {
+    padding: 0 16px;
+  }
+
   .Header {
     display: flex;
     align-items: center;

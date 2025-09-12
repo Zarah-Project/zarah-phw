@@ -8,8 +8,16 @@
   min-height: calc(100vh - 432px);
   color: $fontOnLight;
 
+  @media(max-width: 800px) {
+    flex-direction: column-reverse;
+  }
+
   .RelatedContent {
     width: 420px;
+
+    @media(max-width: 800px) {
+      width: 100%;
+    }
 
     hr {
       color: $fontOnDark;

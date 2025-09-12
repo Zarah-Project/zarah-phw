@@ -2,6 +2,7 @@ import Head from "next/head";
 import DesktopMenu from "@/components/Layout/Desktop/DesktopMenu";
 import Footer from "@/components/Layout/Footer";
 import {Media} from "@/utils/media";
+import MenuMobile from "@/components/Layout/Mobile/MenuMobile";
 
 const LayoutLight = ({ children }) => {
    return(
@@ -13,8 +14,8 @@ const LayoutLight = ({ children }) => {
                 <Media greaterThanOrEqual="md">
                     <DesktopMenu theme={'light'} />
                 </Media>
-                <Media lessThan={"md"}>
-                    <div></div>
+                <Media lessThan="md">
+                  <MenuMobile theme={'light'} />
                 </Media>
                 {children}
                 <Footer />

@@ -46,7 +46,6 @@ export default function About() {
                     </div>
                 </motion.div>
                 <Spacer size={'xxxl'}/>
-                <FurtherReadingSection />
             </div>
         </>
     )

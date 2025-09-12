@@ -2,15 +2,24 @@
 @use "@/styles/variables" as *;
 
 
+.DarkTheme {
+  background-color: $darkBack;
+  color: $fontOnDark;
+}
+
+.LightTheme {
+  background-color: $lightBack;
+  color: $fontOnLight;
+}
+
 .Menu {
   position: fixed;
   right: -100vw;
-  background-color: $darkBack;
-  color: $fontOnDark;
   width: 100vw;
   height: 100vh;
   z-index: 9998;
   display: flex;
+  background-color: inherit;
   flex-direction: column;
   -webkit-transition: .5s ease-in-out;
   -moz-transition: .5s ease-in-out;
@@ -32,7 +41,7 @@
       font-family: var(--font-editorialNew), serif;
       font-size: 40px;
       line-height: 120%;
-      color: $fontOnDark;
+      color: inherit;
     }
 
     .Submenu {
@@ -59,13 +68,13 @@
   transition: .5s ease-in-out;
   cursor: pointer;
 
-  .LightTheme {
+  &.LightTheme {
     span {
       background-color: $fontOnLight;
     }
   }
 
-  .DarkTheme {
+  &.DarkTheme {
     span {
       background-color: $fontOnDark;
     }

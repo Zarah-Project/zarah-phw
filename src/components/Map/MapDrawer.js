@@ -2,7 +2,6 @@ import style from "./MapDrawer.module.scss";
 import Button from "@/components/BaseElements/Button";
 import IconClose from "@/components/Icons/IconClose";
 import React from "react";
-import {events} from "@/mockData/events";
 import EventCard from "@/components/Cards/EventCard/EventCard";
 import Spacer from "@/components/BaseElements/Spacer";
 

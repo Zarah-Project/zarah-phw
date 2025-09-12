@@ -1,22 +1,26 @@
+import {useMedia} from "react-use";
+
 const Spacer = ({ size }) => {
+    const isMobile = useMedia('(max-width: 800px)', true);
+
     const getHeight = () => {
         switch (size) {
             case 'xxs':
-                return '4px';
+                return isMobile ? '2px' : '4px';
             case 'xs':
-                return '8px';
+                return isMobile ? '4px': '8px';
             case 's':
-                return '16px';
+                return isMobile ? '8px' : '16px';
             case 'm':
-                return '24px';
+                return isMobile ? '12px' : '24px';
             case 'l':
-                return '32px';
+                return isMobile ? '16px' : '32px';
             case 'xl':
-                return '48px';
+                return isMobile ? '24px' : '48px';
             case 'xxl':
-                return '80px';
+                return isMobile ? '40px' : '80px';
             case 'xxxl':
-                return '120px';
+                return isMobile ? '60px' : '120px';
         }
     }
 

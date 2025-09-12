@@ -7,6 +7,10 @@
         background-color: rgba($fontOnDark, 0.3);
         border: none;
         height: 1px;
+
+        @media(max-width: 800px) {
+            display: none;
+        }
     }
 
     .Link {

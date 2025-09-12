@@ -15,7 +15,7 @@ const LayoutDark = ({ children }) => {
                     <DesktopMenu theme={'dark'} />
                 </Media>
                 <Media lessThan="md">
-                    <MenuMobile />
+                    <MenuMobile theme={'dark'} />
                 </Media>
                 {children}
                 <Footer />
