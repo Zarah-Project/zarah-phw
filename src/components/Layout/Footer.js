@@ -1,4 +1,3 @@
-import {Col, Container, Row} from "react-grid-system";
 import style from "./Footer.module.scss";
 import Link from "@/components/BaseElements/Link";
 import Spacer from "@/components/BaseElements/Spacer";

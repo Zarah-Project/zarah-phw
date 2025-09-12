@@ -1,8 +1,8 @@
-import style from "./TopMenu.module.scss";
+import style from "./DesktopMenu.module.scss";
 import IconSearch from "@/components/Icons/IconSearch";
 import Link from "next/link";
 
-const TopMenu = ({theme}) => {
+const DesktopMenu = ({theme}) => {
     return (
         <div className={`${style.TopMenu} ${theme === 'dark' ? style.Dark : style.Light} nav-link`}>
             <div className={style.Left}>
@@ -23,4 +23,4 @@ const TopMenu = ({theme}) => {
     )
 }
 
-export default TopMenu;
+export default DesktopMenu;

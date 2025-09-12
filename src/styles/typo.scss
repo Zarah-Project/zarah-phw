@@ -1,3 +1,4 @@
+@use "@/styles/variables" as *;
 
 h1 {
   font-family: var(--font-editorialNew), serif;
@@ -5,6 +6,10 @@ h1 {
   font-size: 72px;
   line-height: 120%;
   letter-spacing: 0;
+
+  @media (max-width: $small) {
+    line-height: 100%;
+  }
 }
 
 h2 {
@@ -13,6 +18,10 @@ h2 {
   font-size: 56px;
   line-height: 120%;
   letter-spacing: 0;
+
+  @media (max-width: $small) {
+    font-size: 48px;
+  }
 }
 
 h3 {
@@ -21,6 +30,10 @@ h3 {
   font-size: 40px;
   line-height: 120%;
   letter-spacing: 0;
+
+  @media (max-width: $small) {
+    font-size: 32px;
+  }
 }
 
 h4 {
@@ -29,6 +42,10 @@ h4 {
   font-size: 32px;
   line-height: 120%;
   letter-spacing: 0;
+
+  @media (max-width: $small) {
+    font-size: 24px;
+  }
 }
 
 h5 {

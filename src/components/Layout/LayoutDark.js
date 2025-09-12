@@ -1,6 +1,8 @@
 import Head from "next/head";
-import TopMenu from "@/components/Layout/Desktop/TopMenu";
-import Footer from "@/components/Layout/Desktop/Footer";
+import DesktopMenu from "@/components/Layout/Desktop/DesktopMenu";
+import Footer from "@/components/Layout/Footer";
+import {Media} from "@/utils/media";
+import MenuMobile from "@/components/Layout/Mobile/MenuMobile";
 
 const LayoutDark = ({ children }) => {
    return(
@@ -9,7 +11,12 @@ const LayoutDark = ({ children }) => {
                 <meta name="robots" content="all" key="robots" />
             </Head>
             <>
-                <TopMenu theme={'dark'} />
+                <Media greaterThanOrEqual="md">
+                    <DesktopMenu theme={'dark'} />
+                </Media>
+                <Media lessThan="md">
+                    <MenuMobile />
+                </Media>
                 {children}
                 <Footer />
             </>

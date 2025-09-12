@@ -1,6 +1,7 @@
 import Head from "next/head";
-import TopMenu from "@/components/Layout/Desktop/TopMenu";
-import Footer from "@/components/Layout/Desktop/Footer";
+import DesktopMenu from "@/components/Layout/Desktop/DesktopMenu";
+import Footer from "@/components/Layout/Footer";
+import {Media} from "@/utils/media";
 
 const LayoutLight = ({ children }) => {
    return(
@@ -9,7 +10,12 @@ const LayoutLight = ({ children }) => {
                 <meta name="robots" content="all" key="robots" />
             </Head>
             <>
-                <TopMenu theme={'light'} />
+                <Media greaterThanOrEqual="md">
+                    <DesktopMenu theme={'light'} />
+                </Media>
+                <Media lessThan={"md"}>
+                    <div></div>
+                </Media>
                 {children}
                 <Footer />
             </>
