@@ -50,8 +50,27 @@
     display: flex;
     gap: 32px;
 
+    @media (max-width: 800px) {
+      display: flex;
+      align-items: center;
+      flex-wrap: nowrap; /* prevent wrapping */
+      overflow-x: auto;  /* horizontal scroll */
+      -webkit-overflow-scrolling: touch; /* smooth scrolling on iOS */
+      gap: 1rem; /* spacing between buttons */
+      -ms-overflow-style: none;
+      scrollbar-width: none;
+      height: 60px;
+      border-top: 1px solid rgba($fontOnLight, 0.1);
+      border-bottom: 1px solid rgba($fontOnLight, 0.1);
+    }
+
   span {
     cursor: pointer;
+
+    @media (max-width: 800px) {
+      white-space: nowrap; /* prevent text wrapping */
+      cursor: pointer;
+    }
   }
 
   .Active {

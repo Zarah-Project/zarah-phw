@@ -1,6 +1,6 @@
 import style from "./FurtherReadingSection.module.scss";
 import React from "react";
-import readings from "@/mockData/readings";
+import readings from "@/data/readings";
 import FurtherReadingCard from "@/components/Cards/FurtherReadingCard/FurtherReadingCard";
 import Spacer from "@/components/BaseElements/Spacer";
 import {motion} from 'motion/react'

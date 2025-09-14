@@ -29,6 +29,7 @@ const FiltersPage = ({facets, onSetSelectedTags}) => {
 				{"ABCDEFGHIJKLMNOPQRSTUVWXYZ".split("").map((letter) => (
 					<span
 						key={letter}
+						data-letter={letter}
 						onClick={() => {
 							if (Object.keys(facets).includes(letter)) {
 								const el = document.getElementById(`facet-${letter}`);

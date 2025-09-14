@@ -20,6 +20,7 @@ const MenuMobile = ({theme}) => {
     const getActivePage = () => {
         const activePages = {
             'people': 'People',
+            'activism': 'Activism',
             'networks': 'Networks',
             'sources': 'Sources',
             'essays': 'Essays',

@@ -6,6 +6,10 @@
   padding: 0 48px;
   color: $fontOnLight;
 
+  @media (max-width: 800px) {
+    padding: 0 16px;
+  }
+
   .SearchBar {
     display: flex;
     align-items: center;
@@ -47,7 +51,7 @@
 
     .SearchButton {
       margin-left: 24px;
-      font-size: 1.5rem;
+      font-size: 72px;
       color: #ff6a5c;
       background: none;
       border: none;
@@ -83,5 +87,46 @@
         color: $fontOnLight;
       }
     }
+  }
+
+  /* Mobile Styles */
+  .SearchBarUnderMobile {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    padding-top: 8px;
+
+    .SearchButton {
+      font-size: 48px;
+      color: #ff6a5c;
+      background: none;
+      border: none;
+      cursor: pointer;
+
+      &:hover {
+        color: $fontOnLight;
+      }
+    }
+
+    .ViewChangerButton {
+      margin-left: 24px;
+      font-size: 1.5rem;
+      color: #ff6a5c;
+      background: none;
+      border: none;
+      cursor: pointer;
+
+      &:hover {
+        color: $fontOnLight;
+      }
+    }
+  }
+
+  .SelectedTagsMobile {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 8px;
+    padding-top: 24px;
   }
 }
