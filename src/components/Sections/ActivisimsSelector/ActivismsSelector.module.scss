@@ -6,6 +6,10 @@
   padding: 0 48px;
   color: $fontOnDark;
 
+  @media (max-width: 800px) {
+    padding: 0 16px;
+  }
+
   .PeopleGroupSelector {
     font-family: var(--font-editorialNew), serif;
     font-weight: 400;

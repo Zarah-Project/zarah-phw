@@ -5,9 +5,15 @@
   align-items: center;
   gap: 48px;
 
+  @media (max-width: 800px) {
+    flex-direction: column;
+    gap: 16px;
+  }
+
   .Link {
     text-decoration: none;
     color: inherit;
+    width: 100%;
   }
 }
 

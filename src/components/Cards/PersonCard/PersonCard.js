@@ -7,9 +7,12 @@ import Photo from "@/components/BaseElements/Photo";
 import TwoColumnCard from "@/components/Cards/Base/TwoColumnCard";
 import getImageData from "@/utils/content/getImageData";
 import Link from "next/link";
+import {useMedia} from "react-use";
 
 const PersonCard = ({ person, photoAlign = 'left' }) => {
     const { personGroup, Name, CardText, Slug, Image} = person;
+
+    const isMobile = useMedia('(max-width: 800px)', true);
 
     const getName = () => {
         const nameArray = Name.split(' ');
@@ -38,7 +41,7 @@ const PersonCard = ({ person, photoAlign = 'left' }) => {
                             text={'Read Biography'}
                             theme={'light'}
                             type={'primary'}
-                            width={220}
+                            width={isMobile ? '100%' : 220}
                         />
                     </Link>
                     <Link href={`/people`} className={style.Link}>
@@ -48,7 +51,7 @@ const PersonCard = ({ person, photoAlign = 'left' }) => {
                             text={'See All Stories'}
                             theme={'light'}
                             type={'secondary'}
-                            width={240}
+                            width={isMobile ? '100%' : 240}
                         />
                     </Link>
                 </div>
@@ -58,10 +61,10 @@ const PersonCard = ({ person, photoAlign = 'left' }) => {
 
     return (
         <TwoColumnCard
-            minHeight={'800'}
+            minHeight={isMobile ? '400' : '800'}
             photoAlign={photoAlign}
             content={dataSheet()}
-            image={<Photo image={image} minHeight={800}/>}
+            image={<Photo image={image} minHeight={isMobile ? 400 : 800}/>}
         />
     )
 }

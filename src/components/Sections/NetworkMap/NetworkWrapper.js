@@ -16,8 +16,6 @@ const NetworkWrapper = ({data}) => {
     const [drawerOpen, setDrawerOpen] = useState(false)
     const [drawerContent, setDrawerContent] = useState(null);
 
-    const isMobile = useMedia('(max-width: 800px)', true);
-
     const openDrawerWithContent = (content) => {
         setDrawerContent(content);
         setDrawerOpen(true);

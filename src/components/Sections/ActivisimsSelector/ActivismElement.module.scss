@@ -27,6 +27,12 @@
       height: 1px;
       visibility: hidden;
     }
+
+    @media (max-width: 800px) {
+      h3 {
+        font-size: 24px;
+      }
+    }
   }
 
   .textLeft {
@@ -37,6 +43,8 @@
   }
 
   .image {
+    top: 50%;
+    transform: translateY(-50%);
     position: absolute;
     width: 140px;
     height: 80px;

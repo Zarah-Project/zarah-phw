@@ -2,6 +2,20 @@
 
 .Section {
   background-color: $darkBack;
+
+  div {
+    @media (max-width: 500px) {
+      min-width: 600vw
+    }
+
+    @media (min-width: 501px) and (max-width: 800px) {
+      min-width: 300vw
+    }
+
+    @media (min-width: 801px) {
+      min-width: 120vw;
+    }
+  }
 }
 
 .Title {

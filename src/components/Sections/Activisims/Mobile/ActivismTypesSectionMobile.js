@@ -2,6 +2,7 @@ import styles from "./ActivismTypesSection.module.scss";
 import React, {useState} from "react";
 import Head from "next/head";
 import ActivismSection from "@/components/Sections/Activisims/ActivismSection";
+import Spacer from "@/components/BaseElements/Spacer";
 
 const ActivismTypesSectionMobile = ({activismTypeData}) => {
     const [activeType, setActiveType] = useState(activismTypeData['data'][0]['Type']);
@@ -35,6 +36,7 @@ const ActivismTypesSectionMobile = ({activismTypeData}) => {
             <div className={styles.Section}>
                 <header>
                     {renderTypeSelectors()}
+                    <Spacer size={'xl'}/>
                     {renderActiveTypeContent()}
                 </header>
             </div>

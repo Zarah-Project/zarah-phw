@@ -1,16 +1,10 @@
 import { motion } from "motion/react"
-
 import style from "./OpeningAnimation.module.scss";
 import React, {useRef, useEffect, useState} from "react";
 import {useBoolean, useInterval, useRafLoop, useWindowSize} from "react-use";
 import {useSpring, useTransform} from "framer-motion";
 import CircleImageSlider from "@/components/Sections/OpeningAnimation/CircleImageSlider";
 
-/**
- * @see https://14islands.com/blog/interactive-marquee-with-framer-motion/
- *
- * @see https://codesandbox.io/s/x3r465?file=/src/App.js
- */
 const MarqueeItem = (props) => {
     const { children, speed } = props;
 
@@ -44,7 +38,6 @@ const MarqueeItem = (props) => {
     }, [width, height]);
 
     const loop = () => {
-        //Substracts the current x from the speed set by useSpring
         x.current -= speed.get();
         setX();
     };
@@ -63,14 +56,12 @@ const MarqueeItem = (props) => {
 };
 
 const OpeningAnimation = (props) => {
-    const {
-        speed = 2,
-        threshold = 0.014,
-    } = props;
+    const { speed = 1.5, threshold = 0.014 } = props;
 
     const [zIndex, setZIndex] = useState(20);
-    const [delay, setDelay] = React.useState(6000);
+    const [delay] = useState(7500);
     const [isRunning, toggleIsRunning] = useBoolean(true);
+    const [isMobile, setIsMobile] = useState(false);
 
     const marqueeRef = useRef(null);
     const slowDown = useRef(false);
@@ -90,39 +81,31 @@ const OpeningAnimation = (props) => {
     );
 
     const loop = () => {
-        /**
-         * Do nothing if we're slowing down
-         * or
-         * Our x is less than the threshold
-         *
-         * The threshold basically tells how much to speed up
-         *
-         * Without this stop - x.current will mutiple expodentially
-         */
         if (slowDown.current || Math.abs(x.current) < threshold) {
             return;
         }
-
-        /**
-         * This portion speeds up the spring until it reaches the `threshold`
-         */
         x.current *= 0.66;
-
         if (x.current < 0) {
             x.current = Math.min(x.current, 0);
         } else {
             x.current = Math.max(x.current, 0);
         }
-
-        //speedSpring sets the speed for the marquee items that gets passed to the item components
         speedSpring.set(speed + x.current);
     };
 
     useRafLoop(loop);
 
+    // Detect if screen is mobile
+    useEffect(() => {
+        setIsMobile(width <= 768); // treat <=768px as mobile
+    }, [width]);
+
+    // Alternate zIndex on desktop only
     useInterval(
         () => {
-            setZIndex(zIndex === 20 ? 5 : 20);
+            if (!isMobile) {
+                setZIndex(zIndex === 20 ? 5 : 20);
+            }
         },
         isRunning ? delay : null
     );
@@ -130,12 +113,22 @@ const OpeningAnimation = (props) => {
     return (
         <div className={style.Section}>
             {/* Centered Image */}
-            <div className={style.imageContainer}>
+            <div
+                className={style.imageContainer}
+                style={
+                    isMobile
+                        ? { width: "300px", height: "300px" }
+                        : {}
+                }
+            >
                 <CircleImageSlider />
             </div>
 
             {/* Scrolling Text */}
-            <div className={style.scrollingText} style={{zIndex: zIndex}}>
+            <div
+                className={style.scrollingText}
+                style={{ zIndex: isMobile ? 20 : zIndex }}
+            >
                 <motion.div
                     className={style.Marquee}
                     ref={marqueeRef}
@@ -154,7 +147,7 @@ const OpeningAnimation = (props) => {
                 </motion.div>
             </div>
         </div>
-    )
-}
+    );
+};
 
 export default OpeningAnimation;

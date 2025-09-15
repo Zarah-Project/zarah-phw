@@ -7,7 +7,7 @@
 
   .scrollingText {
     position: absolute;
-    top: 40%;
+    top: 50%;
     left: 0;
   }
 
@@ -27,7 +27,7 @@
       -webkit-user-select: none;
       user-select: none;
       color: $fontOnDark;
-      padding-right: 100px;
+      padding-right: 400px;
       /* will-change: transform; */
 
       &.Front {
