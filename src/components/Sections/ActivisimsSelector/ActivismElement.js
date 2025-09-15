@@ -2,6 +2,7 @@ import React, { useLayoutEffect, useRef, useState } from "react";
 import { motion, AnimatePresence } from "motion/react";
 import style from "./ActivismElement.module.scss";
 import { Media } from "@/utils/media";
+import Link from "next/link";
 
 const ImageHoverText = ({ text, imageUrl }) => {
     const [hovered, setHovered] = useState(false);
@@ -31,6 +32,11 @@ const ImageHoverText = ({ text, imageUrl }) => {
         }
     }, [hovered]);
 
+    const getHashPart = () => {
+        const fullText = `${parts[0].trim()} ${parts[1].trim()}`;
+        return fullText.replace(/\s+/g, "-")
+    }
+
     return (
         <>
             <Media greaterThanOrEqual={"md"}>
@@ -39,40 +45,42 @@ const ImageHoverText = ({ text, imageUrl }) => {
                     onMouseEnter={() => setHovered(true)}
                     onMouseLeave={() => setHovered(false)}
                 >
-                    <div className={style.innerContainer} ref={wrapperRef}>
-                        <motion.h3
-                            className={style.textLeft}
-                            animate={{ x: hovered ? -70 : 0 }}
-                            transition={{ type: "ease" }}
-                        >
-                            {parts[0]}
-                            <span ref={imgMarkerRef} className={style.placeholderMarker} />
-                        </motion.h3>
+                    <Link href={`/activism#${getHashPart()}`}>
+                        <div className={style.innerContainer} ref={wrapperRef}>
+                            <motion.h3
+                                className={style.textLeft}
+                                animate={{ x: hovered ? -70 : 0 }}
+                                transition={{ type: "ease" }}
+                            >
+                                {parts[0]}
+                                <span ref={imgMarkerRef} className={style.placeholderMarker} />
+                            </motion.h3>
 
-                        <AnimatePresence>
-                            {hovered && (
-                                <motion.img
-                                    ref={imgRef}
-                                    src={imageUrl}
-                                    alt="hover"
-                                    className={style.image}
-                                    initial={{ opacity: 0 }}
-                                    animate={{ opacity: 1 }}
-                                    exit={{ opacity: 0 }}
-                                    style={{ left: imgPosition }}
-                                    transition={{ duration: 0.3 }}
-                                />
-                            )}
-                        </AnimatePresence>
+                            <AnimatePresence>
+                                {hovered && (
+                                    <motion.img
+                                        ref={imgRef}
+                                        src={imageUrl}
+                                        alt="hover"
+                                        className={style.image}
+                                        initial={{ opacity: 0 }}
+                                        animate={{ opacity: 1 }}
+                                        exit={{ opacity: 0 }}
+                                        style={{ left: imgPosition }}
+                                        transition={{ duration: 0.3 }}
+                                    />
+                                )}
+                            </AnimatePresence>
 
-                        <motion.h3
-                            className={style.textRight}
-                            animate={{ x: hovered ? 70 : 0 }}
-                            transition={{ type: "ease" }}
-                        >
-                            {parts[1]}
-                        </motion.h3>
-                    </div>
+                            <motion.h3
+                                className={style.textRight}
+                                animate={{ x: hovered ? 70 : 0 }}
+                                transition={{ type: "ease" }}
+                            >
+                                {parts[1]}
+                            </motion.h3>
+                        </div>
+                    </Link>
                 </div>
             </Media>
             <Media lessThan={"md"}>
@@ -81,11 +89,13 @@ const ImageHoverText = ({ text, imageUrl }) => {
                     onMouseEnter={() => setHovered(true)}
                     onMouseLeave={() => setHovered(false)}
                 >
-                    <div className={style.innerContainer} ref={wrapperRef}>
-                        <motion.h3 className={style.textLeft}>
-                            {parts[0]} {parts[1]}
-                        </motion.h3>
-                    </div>
+                    <Link href={`/activism/m/#${encodeURIComponent(`${parts[0].trim()} ${parts[1].trim()}`)}`}>
+                        <div className={style.innerContainer} ref={wrapperRef}>
+                            <motion.h3 className={style.textLeft}>
+                                {parts[0]} {parts[1]}
+                            </motion.h3>
+                        </div>
+                    </Link>
                 </div>
             </Media>
         </>

@@ -1,6 +1,8 @@
 import React, {useEffect, useRef, useState} from "react";
 import styles from "./ActivismTypesSection.module.scss";
 import ActivismSection from "@/components/Sections/Activisims/ActivismSection";
+import {useEffectOnce} from "react-use";
+import {useRouter} from "next/router";
 
 const ActivismTypesSection = ({activismTypeData}) => {
     const [activeSection, setActiveSection] = useState(0);
@@ -8,10 +10,60 @@ const ActivismTypesSection = ({activismTypeData}) => {
     const sectionRefs = useRef([]);
 
     const sidebarRef = useRef(null);
+    const [hasLoadedFromHash, setHasLoadedFromHash] = useState(false);
 
+    const router = useRouter();
+
+    useEffectOnce(() => {
+        const hash = decodeURIComponent(window.location.hash.slice(1));
+        console.log(hash);
+        const index = activismTypeData.data.findIndex(
+            (group) => group.Type.replace(/\s+/g, "-") === hash
+        );
+
+        if (index !== -1) {
+            setTimeout(() => {
+                scrollToSection(index);
+                setActiveSection(index);
+            }, 200);
+        }});
+
+
+    // 🔹 Keyboard navigation
     useEffect(() => {
-        console.log(sidebarRef.current.clientHeight);
-    }, []);
+        const handleKeyDown = (e) => {
+            const scrollable = sectionRefs.current[activeSection]?.querySelector(`.${styles.sectionContent}`);
+            if (!scrollable) return;
+
+            const scrollAmount = 200; // distance per key press for horizontal scroll
+
+            if (e.key === "ArrowRight") {
+                // smooth scroll right inside section
+                scrollable.scrollBy({ left: scrollAmount, behavior: "smooth" });
+            } else if (e.key === "ArrowLeft") {
+                // smooth scroll left inside section
+                scrollable.scrollBy({ left: -scrollAmount, behavior: "smooth" });
+            } else if (e.key === "ArrowDown") {
+                // go to next section smoothly
+                setActiveSection((prev) => {
+                    const next = Math.min(prev + 1, activismTypeData.data.length - 1);
+                    if (next !== prev) scrollToSection(next); // already smooth
+                    return next;
+                });
+            } else if (e.key === "ArrowUp") {
+                // go to previous section smoothly
+                setActiveSection((prev) => {
+                    const prevIndex = Math.max(prev - 1, 0);
+                    if (prevIndex !== prev) scrollToSection(prevIndex); // already smooth
+                    return prevIndex;
+                });
+            }
+        };
+
+        window.addEventListener("keydown", handleKeyDown);
+        return () => window.removeEventListener("keydown", handleKeyDown);
+    }, [activeSection, activismTypeData]);
+
 
     useEffect(() => {
         const observer = new IntersectionObserver(

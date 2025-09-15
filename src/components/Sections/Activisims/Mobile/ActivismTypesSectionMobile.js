@@ -1,19 +1,52 @@
 import styles from "./ActivismTypesSection.module.scss";
-import React, {useState} from "react";
+import React, {useEffect, useState} from "react";
 import Head from "next/head";
 import ActivismSection from "@/components/Sections/Activisims/ActivismSection";
 import Spacer from "@/components/BaseElements/Spacer";
 
 const ActivismTypesSectionMobile = ({activismTypeData}) => {
-    const [activeType, setActiveType] = useState(activismTypeData['data'][0]['Type']);
+    const defaultType = activismTypeData["data"][0]["Type"];
+    const [activeType, setActiveType] = useState(defaultType);
+
+    // Helper to sync state with hash
+    const setTypeFromHash = () => {
+        if (window.location.hash) {
+            const hashType = decodeURIComponent(window.location.hash.substring(1));
+            const exists = activismTypeData["data"].some((d) => d["Type"] === hashType);
+            if (exists) {
+                setActiveType(hashType);
+            }
+        }
+    };
+
+    // On mount, check hash
+    useEffect(() => {
+        setTypeFromHash();
+
+        // Listen for hash changes (back/forward/manual edit)
+        window.addEventListener("hashchange", setTypeFromHash);
+
+        return () => {
+            window.removeEventListener("hashchange", setTypeFromHash);
+        };
+    }, [activismTypeData]);
+
+    // Update hash when activeType changes
+    useEffect(() => {
+        if (activeType) {
+            window.history.replaceState(null, "", `#${encodeURIComponent(activeType)}`);
+        }
+    }, [activeType]);
 
     const renderTypeSelectors = () => {
         return (
             <div className={styles.TypeSelectors}>
                 {
                     activismTypeData['data'].map((data, idx) => {
-                        return (<span className={activeType === data['Type'] ? styles.Active : ''}
-                                      onClick={() => setActiveType(data['Type'])}>{data['Type']}</span>)
+                        return (<span
+                            key={idx}
+                            className={activeType === data['Type'] ? styles.Active : ''}
+                            onClick={() => setActiveType(data['Type'])}>{data['Type']}</span>)
                     })
                 }
             </div>
