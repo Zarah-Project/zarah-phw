@@ -5,6 +5,7 @@ import Spacer from "@/components/BaseElements/Spacer";
 import React from "react";
 import FurtherReadingSection from "@/components/Sections/FurtherReadingSection/FurtherReadingSection";
 import { motion } from "motion/react";
+import Link from "next/link";
 
 export default function Index() {
     return (
@@ -52,7 +53,7 @@ export default function Index() {
                     viewport={{once: true}}
                     initial={{opacity: 0, y: 40}}
                     whileInView={{opacity: 1, y: 0}}
-                    transition={{duration: 0.4, delay: 0.2}}
+                    transition={{duration: 0.4, delay: 0.3}}
                     className={style.AboutText}
                 >
                     <div className={style.Left}>
@@ -66,7 +67,41 @@ export default function Index() {
                     <div className={style.Right}/>
                 </motion.div>
                 <Spacer size={'xxxl'}/>
-                <FurtherReadingSection />
+                <FurtherReadingSection/>
+                <motion.div
+                    viewport={{once: true}}
+                    initial={{opacity: 0, y: 40}}
+                    whileInView={{opacity: 1, y: 0}}
+                    transition={{duration: 0.4, delay: 0.4}}
+                    className={style.AboutText}
+                >
+                    <div className={style.Left}/>
+                    <div className={style.Right}>
+                        <h3>Copyright note</h3>
+                        <br/>
+                        Texts on this website are published under a Creative Commons Attribution-NonCommercial-
+                        NoDerivatives 4.0 International licence <Link href={"https://creativecommons.org/licenses/by-nc-nd/4.0/"} target={'_blank'}>CC BY-NC-ND
+                        4.0.</Link> This licence allows you to share,
+                        copy, distribute and transmit the work for personal and non-commercial use provided author
+                        attribution is clearly stated.
+                    </div>
+                </motion.div>
+                <Spacer size={'xxxl'}/>
+                <motion.div
+                    viewport={{once: true}}
+                    initial={{opacity: 0, y: 40}}
+                    whileInView={{opacity: 1, y: 0}}
+                    transition={{duration: 0.4, delay: 0.4}}
+                    className={style.AboutText}
+                >
+                    <div className={style.Left}>
+                        The author has attempted to contact potential copyright holders of illustrations contained on
+                        this website. If there is anyone who claims copyright regarding any of the illustrations, please
+                        contact the author.
+                    </div>
+                    <div className={style.Right}/>
+                </motion.div>
+                <Spacer size={'xxxl'}/>
             </div>
         </>
     )

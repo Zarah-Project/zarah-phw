@@ -34,5 +34,14 @@
     .Right {
       flex: 1;
     }
+
+    a {
+        font-family: inherit;
+        font-size: inherit;
+        text-decoration: none;
+        color: inherit;
+        font-weight: 600;
+        border-bottom: 1px dashed $fontOnDark;
+    }
   }
 }
