@@ -83,7 +83,7 @@ const SVGMap = ({mapData, onMarkerClick, onDrawerClose}) => {
     const [activeDataset, setActiveDataset] = useState('world1930');
     const [geoData, setGeoData] = useState(world1930);
 
-    const isMobile = useMedia('(max-width: 800px)', true);
+    const isMobile = useMedia('(max-width: 800px)', false);
 
     useEffect(() => {
         if (activeDataset === 'world1930') {

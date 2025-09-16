@@ -52,7 +52,16 @@
   .Column {
     position: relative;
     width: 100vw;
-    height: 100%;
+    height: calc(100vh - 160px);
+
+    display: flex;
+    flex-direction: column;
+
+    .ListContainer {
+      flex: 1;
+      min-height: 0;       // lets the child shrink for scrolling
+      overflow-y: auto;    // scrollable
+    }
 
     .Drawer {
       position: absolute;

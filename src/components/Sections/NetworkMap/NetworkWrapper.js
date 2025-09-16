@@ -5,7 +5,6 @@ import dynamic from "next/dynamic";
 import IconEarth from "@/components/Icons/IconEarth";
 import IconList from "@/components/Icons/IconList";
 import NetworkList from "@/components/Sections/NetworkMap/NetworkList";
-import {useMedia} from "react-use";
 
 const SVGMap = dynamic(() => import("@/components/Map/Map"), {
     ssr: false,
@@ -61,7 +60,11 @@ const NetworkWrapper = ({data}) => {
                     }}
                     transition={{type: "tween", duration: 0.3}}
                     className={`${style.Column}`}>
-                    <SVGMap mapData={data['data']} onMarkerClick={openDrawerWithContent} onDrawerClose={closeDrawer} />
+                    <SVGMap
+                        mapData={data['data']}
+                        onMarkerClick={openDrawerWithContent}
+                        onDrawerClose={closeDrawer}
+                    />
                     <div className={`${style.Drawer} ${drawerOpen ? style.Open : ''}`}>
                         {drawerContent}
                     </div>
@@ -72,7 +75,9 @@ const NetworkWrapper = ({data}) => {
                     }}
                     transition={{type: "tween", duration: 0.6}}
                     className={`${style.Column}`}>
-                    <NetworkList mapData={data['data']} />
+                    <div className={style.ListContainer}>
+                        <NetworkList mapData={data['data']} />
+                    </div>
                 </motion.div>
             </motion.div>
         </>
