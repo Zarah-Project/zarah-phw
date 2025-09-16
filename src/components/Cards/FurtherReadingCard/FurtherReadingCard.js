@@ -5,23 +5,28 @@ import style from "./FurtherReadingCard.module.scss";
 import Spacer from "@/components/BaseElements/Spacer";
 import Button from "@/components/BaseElements/Button";
 import {motion} from "motion/react";
+import Link from "next/link";
 
 const FurtherReadingCard = ({reading}) => {
-    const { id, title, text, url, image } = reading;
+    const { id, title, text, url, image, buttonText } = reading;
 
     const dataSheet = () => {
         return (
-            <div>
+            <div className={style.Datasheet}>
                 <h4>{title}</h4>
                 <Spacer size={'xl'} />
                 <p>{text}</p>
                 <Spacer size={'xl'} />
-                <Button
-                    text={'Visit'}
-                    theme={'light'}
-                    type={'primary'}
-                    width={100}
-                />
+                {url !== "" &&
+                    <Link href={url} target={'_blank'} rel={'noopener noreferrer'}>
+                        <Button
+                            text={buttonText}
+                            theme={'light'}
+                            type={'primary'}
+                            width={100}
+                        />
+                    </Link>
+                }
             </div>
         )
     }
@@ -37,7 +42,7 @@ const FurtherReadingCard = ({reading}) => {
             <TwoColumnCard
                 contentAlign={'flex-start'}
                 photoAlign={'left'}
-                image={<Photo image={image} minHeight={462} imageFit={'cover'}/>}
+                image={<Photo image={image} isExample={true} minHeight={462} imageFit={'contain'}/>}
                 content={dataSheet()}
             />
         </motion.div>

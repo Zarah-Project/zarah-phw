@@ -4,14 +4,14 @@ import style from "./SourcesTopAnimation.module.scss";
 import {easeIn, easeInOut, easeOut} from "motion";
 
 const images=[
-    { src: '/images/examples/sources08.jpeg', bottom: '10%', left: '130%', height: '250px', speed: 0.9 },
-    { src: '/images/examples/sources05.jpeg', top: '0', left: '130%', height: '300px', speed: 0.75 },
-    { src: '/images/examples/sources06.jpeg', top: '35%', left: '110%', height: '300px', speed: 0.7 },
-    { src: '/images/examples/sources07.jpeg', bottom: '10%', left: '90%', height: '200px', speed: 0.8 },
-    { src: '/images/examples/sources04.jpeg', top: '10%', left: '80%', height: '300px', speed: 0.7 },
-    { src: '/images/examples/sources02.jpeg', top: '30%', left: '50%', height: '300px', speed: 0.3 },
-    { src: '/images/examples/sources03.jpeg', top: '50%', left: '35%', height: '300px', speed: 0.8 },
-    { src: '/images/examples/sources01.jpeg', top: '0', left: '0', height: '350px', speed: 0.2 },
+    { src: '/images/content/sources08.jpeg', bottom: '10%', left: '130%', height: '250px', speed: 0.9 },
+    { src: '/images/content/sources05.jpeg', top: '0', left: '130%', height: '300px', speed: 0.75 },
+    { src: '/images/content/sources06.jpeg', top: '35%', left: '110%', height: '300px', speed: 0.7 },
+    { src: '/images/content/sources07.jpeg', bottom: '10%', left: '90%', height: '200px', speed: 0.8 },
+    { src: '/images/content/sources04.jpeg', top: '10%', left: '80%', height: '300px', speed: 0.7 },
+    { src: '/images/content/sources02.jpeg', top: '30%', left: '50%', height: '300px', speed: 0.3 },
+    { src: '/images/content/sources03.jpeg', top: '50%', left: '35%', height: '300px', speed: 0.8 },
+    { src: '/images/content/sources01.jpeg', top: '0', left: '0', height: '350px', speed: 0.2 },
 ]
 
 export default function SourcesTopAnimation() {

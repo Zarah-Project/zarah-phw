@@ -12,7 +12,7 @@ const ActivismTypeSelector = ({data}) => {
             <PeopleGroupElement
                 key={`activism-group-${index}`}
                 text={group['TypeWithImage']}
-                imageUrl={image['url'] !== "" ? image['url'] : 'images/examples/activism_menu.jpg'}
+                imageUrl={image['url'] !== "" ? image['url'] : 'images/content/activism_menu.jpg'}
             />
         )
     }

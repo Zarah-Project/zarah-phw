@@ -7,7 +7,7 @@ const Photo = ({image, isExample=false, minHeight = 300, height, imageFit = 'cov
         <>
             <div className={style.ImageWrapper} style={{minHeight: `${minHeight}px`, height: height ? height : "100%"}}>
                 <Image
-                    src={isExample ? `/images/examples/${image}` : image['url']}
+                    src={isExample ? `/images/content/${image}` : image['url']}
                     alt="Card Image"
                     fill
                     objectFit={imageFit}

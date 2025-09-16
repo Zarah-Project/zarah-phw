@@ -1,27 +1,36 @@
 const readings = [
         {
             id: 1,
-            title: "Public History Volume",
-            text: "If you are interested to learn more about the activists and their work, you can download our public " +
-                "history volume, available in open access in English, German, Polish, Czech, Bulgarian " +
-                "(full list of language TBC) here [future link]",
-            url: "https://www.example.com",
-            image: 'further_readings.png'
+            title: "Collaborative Monograph",
+            text: "Women’s Labour Activism in Eastern Europe and Beyond: A New Transnational History" +
+                  "was co-authored by the research team and is available in Open Access.",
+            url: "https://uclpress.co.uk/book/womens-labour-activism-in-eastern-europe-and-beyond/",
+            buttonText: "Read",
+            image: 'about-CollaborativeMonograph.jpg'
         }, {
             id: 2,
-            title: "Zarah Database",
-            text: "Our other digital history project is ZARAH DB [link: https://public.zarahdb.eu/], which offers students " +
-                "and scholars a database of key annotated primary sources on the history of women’s labour activism in " +
-                "Central and Eastern Europe.",
-            url: "https://www.example.com",
-            image: 'further_readings.png'
+            title: "Edited Volume",
+            text: "An edited collection featuring research of a wider network of scholars working on women’s" +
+                "activism Through the Prism of Gender and Work, now available in Open Access.",
+            url: "https://brill.com/display/title/68995",
+            buttonText: "Read",
+            image: 'about-EditedVolume.jpg'
         }, {
             id: 3,
-            title: "Collaborative Monograph",
-            text: "A collaborative monograph that showcases our academic research is available in open access at the " +
-                "website of UCL Press [future link]. ",
-            url: "https://www.example.com",
+            title: "Public History Book",
+            text: "Striking Activism: Women’s Labour Struggles in Eastern Europe and Beyond in the Long 20th Century. " +
+                "A Public History Volume in 13 Languages by Emily Gioielli, forthcoming in 2026 and available in Open Access.",
+            url: "",
             image: 'further_readings.png'
+        }, {
+            id: 4,
+            title: "ZARAH DB",
+            text: "We also host ZARAH DB, a database offering students and scholars important annotated" +
+                "primary sources related to the history of women’s labour activism in Eastern, " +
+                "Central, and Southeastern Europe and internationally.",
+            url: "https://public.zarahdb.eu",
+            buttonText: "Visit",
+            image: 'about-ZarahDB.jpg'
         }
     ]
 
