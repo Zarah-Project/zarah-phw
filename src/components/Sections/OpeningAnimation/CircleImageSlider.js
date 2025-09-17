@@ -31,7 +31,7 @@ const CircleImageSlider = () => {
             overflow: 'hidden',
         }}>
             <img
-                src={`/images/examples/${images[index]}`}
+                src={`/images/content/${images[index]}`}
                 alt=""
                 style={{
                     width: '100%',
