@@ -8,7 +8,7 @@ import truncateWithEllipses from "@/utils/truncateWithEllipsis";
 import formatEventDate from "@/utils/formatEventDate";
 import Link from "next/link";
 
-const EventCard = ({ event, city, truncate = true, index = 0 }) => {
+const EventCard = ({ event, city, truncate = true, index = 0, isSearch = false }) => {
     const { id, Title, StartDate, EndDate, Slug, Content, Tags } = event;
 
     const renderDate = (startDate, endDate) => {
@@ -44,7 +44,7 @@ const EventCard = ({ event, city, truncate = true, index = 0 }) => {
                 </div>
                 <div className={style.Tags}>
                     {Tags && Tags.map((tag, index) => (
-                        <TagButton text={tag['name']} />
+                        <TagButton text={isSearch ? tag : tag['name']} />
                     ))}
                 </div>
                 <div className={style.Description}>
