@@ -56,7 +56,7 @@ const MenuMobile = ({theme}) => {
     const menuItems = [
         { href: "/", label: "Home" },
         { type: "break" },
-        { href: "/activism/m", label: "Activism" },
+        { href: "/activism", label: "Activism" },
         { href: "/people", label: "People" },
         { href: "/networks", label: "Networks" },
         { href: "/sources", label: "Sources" },

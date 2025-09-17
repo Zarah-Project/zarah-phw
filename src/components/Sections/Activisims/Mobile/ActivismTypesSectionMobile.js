@@ -3,40 +3,26 @@ import React, {useEffect, useState} from "react";
 import Head from "next/head";
 import ActivismSection from "@/components/Sections/Activisims/ActivismSection";
 import Spacer from "@/components/BaseElements/Spacer";
+import {useEffectOnce} from "react-use";
 
 const ActivismTypesSectionMobile = ({activismTypeData}) => {
     const defaultType = activismTypeData["data"][0]["Type"];
     const [activeType, setActiveType] = useState(defaultType);
 
-    // Helper to sync state with hash
-    const setTypeFromHash = () => {
-        if (window.location.hash) {
-            const hashType = decodeURIComponent(window.location.hash.substring(1));
-            const exists = activismTypeData["data"].some((d) => d["Type"] === hashType);
-            if (exists) {
-                setActiveType(hashType);
-            }
-        }
-    };
 
     // On mount, check hash
-    useEffect(() => {
-        setTypeFromHash();
+    useEffectOnce(() => {
+        const hash = decodeURIComponent(window.location.hash.slice(1));
+        const index = activismTypeData.data.findIndex(
+            (group) => group.Type.replace(/\s+/g, "-") === hash
+        );
 
-        // Listen for hash changes (back/forward/manual edit)
-        window.addEventListener("hashchange", setTypeFromHash);
-
-        return () => {
-            window.removeEventListener("hashchange", setTypeFromHash);
-        };
-    }, [activismTypeData]);
-
-    // Update hash when activeType changes
-    useEffect(() => {
-        if (activeType) {
-            window.history.replaceState(null, "", `#${encodeURIComponent(activeType)}`);
-        }
-    }, [activeType]);
+        if (index !== -1) {
+            setTimeout(() => {
+                setActiveType(activismTypeData["data"][index]["Type"]);
+            }, 200);
+        }}
+    );
 
     const renderTypeSelectors = () => {
         return (

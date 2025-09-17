@@ -39,12 +39,12 @@ const CityMarkers = ({mapData, activeDataset, onMarkerClick, onDrawerClose}) => 
             if (activeDataset === 'world1930') {
                 filteredItems = item['Networks'].filter(item => {
                     const year = parseInt(item['StartDate'].split("-")[0], 10);
-                    return year < 1945;
+                    return year < 1938;
                 });
             } else {
                 filteredItems = item['Networks'].filter(item => {
                     const year = parseInt(item['StartDate'].split("-")[0], 10);
-                    return year >= 1945;
+                    return year >= 1938;
                 });
             }
 

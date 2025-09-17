@@ -89,7 +89,7 @@ const ImageHoverText = ({ text, imageUrl }) => {
                     onMouseEnter={() => setHovered(true)}
                     onMouseLeave={() => setHovered(false)}
                 >
-                    <Link href={`/activism/m/#${encodeURIComponent(`${parts[0].trim()} ${parts[1].trim()}`)}`}>
+                    <Link href={`/activism/#${getHashPart()}`}>
                         <div className={style.innerContainer} ref={wrapperRef}>
                             <motion.h3 className={style.textLeft}>
                                 {parts[0]} {parts[1]}

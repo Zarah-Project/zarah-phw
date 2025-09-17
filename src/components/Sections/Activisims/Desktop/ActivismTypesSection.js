@@ -10,13 +10,9 @@ const ActivismTypesSection = ({activismTypeData}) => {
     const sectionRefs = useRef([]);
 
     const sidebarRef = useRef(null);
-    const [hasLoadedFromHash, setHasLoadedFromHash] = useState(false);
-
-    const router = useRouter();
 
     useEffectOnce(() => {
         const hash = decodeURIComponent(window.location.hash.slice(1));
-        console.log(hash);
         const index = activismTypeData.data.findIndex(
             (group) => group.Type.replace(/\s+/g, "-") === hash
         );
@@ -26,7 +22,8 @@ const ActivismTypesSection = ({activismTypeData}) => {
                 scrollToSection(index);
                 setActiveSection(index);
             }, 200);
-        }});
+        }}
+    );
 
 
     // 🔹 Keyboard navigation

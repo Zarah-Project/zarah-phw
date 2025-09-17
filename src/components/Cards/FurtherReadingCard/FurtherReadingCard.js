@@ -6,6 +6,8 @@ import Spacer from "@/components/BaseElements/Spacer";
 import Button from "@/components/BaseElements/Button";
 import {motion} from "motion/react";
 import Link from "next/link";
+import Markdown from "react-markdown";
+import rehypeExternalLinks from "rehype-external-links";
 
 const FurtherReadingCard = ({reading}) => {
     const { id, title, text, url, image, buttonText } = reading;
@@ -15,7 +17,9 @@ const FurtherReadingCard = ({reading}) => {
             <div className={style.Datasheet}>
                 <h4>{title}</h4>
                 <Spacer size={'xl'} />
-                <p>{text}</p>
+                <Markdown rehypePlugins={[[rehypeExternalLinks, { target: "_blank" }]]}>
+                    {text}
+                </Markdown>
                 <Spacer size={'xl'} />
                 {url !== "" &&
                     <Link href={url} target={'_blank'} rel={'noopener noreferrer'}>

@@ -2,6 +2,7 @@
 
 .container {
   display: flex;
+  background-color: $darkBack;
   position: relative;
   height: 100%;
   max-height: calc(100vh - 80px);
@@ -9,20 +10,21 @@
 }
 
 .sidebar {
-  position: relative;
+  position: sticky;
+  top: 80px;
   width: 20%;
-  background-color: $darkBack;
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
   padding: 20px;
   box-sizing: border-box;
-  max-height: calc(100vh - 80px);
+  height: calc(100vh - 120px);
 
   .sidebarContent {
     position: sticky;
     top: 100px;
     width: 100%;
+    height: 100%;
     display: flex;
     flex-direction: column;
     justify-content: space-around;

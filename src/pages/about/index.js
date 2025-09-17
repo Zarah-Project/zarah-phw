@@ -60,9 +60,9 @@ export default function Index() {
                         <h3>Further Readings</h3>
                         <br/>
                         If you want to learn more about women’s labour activism in Eastern, Central, and
-                        Southeastern Europe and internationally, explore the [full list of academic
-                        publications](https://zarah-ceu.org/publications/) authored by the research team.
-                        Major highlights include:
+                        Southeastern Europe and internationally, explore
+                        the <Link href={"https://zarah-ceu.org/publications/"} target={'_blank'}>full list of academic
+                            publications</Link> authored by the research team.
                     </div>
                     <div className={style.Right}/>
                 </motion.div>

@@ -2,6 +2,8 @@ import React from "react";
 import LayoutDark from "@/components/Layout/LayoutDark";
 import {fetchActivismTypes} from "@/utils/api/fetchActivismTypes";
 import ActivismTypesSection from "@/components/Sections/Activisims/Desktop/ActivismTypesSection";
+import {Media} from "@/utils/media";
+import ActivismTypesSectionMobile from "@/components/Sections/Activisims/Mobile/ActivismTypesSectionMobile";
 
 
 export const getServerSideProps = (async (context) => {
@@ -16,7 +18,16 @@ export const getServerSideProps = (async (context) => {
 })
 
 export default function ActivismPage({activismTypeData}) {
-    return (<ActivismTypesSection activismTypeData={activismTypeData} />)
+    return (
+        <>
+            <Media greaterThanOrEqual={"md"}>
+                <ActivismTypesSection activismTypeData={activismTypeData} />
+            </Media>
+            <Media lessThan={"md"}>
+                <ActivismTypesSectionMobile activismTypeData={activismTypeData} />
+            </Media>
+        </>
+    )
 }
 
 ActivismPage.getLayout = function getLayout(page) {

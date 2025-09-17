@@ -8,7 +8,7 @@ const Footer = () => {
             <div className={style.Left}>
                 <h3>
                     Women’s Labour Activism<br/>
-                    in Central and Eastern Europe and beyond
+                    in Central and Eastern Europe<br/> and beyond
                 </h3>
                 <Spacer size={'xl'}/>
                 <p style={{opacity: 0.5}}>
