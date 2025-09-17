@@ -15,7 +15,7 @@ const EventCard = ({ event, city, truncate = true, index = 0, isSearch = false }
         const sd = startDate ? formatEventDate(startDate) : "";
         const ed = endDate ? formatEventDate(endDate) : "";
 
-        return ed !== "" ? `${sd} - ${ed}` : ed
+        return ed !== "" ? `${sd} - ${ed}` : sd
     }
 
     const getFirstParagraph = () => {

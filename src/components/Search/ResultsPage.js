@@ -46,7 +46,7 @@ const ResultsPage = ({ hits, types, total }) => {
 			return <EventCard
 				event={record}
 				city={record['NetworkCity'] ? record['NetworkCity']['City'] : 'Unknown'}
-				truncate={true}
+				truncate={false}
 				index={idx}
 				isSearch={true}
 			/>
