@@ -5,7 +5,7 @@ import ContentImage from "@/components/PageTemplates/parts/ContentImage";
 
 const Content = ({ content }) => {
     return (
-        <div className={style.Blocks}>
+        content && <div className={style.Blocks}>
             <BlocksRenderer
                 content={content}
                 blocks = {{

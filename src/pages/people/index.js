@@ -40,45 +40,8 @@ export default function PeoplePage({ personGroupData, peopleData }) {
             const scrollTo = elementTop - offset;
 
             window.scrollTo({ top: scrollTo, behavior: "smooth" });
-
-            // Sync to URL hash
-            const group = groupNames[index];
-            const slug = encodeURIComponent(group.toLowerCase().replaceAll(' ', '-'));
-            router.replace(`#${slug}`, undefined, { shallow: true });
         }
     };
-
-    // 🔁 Handle scroll tracking and set active group
-    useEffect(() => {
-        const offset = 150;
-
-        const onScroll = () => {
-            const scrollPos = window.scrollY + offset + 1;
-            for (let i = sectionRefs.current.length - 1; i >= 0; i--) {
-                const ref = sectionRefs.current[i];
-                if (ref) {
-                    const top = ref.offsetTop;
-                    if (scrollPos >= top) {
-                        const group = groupNames[i];
-                        setActiveGroup((prev) => {
-                            if (prev !== group) {
-                                const currentHash = decodeURIComponent(window.location.hash.substring(1));
-                                const newHash = group.toLowerCase().replaceAll(' ', '-')
-                                if (currentHash !== newHash) {
-                                    router.replace(`#${encodeURIComponent(newHash)}`, undefined, { shallow: true });
-                                }
-                            }
-                            return group;
-                        });
-                        break;
-                    }
-                }
-            }
-        };
-
-        window.addEventListener("scroll", onScroll, { passive: true });
-        return () => window.removeEventListener("scroll", onScroll);
-    }, []);
 
     // ⬇️ On page load, scroll to section from hash
     useEffect(() => {
@@ -87,6 +50,7 @@ export default function PeoplePage({ personGroupData, peopleData }) {
         if (index !== -1) {
             setTimeout(() => scrollToGroup(index), 300); // slight delay for layout to settle
         }
+        setActiveGroup(groupNames[index] || groupNames[0]);
     }, []);
 
     const generatePeople = (group) => {
@@ -103,7 +67,9 @@ export default function PeoplePage({ personGroupData, peopleData }) {
                 <meta name="viewport" content="width=device-width, initial-scale=1"/>
                 <link rel="icon" href="/favicon.ico"/>
             </Head>
+
             <div className={styles.Section}>
+                <Spacer size={'xl'} />
                 <header className={styles.Header}>
                     {personGroupData['data'].map((group, index) => (
                         <p
@@ -111,7 +77,10 @@ export default function PeoplePage({ personGroupData, peopleData }) {
                             className={`${styles.GroupButton} ${
                                 activeGroup === group['Group'] ? styles.Active : ""
                             }`}
-                            onClick={() => scrollToGroup(index)}
+                            onClick={() => {
+                                scrollToGroup(index)
+                                setActiveGroup(group['Group'])
+                            }}
                         >
                             {group['Group']} ({group['People'].length})
                         </p>

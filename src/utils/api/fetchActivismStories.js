@@ -8,6 +8,7 @@ export const fetchActivismStory = (id) => {
         'fields[2]': 'Slug',
         'fields[3]': 'Content',
         'fields[4]': 'Tags',
+        'populate[ActivismType][fields][0]': 'Type',
         'populate[Image][fields][0]': 'formats',
         'populate[Essays][fields][0]': 'Title',
         'populate[Essays][fields][1]': 'Slug',

@@ -51,7 +51,7 @@ const PageTemplate = ({data, titleField = 'Title', module}) => {
     return (
         <div className={style.PageWrapper}>
             <div className={style.RelatedContent}>
-                <BackButton module={module}/>
+                <BackButton module={module} data={data}/>
                 <RelatedActivismStories data={stories}/>
                 <RelatedPeople data={people}/>
                 <RelatedNetworks data={networks} />

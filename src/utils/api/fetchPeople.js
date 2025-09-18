@@ -39,6 +39,7 @@ export const fetchPersonDetail = (id) => {
         'fields[2]': 'Content',
         'fields[3]': 'Tags',
         'populate[Image][fields][0]': 'formats',
+        'populate[PersonGroup][fields][0]': 'Group',
         'populate[ActivismStories][fields][0]': 'Title',
         'populate[ActivismStories][fields][1]': 'Slug',
         'populate[ActivismStories][populate][ActivismType][fields][0]': 'Type',

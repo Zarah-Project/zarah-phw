@@ -2,7 +2,7 @@ import IconLeftArrow from "@/components/Icons/IconLeftArrow";
 import Link from "next/link";
 import style from "./BackButton.module.scss"
 
-const BackButton = ({ module }) => {
+const BackButton = ({ module, data }) => {
     const getBackText = () => {
         switch (module) {
             case "activism-story":
@@ -23,9 +23,17 @@ const BackButton = ({ module }) => {
     const getLink = () => {
         switch (module) {
             case "activism-story":
-                return "/activism"
+                if (Object.keys(data).includes('ActivismType') && data['ActivismType'] !== null) {
+                    return `/activism#${data['ActivismType']['Type'].replace(/\s+/g, "-")}`
+                } else {
+                    return `/activism#`
+                }
             case "people":
-                return "/people"
+                if (Object.keys(data).includes('PersonGroup') && data['PersonGroup'] !== null) {
+                    return `/people#${data['PersonGroup']['Group'].replace(/\s+/g, "-").toLowerCase()}`
+                } else {
+                    return `/people#`
+                }
             case "networks":
                 return "/networks"
             case "sources":
