@@ -7,6 +7,10 @@ h1 {
   line-height: 120%;
   letter-spacing: 0;
 
+  i {
+    font-family: var(--font-editorialNewItalic), serif;
+  }
+
   @media (max-width: $small) {
     line-height: 100%;
   }
@@ -18,6 +22,10 @@ h2 {
   font-size: 56px;
   line-height: 120%;
   letter-spacing: 0;
+
+  i {
+    font-family: var(--font-editorialNewItalic), serif;
+  }
 
   @media (max-width: $small) {
     font-size: 48px;
@@ -31,6 +39,10 @@ h3 {
   line-height: 120%;
   letter-spacing: 0;
 
+  i {
+    font-family: var(--font-editorialNewItalic), serif;
+  }
+
   @media (max-width: $small) {
     font-size: 32px;
   }
@@ -43,6 +55,10 @@ h4 {
   line-height: 120%;
   letter-spacing: 0;
 
+  i {
+    font-family: var(--font-editorialNewItalic), serif;
+  }
+
   @media (max-width: $small) {
     font-size: 24px;
   }
@@ -54,6 +70,10 @@ h5 {
   font-size: 20px;
   line-height: 120%;
   letter-spacing: 0;
+
+  i {
+    font-family: var(--font-editorialNewItalic), serif;
+  }
 }
 
 .nav-link {
@@ -68,6 +88,10 @@ p {
   font-weight: 400;
   font-size: 16px;
   line-height: 150%;
+
+  em {
+    font-family: var(--font-neueMontrealItalic), serif;
+  }
 }
 
 a {

@@ -1,0 +1,72 @@
+@use "@/styles/colours" as *;
+
+.Section {
+  min-height: 800px;
+  background-color: $darkBack;
+  padding: 0 48px;
+  color: $fontOnDark;
+
+  @media (max-width: 800px) {
+    padding: 0 16px;
+
+    h1 {
+      font-size: 48px;
+    }
+  }
+
+  .Contributors {
+    display: flex;
+    justify-content: center;
+    font-family: var(--font-neueMontreal), serif;
+    font-weight: 400;
+    font-size: 24px;
+    line-height: 120%;
+
+    @media (max-width: 800px) {
+        flex-direction: column;
+        gap: 48px;
+    }
+
+    .Left {
+      position: sticky;
+      align-self: flex-start;
+      top: 80px;
+      flex: 1;
+
+      @media (max-width: 800px) {
+        position: relative;
+        top: unset;
+      }
+    }
+
+    .Right {
+      flex: 2;
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 40px;
+
+      @media (max-width: 800px) {
+        flex: 1;
+        grid-template-columns: 1fr;
+        gap: 24px;
+      }
+    }
+
+    .RightDev {
+      flex: 2;
+
+      @media (max-width: 800px) {
+        flex: 1;
+      }
+    }
+
+    a {
+        font-family: inherit;
+        font-size: inherit;
+        text-decoration: none;
+        color: inherit;
+        font-weight: 600;
+        border-bottom: 1px dashed $fontOnDark;
+    }
+  }
+}

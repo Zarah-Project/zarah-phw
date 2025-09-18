@@ -9,6 +9,8 @@ import {MediaContextProvider, mediaStyles} from "@/utils/media";
 
 const editorialNew = localFont({src: '../../public/fonts/PPEditorialNew-Regular.woff2', variable: "--font-editorialNew"})
 const neueMontreal = localFont({src: '../../public/fonts/PPNeueMontreal-Regular.woff2', variable: "--font-neueMontreal"})
+const editorialNewItalic = localFont({src: '../../public/fonts/PPEditorialNew-Italic.woff2', variable: "--font-editorialNewItalic"})
+const neueMontrealItalic = localFont({src: '../../public/fonts/PPNeueMontreal-Italic.woff2', variable: "--font-neueMontrealItalic"})
 
 
 export default function App({ Component, pageProps }) {
@@ -25,7 +27,7 @@ export default function App({ Component, pageProps }) {
           </Head>
           <MediaContextProvider disableDynamicMediaQueries>
               <main
-                  className={`${editorialNew.variable} ${neueMontreal.variable}`}
+                  className={`${editorialNew.variable} ${neueMontreal.variable} ${editorialNewItalic.variable} ${neueMontrealItalic.variable}`}
                   style={{height: '100%'}}
               >
                   <GrainOverlayV1 grainOpacity={0.04}/>

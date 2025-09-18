@@ -42,14 +42,31 @@ const ResultsPage = ({ hits, types, total }) => {
 
 
 		if (record['type'] === 'Network') {
-			console.log(record)
-			return <EventCard
-				event={record}
-				city={record['NetworkCity'] ? record['NetworkCity']['City'] : 'Unknown'}
-				truncate={false}
-				index={idx}
-				isSearch={true}
-			/>
+			return (
+				<>
+					<motion.div
+						key={record.id}
+						className={styles.Wrapper}
+						initial={{opacity: 0, y: 30}}
+						whileInView={{opacity: 1, y: 0}}
+						viewport={{once: true, amount: 0.2}}
+						transition={{
+							duration: 0.4,
+							ease: "easeOut",
+							delay: idx < 2 ? idx * 0.15 : 0, // 👈 per-item delay
+						}}
+					>
+						<EventCard
+							event={record}
+							city={record['NetworkCity'] ? record['NetworkCity']['City'] : 'Unknown'}
+							truncate={false}
+							index={idx}
+							isSearch={true}
+						/>
+					</motion.div>
+					<Spacer size={'xl'}/>
+				</>
+		)
 		} else {
 
 			return (

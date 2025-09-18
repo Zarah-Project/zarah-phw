@@ -3,7 +3,7 @@ const readings = [
             id: 1,
             title: "Collaborative Monograph",
             text: "*Women’s Labour Activism in Eastern Europe and Beyond: A New Transnational History*, " +
-                  "co-authored by the research team and is available in Open Access.",
+                  "co-authored by the research team, is available in Open Access.",
             url: "https://uclpress.co.uk/book/womens-labour-activism-in-eastern-europe-and-beyond/",
             buttonText: "Read",
             image: 'about-CollaborativeMonograph.jpg'

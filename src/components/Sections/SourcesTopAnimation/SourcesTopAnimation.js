@@ -4,14 +4,18 @@ import style from "./SourcesTopAnimation.module.scss";
 import {easeIn, easeInOut, easeOut} from "motion";
 
 const images=[
-    { src: '/images/content/sources08.jpeg', bottom: '10%', left: '130%', height: '250px', speed: 0.9 },
-    { src: '/images/content/sources05.jpeg', top: '0', left: '130%', height: '300px', speed: 0.75 },
-    { src: '/images/content/sources06.jpeg', top: '35%', left: '110%', height: '300px', speed: 0.7 },
-    { src: '/images/content/sources07.jpeg', bottom: '10%', left: '90%', height: '200px', speed: 0.8 },
-    { src: '/images/content/sources04.jpeg', top: '10%', left: '80%', height: '300px', speed: 0.7 },
-    { src: '/images/content/sources02.jpeg', top: '30%', left: '50%', height: '300px', speed: 0.3 },
-    { src: '/images/content/sources03.jpeg', top: '50%', left: '35%', height: '300px', speed: 0.8 },
-    { src: '/images/content/sources01.jpeg', top: '0', left: '0', height: '350px', speed: 0.2 },
+    { src: '/images/content/sources04.jpg', bottom: '30%', left: '70%', height: '250px', speed: 0.6 },
+    { src: '/images/content/sources09.jpg', bottom: '20%', left: '160%', height: '250px', speed: 1.2 },
+    { src: '/images/content/sources08.jpg', top: '10%', left: '80%', height: '300px', speed: 1.1 },
+    { src: '/images/content/sources03.jpg', top: '0', left: '130%', height: '300px', speed: 0.75 },
+    { src: '/images/content/sources05.jpg', bottom: '45%', left: '40%', height: '300px', speed: 0.5 },
+    { src: '/images/content/sources01.jpg', bottom: '10%', left: '90%', height: '200px', speed: 0.8 },
+    { src: '/images/content/sources02.jpg', top: '0%', left: '80%', height: '300px', speed: 0.7 },
+    { src: '/images/content/sources06.jpg', top: '50%', left: '35%', height: '300px', speed: 0.8 },
+    { src: '/images/content/sources12.jpg', top: '0%', left: '0', height: '350px', speed: 0.3 },
+    { src: '/images/content/sources07.jpg', top: '0%', left: '120%', height: '200px', speed: 0.9 },
+    { src: '/images/content/sources10.jpg', bottom: '10%', left: '180%', height: '300px', speed: 1 },
+    { src: '/images/content/sources11.jpg', bottom: '20%', left: '10%', height: '200px', speed: 0.7 },
 ]
 
 export default function SourcesTopAnimation() {

@@ -18,27 +18,27 @@ const Footer = () => {
             <div className={style.Right}>
                 <div className={style.Menu}>
                     <div>
-                        <Link href={'#'}>Activisms</Link>
+                        <Link href={'/activism'}>Activisms</Link>
                     </div>
                     <div>
-                        <Link href={'#'}>People</Link>
+                        <Link href={'/people'}>People</Link>
                     </div>
                     <div>
-                        <Link href={'#'}>Networks</Link>
+                        <Link href={'/networks'}>Networks</Link>
                     </div>
                     <div>
-                        <Link href={'#'}>Sources</Link>
+                        <Link href={'/sources'}>Sources</Link>
                     </div>
                     <div>
-                        <Link href={'#'}>Essays</Link>
+                        <Link href={'/essays'}>Essays</Link>
                     </div>
                 </div>
                 <div className={style.Menu}>
                     <div>
-                        <Link href={'#'}>About the Project</Link>
+                        <Link href={'/about'}>About the Project</Link>
                     </div>
                     <div>
-                        <Link href={'#'}>Contributors</Link>
+                        <Link href={'/contributors'}>Contributors</Link>
                     </div>
                     <div>
                         <Link href={'#'}>Privacy Policy</Link>

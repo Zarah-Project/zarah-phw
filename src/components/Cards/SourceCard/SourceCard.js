@@ -39,7 +39,7 @@ const SourceCard = ({source}) => {
             initial={{ opacity: 0, y: 40 }}
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.4, delay: 0.1 }}
-            viewport={{ once: true }}
+            viewport={{ once: true, amount: 0.3 }}
             className={style.CardWrapper}
         >
             <TwoColumnCard

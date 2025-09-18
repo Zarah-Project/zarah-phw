@@ -25,7 +25,8 @@ const MenuMobile = ({theme}) => {
             'sources': 'Sources',
             'essays': 'Essays',
             'search': 'Search',
-            'about': 'About'
+            'about': 'About',
+            'contributors': 'Contributors'
         }
 
         if (router.pathname === "/") {
