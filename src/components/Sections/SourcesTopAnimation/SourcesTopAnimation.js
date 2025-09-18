@@ -3,21 +3,6 @@ import { motion, useScroll, useTransform } from 'motion/react';
 import style from "./SourcesTopAnimation.module.scss";
 import {easeIn, easeInOut, easeOut} from "motion";
 
-const images=[
-    { src: '/images/content/sources04.jpg', bottom: '30%', left: '70%', height: '250px', speed: 0.6 },
-    { src: '/images/content/sources09.jpg', bottom: '20%', left: '160%', height: '250px', speed: 1.2 },
-    { src: '/images/content/sources08.jpg', top: '10%', left: '80%', height: '300px', speed: 1.1 },
-    { src: '/images/content/sources03.jpg', top: '0', left: '130%', height: '300px', speed: 0.75 },
-    { src: '/images/content/sources05.jpg', bottom: '45%', left: '40%', height: '300px', speed: 0.5 },
-    { src: '/images/content/sources01.jpg', bottom: '10%', left: '90%', height: '200px', speed: 0.8 },
-    { src: '/images/content/sources02.jpg', top: '0%', left: '80%', height: '300px', speed: 0.7 },
-    { src: '/images/content/sources06.jpg', top: '50%', left: '35%', height: '300px', speed: 0.8 },
-    { src: '/images/content/sources12.jpg', top: '0%', left: '0', height: '350px', speed: 0.3 },
-    { src: '/images/content/sources07.jpg', top: '0%', left: '120%', height: '200px', speed: 0.9 },
-    { src: '/images/content/sources10.jpg', bottom: '10%', left: '180%', height: '300px', speed: 1 },
-    { src: '/images/content/sources11.jpg', bottom: '20%', left: '10%', height: '200px', speed: 0.7 },
-]
-
 export default function SourcesTopAnimation() {
     const containerRef = useRef(null);
     const textRef = useRef(null);
@@ -25,6 +10,22 @@ export default function SourcesTopAnimation() {
     // Total scroll distance is one full viewport height per word
     const [scrollHeight, setScrollHeight] = useState(200);
     const [distance, setDistance] = useState(0);
+    const [extraScreens, setExtraScreens] = useState(1);
+
+    const images=[
+        { src: '/images/content/sources04.jpg', bottom: '30%', left: `${extraScreens * 20}%`, height: '250px', speed: 0.6 },
+        { src: '/images/content/sources09.jpg', bottom: '20%', left: `${extraScreens * 140}%`, height: '250px', speed: 1.2 },
+        { src: '/images/content/sources08.jpg', top: '10%', left: `${extraScreens * 60}%`, height: '300px', speed: 1.1 },
+        { src: '/images/content/sources03.jpg', top: '0', left: `${extraScreens * 110}%`, height: '300px', speed: 0.75 },
+        { src: '/images/content/sources05.jpg', bottom: '45%', left: `${extraScreens * 40}%`, height: '300px', speed: 0.5 },
+        { src: '/images/content/sources01.jpg', bottom: '10%', left: `${extraScreens * 70}%`, height: '200px', speed: 0.8 },
+        { src: '/images/content/sources02.jpg', top: '0%', left: `${extraScreens * 60}%`, height: '300px', speed: 0.7 },
+        { src: '/images/content/sources06.jpg', top: '50%', left: `${extraScreens * 35}%`, height: '300px', speed: 0.8 },
+        { src: '/images/content/sources12.jpg', top: '0%', left: '0', height: '350px', speed: 0.3 },
+        { src: '/images/content/sources07.jpg', top: '0%', left: `${extraScreens * 100}%`, height: '200px', speed: 0.9 },
+        { src: '/images/content/sources10.jpg', bottom: '10%', left: `${extraScreens * 160}%`, height: '300px', speed: 1 },
+        { src: '/images/content/sources11.jpg', bottom: '20%', left: `${extraScreens * 10}%`, height: '200px', speed: 0.7 },
+    ]
 
     useLayoutEffect(() => {
         function updateSizes() {
@@ -37,6 +38,7 @@ export default function SourcesTopAnimation() {
 
                 // vertical scroll height = base 100vh + extra proportional to distance
                 const extraScreens = distanceToScroll / viewportWidth;
+                setExtraScreens(extraScreens);
                 setScrollHeight(100 + extraScreens * 100);
             }
         }
