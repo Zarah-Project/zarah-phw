@@ -13,18 +13,18 @@ export default function SourcesTopAnimation() {
     const [extraScreens, setExtraScreens] = useState(1);
 
     const images=[
-        { src: '/images/content/sources04.jpg', bottom: '30%', left: `${extraScreens * 20}%`, height: '250px', speed: 0.6 },
-        { src: '/images/content/sources09.jpg', bottom: '20%', left: `${extraScreens * 140}%`, height: '250px', speed: 1.2 },
+        { src: '/images/content/sources04.jpg', bottom: '30%', left: `${extraScreens * 20}%`, height: '250px', speed: 0.6, link: '/essays/migration' },
+        { src: '/images/content/sources09.jpg', bottom: '20%', left: `${extraScreens * 140}%`, height: '250px', speed: 1.2, link: '/people/zehra-kosova' },
         { src: '/images/content/sources08.jpg', top: '10%', left: `${extraScreens * 60}%`, height: '300px', speed: 1.1 },
-        { src: '/images/content/sources03.jpg', top: '0', left: `${extraScreens * 110}%`, height: '300px', speed: 0.75 },
-        { src: '/images/content/sources05.jpg', bottom: '45%', left: `${extraScreens * 40}%`, height: '300px', speed: 0.5 },
+        { src: '/images/content/sources03.jpg', top: '0', left: `${extraScreens * 110}%`, height: '300px', speed: 0.75, link: '/activism/story/gendered-critique' },
+        { src: '/images/content/sources05.jpg', bottom: '45%', left: `${extraScreens * 40}%`, height: '300px', speed: 0.5, link: '/people/magda-aranyossi' },
         { src: '/images/content/sources01.jpg', bottom: '10%', left: `${extraScreens * 70}%`, height: '200px', speed: 0.8 },
-        { src: '/images/content/sources02.jpg', top: '0%', left: `${extraScreens * 60}%`, height: '300px', speed: 0.7 },
+        { src: '/images/content/sources02.jpg', top: '0%', left: `${extraScreens * 60}%`, height: '300px', speed: 0.7, link: '/activism/story/domestic-workers' },
         { src: '/images/content/sources06.jpg', top: '50%', left: `${extraScreens * 35}%`, height: '300px', speed: 0.8 },
-        { src: '/images/content/sources12.jpg', top: '0%', left: '0', height: '350px', speed: 0.3 },
-        { src: '/images/content/sources07.jpg', top: '0%', left: `${extraScreens * 100}%`, height: '200px', speed: 0.9 },
-        { src: '/images/content/sources10.jpg', bottom: '10%', left: `${extraScreens * 160}%`, height: '300px', speed: 1 },
-        { src: '/images/content/sources11.jpg', bottom: '20%', left: `${extraScreens * 10}%`, height: '200px', speed: 0.7 },
+        { src: '/images/content/sources12.jpg', top: '0%', left: '0', height: '350px', speed: 0.3, link: '/activism/story/icwg' },
+        { src: '/images/content/sources07.jpg', top: '0%', left: `${extraScreens * 100}%`, height: '200px', speed: 0.9, link: '/essays/co-operatives' },
+        { src: '/images/content/sources10.jpg', bottom: '10%', left: `${extraScreens * 160}%`, height: '300px', speed: 1, link: '/people/halina-krahelska' },
+        { src: '/images/content/sources11.jpg', bottom: '20%', left: `${extraScreens * 10}%`, height: '200px', speed: 0.7, link: '/activism/story/berec-strike' },
     ]
 
     useLayoutEffect(() => {
@@ -100,30 +100,56 @@ export default function SourcesTopAnimation() {
                         [`${(1 - img.speed) * 10}px`, '0px']
                     );
 
-                    return (
-                        <motion.img
-                            key={idx}
-                            src={img.src}
-                            alt={`Parallax image ${idx}`}
-                            style={{
-                                position: 'absolute',
-                                top: img.top,
-                                left: img.left,
-                                bottom: img.bottom,
-                                right: img.right,
-                                width: img.width || 'auto',
-                                height: img.height || 'auto',
-                                x: imageX,
-                                zIndex: img.zIndex || 0,
-                                pointerEvents: 'none',
-                                filter: blurAmount,
-                                objectFit: 'cover',
-                            }}
-                            initial={{ opacity: 0, y: 0 }}
-                            animate={{ opacity: 1, y: 0 }}
-                            transition={{ duration: 0.6, delay: (images.length - idx) * 0.2 }}
-                        />
-                    );
+                    if (img.link) {
+                        return (
+                            <a href={img.link || null} key={idx} target={img.link ? '_blank' : null}>
+                                <motion.img
+                                    src={img.src}
+                                    alt={`Parallax image ${idx}`}
+                                    style={{
+                                        position: 'absolute',
+                                        top: img.top,
+                                        left: img.left,
+                                        bottom: img.bottom,
+                                        right: img.right,
+                                        width: img.width || 'auto',
+                                        height: img.height || 'auto',
+                                        x: imageX,
+                                        cursor: 'pointer',
+                                        filter: blurAmount,
+                                        objectFit: 'cover',
+                                    }}
+                                    initial={{ opacity: 0, y: 0 }}
+                                    animate={{ opacity: 1, y: 0 }}
+                                    transition={{ duration: 0.6, delay: (images.length - idx) * 0.2 }}
+                                />
+                            </a>
+                        );
+                    } else {
+                        return (
+                            <motion.img
+                                src={img.src}
+                                alt={`Parallax image ${idx}`}
+                                style={{
+                                    position: 'absolute',
+                                    top: img.top,
+                                    left: img.left,
+                                    bottom: img.bottom,
+                                    right: img.right,
+                                    width: img.width || 'auto',
+                                    height: img.height || 'auto',
+                                    x: imageX,
+                                    cursor: 'default',
+                                    filter: blurAmount,
+                                    objectFit: 'cover',
+                                }}
+                                initial={{ opacity: 0, y: 0 }}
+                                animate={{ opacity: 1, y: 0 }}
+                                transition={{ duration: 0.6, delay: (images.length - idx) * 0.2 }}
+                            />
+                        );
+                    }
+
                 })}
 
                 {/* Scrolling text */}
