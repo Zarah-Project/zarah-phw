@@ -11,9 +11,12 @@ const AccordionItem = ({ title, content }) => {
         <div className={style.accordionItem}>
             <button className={style.Header} onClick={() => setIsOpen(!isOpen)}>
                 <h4>{title}</h4>
-                <div className={style.Icon}>
+                <motion.div
+                    animate={{ rotate: isOpen ? -180 : 0 }}
+                    transition={{ duration: 0.3, ease: 'easeInOut' }}
+                    className={style.Icon}>
                     <IconChevronDown theme={'light'}/>
-                </div>
+                </motion.div>
             </button>
             <AnimatePresence initial={false}>
                 {isOpen && (

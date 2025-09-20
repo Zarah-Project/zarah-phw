@@ -1,6 +1,6 @@
 import {fontOnDark, fontOnLight} from "@/utils/global";
 
-const IconCalendar = ({ theme = 'dark'}) => {
+const IconChevronDwon = ({ theme = 'dark'}) => {
     return (
         <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
             <g clipPath="url(#clip0_2898_12735)">
@@ -25,4 +25,4 @@ const IconCalendar = ({ theme = 'dark'}) => {
     )
 }
 
-export default IconCalendar;
+export default IconChevronDwon;

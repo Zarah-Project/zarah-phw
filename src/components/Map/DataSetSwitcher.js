@@ -23,12 +23,12 @@ function DatasetSwitcher({ activeDataset, switchDataset }) {
             <button
                 onClick={() => handleDatasetChange("world1930")}
                 className={`${style.SwitchButtonStyle} ${activeDataset === 'world1930' ? style.Active : ''}`}>
-                Pre 1938
+                Pre 1939
             </button>
             <button
                 onClick={() => handleDatasetChange("world1960")}
                 className={`${style.SwitchButtonStyle} ${activeDataset === 'world1960' ? style.Active : ''}`}>
-                Post 1938
+                Post 1945
             </button>
         </div>
     );
