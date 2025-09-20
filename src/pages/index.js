@@ -16,11 +16,19 @@ export const getServerSideProps = (async (context) => {
     fetchPeopleFrontPage()
   ]);
 
+  const getRandomTwo = (arr) => {
+    if (arr.length <= 2) return arr; // not enough items, just return them all
+    const shuffled = [...arr].sort(() => 0.5 - Math.random());
+    return shuffled.slice(0, 2);
+  }
+
+  const randomPeopleData = getRandomTwo(peopleData['data']);
+
   return {
     props: {
       essayData,
       activismTypeData,
-      peopleData
+      peopleData: randomPeopleData
     }
   }
 })
@@ -38,7 +46,7 @@ export default function Home({essayData, activismTypeData, peopleData}) {
         <HorizontalScrollSection text={'Activism'} />
         <ActivismTypeSelector data={activismTypeData['data']} />
         <HorizontalScrollSection text={'People'} />
-        <PeopleSection data={peopleData['data']} />
+        <PeopleSection data={peopleData} />
         <EssaySection data={essayData['data']} />
     </>
   )
