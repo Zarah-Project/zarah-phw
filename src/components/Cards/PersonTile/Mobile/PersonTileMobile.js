@@ -15,7 +15,7 @@ const PersonTileMobile = ({ person }) => {
                     <div className={style.PhotoWrapper}>
                         {image['url'] ?
                             <Photo image={image} minHeight={50} isExample={false} /> :
-                            <PersonImagePlaceholder />
+                            <PersonImagePlaceholder name={Name} />
                         }
                     </div>
                     <motion.div className={style.Overlay}>

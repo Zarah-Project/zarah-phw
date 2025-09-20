@@ -28,7 +28,7 @@ const PersonTile = ({ person }) => {
                     >
                         {image['url'] ?
                             <Photo image={image} minHeight={50} isExample={false} /> :
-                            <PersonImagePlaceholder />
+                            <PersonImagePlaceholder name={Name} namePosition={'topLeft'} />
                         }
                     </motion.div>
 
