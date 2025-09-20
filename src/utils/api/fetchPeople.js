@@ -6,11 +6,11 @@ export const fetchPeopleFrontPage = () => {
         'sort[0]': 'createdAt:desc',
         'populate[0]': 'Image',
         'pagination[start]': 0,
-        'pagination[limit]': 2,
+        'pagination[limit]': 30,
         'fields[0]': 'Name',
         'fields[1]': 'CardText',
         'fields[2]': 'Slug',
-        'filters[Image][$null]': false
+        'filters[Image][width][$gte]': 800
     }
 
     return fetcher('people', params)
