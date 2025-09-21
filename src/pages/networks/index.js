@@ -37,12 +37,14 @@ export default function NetworksPage({networksData}) {
                     </div>
                     <div className={style.Right}>
                         <p>
-                        Throughout history, women not only faced barriers to certain professions and types of jobs,
-                        but also were excluded from positions within the state apparatus. When governments started
-                        to include women in the ranks of state administration, some of these officials used their
-                        position to improve the lot of women in the world of labour. Often engaged in research,
-                        policy-making, these women aimed to shed light on the condition of women workers and advance
-                        social change. This cluster showcases their work throughout the twentieth century.
+                            Women labour activists from Central, Eastern, and Southeastern Europe built lasting cross-
+                            border ties starting in the nineteenth century. The connections and international gatherings
+                            spotlighted here reflect their participation in organizations whose activities centered on work
+                            and labour. Women contributed to international trade union federations alongside men, they
+                            founded multi-country women's labour associations and committees, and they participated in
+                            international labour organizations. Moving between mixed-gender and women-focused
+                            spaces, these activists connected struggles for workers’ rights with demands for gender
+                            equity.
                         </p>
                     </div>
                 </div>

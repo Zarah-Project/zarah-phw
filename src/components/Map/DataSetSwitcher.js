@@ -1,7 +1,4 @@
-import world1930 from '../../../public/maps/world_1930_simplified.json';
-import world1960 from '../../../public/maps/world_1960_simplified.json';
 import style from "./DataSetSwitcher.module.scss"
-import {useState} from "react";
 import {useMap} from "react-leaflet";
 
 function DatasetSwitcher({ activeDataset, switchDataset }) {
@@ -23,12 +20,12 @@ function DatasetSwitcher({ activeDataset, switchDataset }) {
             <button
                 onClick={() => handleDatasetChange("world1930")}
                 className={`${style.SwitchButtonStyle} ${activeDataset === 'world1930' ? style.Active : ''}`}>
-                Pre 1939
+                pre-World War II
             </button>
             <button
                 onClick={() => handleDatasetChange("world1960")}
                 className={`${style.SwitchButtonStyle} ${activeDataset === 'world1960' ? style.Active : ''}`}>
-                Post 1945
+                post-World War II
             </button>
         </div>
     );
