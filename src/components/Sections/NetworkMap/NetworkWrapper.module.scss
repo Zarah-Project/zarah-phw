@@ -46,14 +46,14 @@
 
 .Slider {
   display: flex;
-  width: 200vw;
+  width: 200%;
   height: 100%;
   overflow-x: hidden;
 
   .Column {
     position: relative;
-    width: 100vw;
-    height: calc(100vh - 160px);
+    width: 50%;   // half of the slider since you have two columns
+    height: calc(100dvh - 160px);
 
     display: flex;
     flex-direction: column;

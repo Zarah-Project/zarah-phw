@@ -36,7 +36,7 @@ export default function SourcesTopAnimation() {
                 const distanceToScroll = containerWidth - viewportWidth / 2;
                 setDistance(distanceToScroll);
 
-                // vertical scroll height = base 100vh + extra proportional to distance
+                // vertical scroll height = base 100dvh + extra proportional to distance
                 const extraScreens = distanceToScroll / viewportWidth;
                 setExtraScreens(extraScreens);
                 setScrollHeight(100 + extraScreens * 100);
@@ -59,7 +59,7 @@ export default function SourcesTopAnimation() {
         <div
             ref={containerRef}
             style={{
-                height: `calc(100vh + ${scrollHeight}vh)`,
+                height: `calc(100dvh + ${scrollHeight}vh)`,
                 position: 'relative',
             }}
         >
@@ -68,7 +68,7 @@ export default function SourcesTopAnimation() {
                 style={{
                     position: 'sticky',
                     top: '80px',
-                    height: '100vh',
+                    height: '100dvh',
                     overflow: 'visible',
                 }}
             >

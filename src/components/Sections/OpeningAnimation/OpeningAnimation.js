@@ -17,18 +17,10 @@ const MarqueeItem = (props) => {
         if (!itemRef.current || !rectRef.current) {
             return;
         }
-
-        const xPercentage = (x.current / rectRef.current.width) * 100;
-
-        if (xPercentage < -100) {
+        if (x.current < -rectRef.current.width) {
             x.current = 0;
         }
-
-        if (xPercentage > 0) {
-            x.current = -rectRef.current.width;
-        }
-
-        itemRef.current.style.transform = `translate3d(${xPercentage}%, 0, 0)`;
+        itemRef.current.style.transform = `translate3d(${x.current}px, 0, 0)`;
     };
 
     useEffect(() => {
@@ -135,12 +127,12 @@ const OpeningAnimation = (props) => {
                     style={{ skewX }}
                 >
                     <MarqueeItem speed={speedSpring}>
-                        <div draggable={false}>
+                        <div style={{paddingRight: '200px'}}>
                             Women’s Labour Activism
                         </div>
                     </MarqueeItem>
                     <MarqueeItem speed={speedSpring}>
-                        <div draggable={false}>
+                        <div style={{paddingRight: '200px'}}>
                             Women’s Labour Activism
                         </div>
                     </MarqueeItem>

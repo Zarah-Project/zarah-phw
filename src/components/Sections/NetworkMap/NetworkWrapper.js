@@ -50,7 +50,7 @@ const NetworkWrapper = ({data}) => {
             <motion.div
                 className={style.Slider}
                 animate={{
-                    x: showList ? "-100vw" : "0vw",
+                    x: showList ? "-50%" : "0%",
                 }}
                 transition={{type: "tween", duration: 0.3}}
             >

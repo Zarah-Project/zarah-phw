@@ -42,7 +42,7 @@ export default function Home({essayData, activismTypeData, peopleData}) {
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
-        <OpeningAnimation/>
+        <OpeningAnimation />
         <HorizontalScrollSection text={'Activism'} />
         <ActivismTypeSelector data={activismTypeData['data']} />
         <HorizontalScrollSection text={'People'} />

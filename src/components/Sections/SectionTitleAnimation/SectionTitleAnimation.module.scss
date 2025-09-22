@@ -1,5 +1,9 @@
 @use "@/styles/colours" as *;
 
+.Wrapper {
+  background-color: $darkBack;
+}
+
 .Section {
   background-color: $darkBack;
 

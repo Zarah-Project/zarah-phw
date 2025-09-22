@@ -100,7 +100,7 @@ const SVGMap = ({mapData, onMarkerClick, onDrawerClose}) => {
             minZoom={3}
             scrollWheelZoom={true}
             zoomControl={false}
-            style={{height: isMobile ? "70vh" : "calc(100vh - 160px)", width: "100%", zIndex: 1, background: "transparent"}}
+            style={{height: isMobile ? "70vh" : "calc(100dvh - 160px)", width: "100%", zIndex: 1, background: "transparent"}}
             attributionControl={false}
         >
             <GeoJSON

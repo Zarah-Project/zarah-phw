@@ -1,7 +1,7 @@
 @use "@/styles/colours" as *;
 
 .Section {
-  height: calc(100vh - 80px);
+  height: calc(100dvh - 80px);
   background-color: $darkBack;
   // overflow: hidden;
 
@@ -9,26 +9,26 @@
     position: absolute;
     top: 50%;
     left: 0;
+    width: 100vw;      // force viewport width
+    overflow: hidden;  // clip anything that overflows
   }
 
   .Marquee {
     display: flex;
-    align-items: center;
-    cursor: -webkit-grab;
-    height: 100%;
+    width: max-content; // 👈 just fits the children
+    white-space: nowrap;
+    will-change: transform;
     // z-index: 1;
 
     .MarqueeItem {
+      flex-shrink: 0;
+      white-space: nowrap;
       font-family: var(--font-editorialNew), serif;
       font-weight: 400;
       font-size: 200px;
-      line-height: 100%;
-      white-space: nowrap;
-      -webkit-user-select: none;
-      user-select: none;
+      line-height: 1;
       color: $fontOnDark;
-      padding-right: 400px;
-      /* will-change: transform; */
+      user-select: none;
 
       &.Front {
         z-index: 20;
