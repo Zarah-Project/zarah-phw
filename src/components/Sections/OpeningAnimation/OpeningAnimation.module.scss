@@ -7,7 +7,7 @@
 
   .scrollingText {
     position: absolute;
-    top: 50%;
+    top: 45%;
     left: 0;
     width: 100vw;      // force viewport width
     overflow: hidden;  // clip anything that overflows
@@ -42,10 +42,9 @@
 
   .imageContainer {
     position: absolute;
-    height: 100%;
-    width: 100%;
-    top: calc(50% - 210px);
-    left: calc(50% - 250px);
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%); /* centers perfectly */
     z-index: 10;
 
     .imageWrapper {

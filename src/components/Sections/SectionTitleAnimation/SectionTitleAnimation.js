@@ -20,7 +20,7 @@ export default function HorizontalScrollSection({text}) {
         <div
             ref={containerRef}
             style={{
-                height: `calc(100dvh + ${scrollHeight}vh)`,
+                height: `calc(50dvh + ${scrollHeight}dvh)`,
                 position: 'relative',
             }}
             className={style.Wrapper}
@@ -29,7 +29,7 @@ export default function HorizontalScrollSection({text}) {
                 className={style.Section}
                 style={{
                     position: 'sticky',
-                    top: 0,
+                    top: 80,
                     height: '100dvh',     // use dvh for Android
                     width: '100vw',       // constrain width
                     overflow: 'hidden',   // clip horizontally

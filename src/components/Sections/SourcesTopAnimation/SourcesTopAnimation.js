@@ -59,7 +59,7 @@ export default function SourcesTopAnimation() {
         <div
             ref={containerRef}
             style={{
-                height: `calc(100dvh + ${scrollHeight}vh)`,
+                height: `calc(100dvh + ${scrollHeight}dvh)`,
                 position: 'relative',
             }}
         >
