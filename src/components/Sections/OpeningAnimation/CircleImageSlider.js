@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react';
+import {useMedia} from "react-use";
 
 const images = [
     'opening01.png',
@@ -15,6 +16,7 @@ const images = [
 
 const CircleImageSlider = () => {
     const [index, setIndex] = useState(0);
+    const isMobile = useMedia('(max-width: 500px)', true);
 
     useEffect(() => {
         const interval = setInterval(() => {
@@ -25,8 +27,8 @@ const CircleImageSlider = () => {
 
     return (
         <div style={{
-            width: 500,
-            height: 500,
+            width: isMobile ? 350 : 500,
+            height: isMobile ? 350 : 500,
             borderRadius: '50%',
             overflow: 'hidden',
         }}>

@@ -89,7 +89,7 @@ const OpeningAnimation = (props) => {
 
     // Detect if screen is mobile
     useEffect(() => {
-        setIsMobile(width <= 768); // treat <=768px as mobile
+        setIsMobile(width <= 500); // treat <=768px as mobile
     }, [width]);
 
     // Alternate zIndex on desktop only
@@ -107,11 +107,6 @@ const OpeningAnimation = (props) => {
             {/* Centered Image */}
             <div
                 className={style.imageContainer}
-                style={
-                    isMobile
-                        ? { width: "300px", height: "300px" }
-                        : {}
-                }
             >
                 <CircleImageSlider />
             </div>
