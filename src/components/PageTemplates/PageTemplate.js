@@ -12,6 +12,7 @@ import formatEventDate from "@/utils/formatEventDate";
 import IconLocation from "@/components/Icons/IconLocation";
 import IconCalendar from "@/components/Icons/IconCalendar";
 import React from "react";
+import Head from "next/head";
 
 
 const PageTemplate = ({data, titleField = 'Title', module}) => {
@@ -49,23 +50,28 @@ const PageTemplate = ({data, titleField = 'Title', module}) => {
     }
 
     return (
-        <div className={style.PageWrapper}>
-            <div className={style.RelatedContent}>
-                <BackButton module={module} data={data}/>
-                <RelatedActivismStories data={stories}/>
-                <RelatedPeople data={people}/>
-                <RelatedNetworks data={networks} />
-                <RelatedEssays data={essays}/>
-                <RelatedSources data={sources}/>
-                <RelatedTags data={tags}/>
+        <>
+            <Head>
+                <title>{title} - Women's Labour Activism</title>
+            </Head>
+            <div className={style.PageWrapper}>
+                <div className={style.RelatedContent}>
+                    <BackButton module={module} data={data}/>
+                    <RelatedActivismStories data={stories}/>
+                    <RelatedPeople data={people}/>
+                    <RelatedNetworks data={networks} />
+                    <RelatedEssays data={essays}/>
+                    <RelatedSources data={sources}/>
+                    <RelatedTags data={tags}/>
+                </div>
+                <div className={style.PageContent}>
+                    <h2>{title}</h2>
+                    <Spacer size={"xl"}/>
+                    {module === 'networks' && renderNetworksInfo()}
+                    <Content content={content} />
+                </div>
             </div>
-            <div className={style.PageContent}>
-                <h2>{title}</h2>
-                <Spacer size={"xl"}/>
-                {module === 'networks' && renderNetworksInfo()}
-                <Content content={content} />
-            </div>
-        </div>
+        </>
     )
 }
 

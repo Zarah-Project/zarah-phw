@@ -155,8 +155,6 @@ const ActivismTypesSection = ({activismTypeData}) => {
         sectionRefs.current[index]?.scrollIntoView({ behavior: "smooth", block: 'center' });
     };
 
-    const indicatorTop = `${(activeSection / activismTypeData['data'].length) * 100}%`;
-
     return (
         <div className={styles.container}>
 
@@ -173,10 +171,6 @@ const ActivismTypesSection = ({activismTypeData}) => {
                         </div>
                     ))}
                     <div className={styles.scrollLine}></div>
-                    <div
-                        className={styles.activeIndicator}
-                        style={{top: `calc(${indicatorTop} + ${activeSection > 0 ? (12 - activeSection) * 2 : 15}px)`}}
-                    ></div>
                 </div>
             </div>
 

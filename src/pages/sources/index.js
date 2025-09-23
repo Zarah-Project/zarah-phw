@@ -23,10 +23,8 @@ const SourcesPage = ({sourcesData}) => {
     return (
         <>
             <Head>
-                <title>Women's Labour Activism - Sources</title>
-                <meta name="description" content="Source materials of Women's Labour Activism." />
-                <meta name="viewport" content="width=device-width, initial-scale=1" />
-                <link rel="icon" href="/favicon.ico" />
+                <title>Sources - Women's Labour Activism</title>
+                <meta name="description" content="Source materials related to women's labour activism." />
             </Head>
             <div className={style.Section}>
                 <SourcesTopAnimation />

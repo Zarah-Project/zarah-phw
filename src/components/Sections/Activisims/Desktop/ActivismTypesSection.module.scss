@@ -54,14 +54,15 @@
     cursor: pointer;
     font-family: var(--font-neueMontreal), serif;
     font-size: 14px;
-    color: rgba($fontOnDark, 0.3);
+    color: $fontOnDark;
     transition: color 0.3s, font-weight 0.3s;
     display: flex;
     align-items: center;
 
 
     &.active {
-      color: $fontOnDark;
+      background-color: $fontOnDark;
+      color: $fontOnLight;
     }
   }
 }

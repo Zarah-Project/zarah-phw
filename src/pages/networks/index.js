@@ -24,10 +24,8 @@ export default function NetworksPage({networksData}) {
     return (
         <>
             <Head>
-                <title>Women's Labour Activism - Networks</title>
-                <meta name="description" content="Historical events and conferences of Women's Labour Activism." />
-                <meta name="viewport" content="width=device-width, initial-scale=1" />
-                <link rel="icon" href="/favicon.ico" />
+                <title>Networks - Women's Labour Activism</title>
+                <meta name="description" content="Historical events and conferences related to Women's Labour Activism." />
             </Head>
             <div className={style.Section}>
                 <Spacer size={'l'}/>

@@ -1,23 +1,42 @@
 import style from "./Footer.module.scss";
 import Link from "@/components/BaseElements/Link";
 import Spacer from "@/components/BaseElements/Spacer";
+import {useMedia} from "react-use";
+import Photo from "@/components/BaseElements/Photo";
 
 const Footer = () => {
+    const isMobile = useMedia('(max-width: 800px)', true);
+
+    let title;
+
+    if (isMobile) {
+        title = <h3>
+            Women’s Labour Activism in<br/>
+            Central and Eastern Europe and beyond
+        </h3>;
+    } else {
+        title = <h3>
+            Women’s Labour Activism<br/>
+            in Central and Eastern Europe and beyond
+        </h3>;
+    }
+
     return (
         <div className={style.Footer}>
             <div className={style.Left}>
-                <h3>
-                    Women’s Labour Activism<br/>
-                    in Central and Eastern Europe<br/> and beyond
-                </h3>
-                <Spacer size={'xl'}/>
+                {title}
+                <Spacer size={'m'}/>
+                <div style={isMobile ? {width: 100, justifySelf: 'center'} : {width: 100}}>
+                    <Photo image={'LOGO-ERC.png'} isExample={true} minHeight={100} imageFit={'contain'}/>
+                </div>
+                <Spacer size={'m'}/>
                 <p style={{opacity: 0.5}}>
-                    © 2024 Zarah. All rights reserved.
+                    Created by the ZARAH Team, Central European University, 2025.
                 </p>
             </div>
             <div className={style.Right}>
                 <div className={style.Menu}>
-                    <div>
+                <div>
                         <Link href={'/activism'}>Activisms</Link>
                     </div>
                     <div>
@@ -41,13 +60,10 @@ const Footer = () => {
                         <Link href={'/contributors'}>Contributors</Link>
                     </div>
                     <div>
-                        <Link href={'#'}>Privacy Policy</Link>
+                        <Link href={'/privacy-policy'}>Privacy Policy</Link>
                     </div>
                     <div>
-                        <Link href={'#'}>Terms and Conditions</Link>
-                    </div>
-                    <div>
-                        <Link href={'#'}>Cookie Consent</Link>
+                        <Link href={'/terms'}>Terms and Conditions</Link>
                     </div>
                 </div>
             </div>

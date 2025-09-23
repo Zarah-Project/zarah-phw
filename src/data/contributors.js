@@ -2,11 +2,11 @@ const contributors = [
         {
             id: 1,
             name: "Zhanna Popova",
-            text: "Zhanna Popova was a postdoctoral researcher in ZARAH. She is a labour historian interested " +
-                "in the history of Poland and Russia. Her book [Coerced Labour, Forced Displacement, and " +
-                "the Soviet Gulag, 1880s–1930s]( https://www.aup.nl/en/book/9789048560356/coerced-" +
-                "labour-forced-displacement-and-the-soviet-gulag-1880s-1930s) was published by Amsterdam " +
-                "University Press in 2024.",
+            text: "Zhanna Popova is the [\"corresponding author\"](mailto:contact@zhannapopova.info) of this website. She was a postdoctoral researcher " +
+                "in ZARAH. She is a labour historian interested in the history of Poland and Russia. Her book " +
+                "[Coerced Labour, Forced Displacement, and the Soviet Gulag, 1880s–1930s]" +
+                "(https://www.aup.nl/en/book/9789048560356/coerced-labour-forced-displacement-and-the-soviet-gulag-1880s-1930s) " +
+                "was published by Amsterdam University Press in 2024.",
             image: 'people_zhanna-popova.jpg'
         }, {
             id: 2,

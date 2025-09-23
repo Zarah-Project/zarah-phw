@@ -4,6 +4,7 @@ import {fetchActivismTypes} from "@/utils/api/fetchActivismTypes";
 import ActivismTypesSection from "@/components/Sections/Activisims/Desktop/ActivismTypesSection";
 import {Media} from "@/utils/media";
 import ActivismTypesSectionMobile from "@/components/Sections/Activisims/Mobile/ActivismTypesSectionMobile";
+import Head from "next/head";
 
 
 export const getServerSideProps = (async (context) => {
@@ -20,6 +21,9 @@ export const getServerSideProps = (async (context) => {
 export default function ActivismPage({activismTypeData}) {
     return (
         <>
+            <Head>
+                <title>Activism Stories - Women's Labour Activism</title>
+            </Head>
             <Media greaterThanOrEqual={"md"}>
                 <ActivismTypesSection activismTypeData={activismTypeData} />
             </Media>

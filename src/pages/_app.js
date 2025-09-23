@@ -6,6 +6,7 @@ import localFont from 'next/font/local'
 import Head from "next/head";
 import GrainOverlayV1 from "@/components/GrainOverlay/GrainOverlayV1";
 import {MediaContextProvider, mediaStyles} from "@/utils/media";
+import React from "react";
 
 const editorialNew = localFont({src: '../../public/fonts/PPEditorialNew-Regular.woff2', variable: "--font-editorialNew"})
 const neueMontreal = localFont({src: '../../public/fonts/PPNeueMontreal-Regular.woff2', variable: "--font-neueMontreal"})
@@ -23,6 +24,7 @@ export default function App({ Component, pageProps }) {
                   type="text/css"
                   dangerouslySetInnerHTML={{__html: mediaStyles}}
               />
+              <link rel="icon" href="/favicon.ico"/>
               <meta name="viewport" content="width=device-width, initial-scale=1"/>
           </Head>
           <MediaContextProvider disableDynamicMediaQueries>
