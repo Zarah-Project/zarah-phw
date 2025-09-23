@@ -28,6 +28,26 @@
     display: flex;
     flex-direction: column;
     justify-content: space-around;
+
+    .sidebarInner {
+      flex: 1;
+      position: relative; // containing block for highlight
+      display: flex;
+      flex-direction: column;
+      justify-content: space-around;
+
+      .highlight {
+        position: absolute;
+        left: 0;
+        right: 0;
+        top: 0;
+        height: 0;
+        background: $fontOnDark; // highlight bg color
+        // border-radius: 6px;
+        z-index: 0;
+        transition: top 0.3s ease, height 0.3s ease;
+      }
+    }
   }
 
   .scrollLine {
@@ -51,17 +71,16 @@
 
   .sidebarItem {
     padding: 1rem;
+    z-index: 1;
     cursor: pointer;
     font-family: var(--font-neueMontreal), serif;
     font-size: 14px;
     color: $fontOnDark;
-    transition: color 0.3s, font-weight 0.3s;
+    transition: color 0.3s ease;
     display: flex;
     align-items: center;
 
-
     &.active {
-      background-color: $fontOnDark;
       color: $fontOnLight;
     }
   }

@@ -2,7 +2,6 @@ import React, {useEffect, useRef, useState} from "react";
 import styles from "./ActivismTypesSection.module.scss";
 import ActivismSection from "@/components/Sections/Activisims/ActivismSection";
 import {useEffectOnce} from "react-use";
-import {useRouter} from "next/router";
 
 const ActivismTypesSection = ({activismTypeData}) => {
     const [activeSection, setActiveSection] = useState(0);
@@ -10,6 +9,18 @@ const ActivismTypesSection = ({activismTypeData}) => {
     const sectionRefs = useRef([]);
 
     const sidebarRef = useRef(null);
+    const itemRefs = useRef([]);
+    const highlightRef = useRef(null);
+
+    useEffect(() => {
+        const el = itemRefs.current[activeSection];
+        const highlight = highlightRef.current;
+        if (el && highlight) {
+            const { offsetTop, offsetHeight } = el;
+            highlight.style.top = `${offsetTop}px`;
+            highlight.style.height = `${offsetHeight}px`;
+        }
+    }, [activeSection]);
 
     useEffectOnce(() => {
         const hash = decodeURIComponent(window.location.hash.slice(1));
@@ -42,6 +53,7 @@ const ActivismTypesSection = ({activismTypeData}) => {
                 scrollable.scrollBy({ left: -scrollAmount, behavior: "smooth" });
             } else if (e.key === "ArrowDown") {
                 // go to next section smoothly
+                e.preventDefault();
                 setActiveSection((prev) => {
                     const next = Math.min(prev + 1, activismTypeData.data.length - 1);
                     if (next !== prev) scrollToSection(next); // already smooth
@@ -49,6 +61,7 @@ const ActivismTypesSection = ({activismTypeData}) => {
                 });
             } else if (e.key === "ArrowUp") {
                 // go to previous section smoothly
+                e.preventDefault();
                 setActiveSection((prev) => {
                     const prevIndex = Math.max(prev - 1, 0);
                     if (prevIndex !== prev) scrollToSection(prevIndex); // already smooth
@@ -62,10 +75,11 @@ const ActivismTypesSection = ({activismTypeData}) => {
     }, [activeSection, activismTypeData]);
 
 
+    // 🔹 IntersectionObserver (keep activeSection synced with viewport)
     useEffect(() => {
         const observer = new IntersectionObserver(
             (entries) => {
-                entries.forEach(entry => {
+                entries.forEach((entry) => {
                     if (entry.isIntersecting) {
                         const index = Number(entry.target.dataset.index);
                         setActiveSection(index);
@@ -75,31 +89,16 @@ const ActivismTypesSection = ({activismTypeData}) => {
             { threshold: 0.6 }
         );
 
-        sectionRefs.current.forEach(section => {
-            if (section) {
-                observer.observe(section);
-
-                // Attach wheel event listener with passive: false
-                section.addEventListener("wheel", (e) => {
-                    if (sectionRefs.current.indexOf(section) === activeSection) {
-                        handleWheel(e, sectionRefs.current.indexOf(section));
-                    }
-                }, { passive: false });
-            }
+        sectionRefs.current.forEach((section) => {
+            if (section) observer.observe(section);
         });
 
         return () => {
-            sectionRefs.current.forEach(section => {
-                if (section) {
-                    section.removeEventListener("wheel", (e) => {
-                        if (sectionRefs.current.indexOf(section) === activeSection) {
-                            handleWheel(e, sectionRefs.current.indexOf(section));
-                        }
-                    });
-                }
+            sectionRefs.current.forEach((section) => {
+                if (section) observer.unobserve(section);
             });
         };
-    }, [activeSection]);
+    }, []);
 
     const handleScroll = (e, sectionIndex) => {
         const container = e.currentTarget;
@@ -113,7 +112,7 @@ const ActivismTypesSection = ({activismTypeData}) => {
         }
     };
 
-    // Handle wheel event to scroll horizontally inside sections
+    // 🔹 Wheel logic (maps vertical → horizontal)
     const handleWheel = (e, sectionIndex) => {
         const container = sectionRefs.current[sectionIndex];
         if (!container) return;
@@ -124,12 +123,15 @@ const ActivismTypesSection = ({activismTypeData}) => {
         const deltaY = e.deltaY;
 
         const atStart = scrollable.scrollLeft <= 0;
-        const atEnd = scrollable.scrollLeft + scrollable.clientWidth >= scrollable.scrollWidth - 1;
+        const atEnd =
+            scrollable.scrollLeft + scrollable.clientWidth >=
+            scrollable.scrollWidth - 1;
 
         const isScrollingDown = deltaY > 0;
         const isScrollingUp = deltaY < 0;
 
         const scrollSpeed = 0.1;
+
         if (isScrollingDown && !atEnd) {
             e.preventDefault();
             scrollable.scrollLeft += deltaY * scrollSpeed;
@@ -146,10 +148,32 @@ const ActivismTypesSection = ({activismTypeData}) => {
 
         if (atStart && isScrollingUp) {
             scrollable.scrollLeft = 0;
-            sectionIndex !== 0 && setProgress(100)
+            sectionIndex !== 0 && setProgress(100);
             return;
         }
     };
+
+    // 🔹 Attach wheel listeners manually with passive: false
+    useEffect(() => {
+        const handler = (e) => {
+            const index = Number(e.currentTarget.dataset.index);
+            handleWheel(e, index);
+        };
+
+        sectionRefs.current.forEach((section) => {
+            if (section) {
+                section.addEventListener("wheel", handler, { passive: false });
+            }
+        });
+
+        return () => {
+            sectionRefs.current.forEach((section) => {
+                if (section) {
+                    section.removeEventListener("wheel", handler, { passive: false });
+                }
+            });
+        };
+    }, [handleWheel]);
 
     const scrollToSection = (index) => {
         sectionRefs.current[index]?.scrollIntoView({ behavior: "smooth", block: 'center' });
@@ -161,53 +185,53 @@ const ActivismTypesSection = ({activismTypeData}) => {
             {/* Sidebar */}
             <div className={styles.sidebar} ref={sidebarRef}>
                 <div className={styles.sidebarContent}>
-                    {activismTypeData['data'].map((group, index) => (
-                        <div
-                            key={index}
-                            className={`${styles.sidebarItem} ${index === activeSection ? styles.active : ""}`}
-                            onClick={() => scrollToSection(index)}
-                        >
-                            <div>{group['Type']}</div>
-                        </div>
-                    ))}
-                    <div className={styles.scrollLine}></div>
+                    <div className={styles.sidebarInner}>
+                        {/* highlight rectangle */}
+                        <div ref={highlightRef} className={styles.highlight}/>
+                        {activismTypeData['data'].map((group, index) => (
+                            <div
+                                key={index}
+                                ref={(el) => (itemRefs.current[index] = el)}
+                                className={`${styles.sidebarItem} ${index === activeSection ? styles.active : ""}`}
+                                onClick={() => scrollToSection(index)}
+                            >
+                                <div>{group['Type']}</div>
+                            </div>
+                        ))}
+                        <div className={styles.scrollLine}></div>
+                    </div>
                 </div>
             </div>
 
             {/* Content */}
             <div className={styles.content}>
-                {activismTypeData['data'].map((group, index) => (
-                    <div
-                        key={index}
-                        ref={(el) => (sectionRefs.current[index] = el)}
-                        data-index={index}
-                        className={styles.section}
-                        onWheel={(e) => {
-                            if (index === activeSection) {
-                                handleWheel(e, index);
-                            }
-                        }}
-                    >
-                        {/* Progress Bar */}
-                        {index === activeSection && (
-                            <div className={styles.progressContainer}>
-                                <div
-                                    className={styles.progressBar}
-                                    style={{width: `${progress}%`}}
-                                />
-                            </div>
-                        )}
+            {activismTypeData['data'].map((group, index) => (
+                <div
+                    key={index}
+                    ref={(el) => (sectionRefs.current[index] = el)}
+                    data-index={index}
+                    className={styles.section}
+                >
+                    {/* Progress Bar */}
+                    {index === activeSection && (
+                        <div className={styles.progressContainer}>
+                            <div
+                                className={styles.progressBar}
+                                style={{width: `${progress}%`}}
+                            />
+                        </div>
+                    )}
 
-                        <div
-                            className={styles.sectionContent}
-                            onScroll={(e) => handleScroll(e, index)}
-                        >
-                            <div className={styles.column}>
-                                <ActivismSection group={group} />
-                            </div>
+                    <div
+                        className={styles.sectionContent}
+                        onScroll={(e) => handleScroll(e, index)}
+                    >
+                        <div className={styles.column}>
+                            <ActivismSection group={group} />
                         </div>
                     </div>
-                ))}
+                </div>
+            ))}
             </div>
         </div>
     )
