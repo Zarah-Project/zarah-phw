@@ -29,7 +29,29 @@ export default function PeoplePage({ personGroupData, peopleData }) {
 
     const sectionRefs = useRef([]);
     const [activeGroup, setActiveGroup] = useState(groupNames[0]);
-    const router = useRouter();
+
+    const [isScrollingUp, setIsScrollingUp] = useState(true);
+    const lastScrollY = useRef(0);
+
+    // detect scroll direction (only mobile, max-width: 800px)
+    useEffect(() => {
+        const handleScroll = () => {
+            const currentScrollY = window.scrollY;
+            if (window.innerWidth <= 800) {
+                if (currentScrollY > lastScrollY.current && currentScrollY > 100) {
+                    // scrolling down
+                    setIsScrollingUp(false);
+                } else {
+                    // scrolling up
+                    setIsScrollingUp(true);
+                }
+            }
+            lastScrollY.current = currentScrollY;
+        };
+
+        window.addEventListener("scroll", handleScroll);
+        return () => window.removeEventListener("scroll", handleScroll);
+    }, []);
 
     // 🔁 Scroll to section on click with offset
     const scrollToGroup = (index) => {
@@ -68,7 +90,9 @@ export default function PeoplePage({ personGroupData, peopleData }) {
 
             <div className={styles.Section}>
                 <Spacer size={'xl'} />
-                <header className={styles.Header}>
+                <header className={`${styles.Header} ${
+                    isScrollingUp ? styles.Show : styles.Hide
+                }`}>
                     {personGroupData['data'].map((group, index) => (
                         <p
                             key={group}

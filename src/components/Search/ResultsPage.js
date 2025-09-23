@@ -109,10 +109,21 @@ const ResultsPage = ({ hits, types, total }) => {
 	const renderTypeSelectors = () => {
 		return (
 			<div className={styles.TypeSelectors}>
-				<span className={selectedType === 'All' ? styles.Active : ''} onClick={() => setSelectedType('All')}>All ({total})</span>
+				<span
+					className={selectedType === 'All' ? styles.Active : ''}
+					onClick={() => {
+						setSelectedType('All')
+						window.scrollTo({ top: 330, behavior: "smooth" });
+					}}>All ({total})</span>
 				{
 					Object.keys(types).map((key, idx) => {
-						return (<span className={selectedType === key ? styles.Active : ''} onClick={() => setSelectedType(key)}>{key} ({types[key]})</span>)
+						return (
+							<span
+								className={selectedType === key ? styles.Active : ''}
+								onClick={() => {
+									setSelectedType(key)
+									window.scrollTo({ top: 330, behavior: "smooth" });
+								}}>{key} ({types[key]})</span>)
 					})
 				}
 			</div>

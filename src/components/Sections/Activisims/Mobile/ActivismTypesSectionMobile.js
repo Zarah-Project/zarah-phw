@@ -1,5 +1,5 @@
 import styles from "./ActivismTypesSection.module.scss";
-import React, {useEffect, useState} from "react";
+import React, {useEffect, useRef, useState} from "react";
 import Head from "next/head";
 import ActivismSection from "@/components/Sections/Activisims/ActivismSection";
 import Spacer from "@/components/BaseElements/Spacer";
@@ -9,6 +9,28 @@ const ActivismTypesSectionMobile = ({activismTypeData}) => {
     const defaultType = activismTypeData["data"][0]["Type"];
     const [activeType, setActiveType] = useState(defaultType);
 
+    const [isScrollingUp, setIsScrollingUp] = useState(true);
+    const lastScrollY = useRef(0);
+
+    // detect scroll direction (only mobile, max-width: 800px)
+    useEffect(() => {
+        const handleScroll = () => {
+            const currentScrollY = window.scrollY;
+            if (window.innerWidth <= 800) {
+                if (currentScrollY > lastScrollY.current && currentScrollY > 100) {
+                    // scrolling down
+                    setIsScrollingUp(false);
+                } else {
+                    // scrolling up
+                    setIsScrollingUp(true);
+                }
+            }
+            lastScrollY.current = currentScrollY;
+        };
+
+        window.addEventListener("scroll", handleScroll);
+        return () => window.removeEventListener("scroll", handleScroll);
+    }, []);
 
     // On mount, check hash
     useEffectOnce(() => {
@@ -26,13 +48,18 @@ const ActivismTypesSectionMobile = ({activismTypeData}) => {
 
     const renderTypeSelectors = () => {
         return (
-            <div className={styles.TypeSelectors}>
+            <div className={`${styles.TypeSelectors} ${
+                isScrollingUp ? styles.Show : styles.Hide
+            }`}>
                 {
                     activismTypeData['data'].map((data, idx) => {
                         return (<span
                             key={idx}
                             className={activeType === data['Type'] ? styles.Active : ''}
-                            onClick={() => setActiveType(data['Type'])}>{data['Type']}</span>)
+                            onClick={() => {
+                                setActiveType(data['Type']);
+                                window.scrollTo({ top: 0, behavior: "smooth" });
+                            }}>{data['Type']}</span>)
                     })
                 }
             </div>

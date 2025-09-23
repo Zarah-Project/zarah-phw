@@ -21,6 +21,15 @@
     z-index: 10;
     flex-wrap: wrap;
     padding-bottom: 16px;
+    transition: transform 0.3s ease; // 👈 smooth slide
+
+    &.Hide {
+      transform: translateY(-100%);
+    }
+
+    &.Show {
+      transform: translateY(0);
+    }
 
     @media (max-width: 800px) {
       display: flex;
@@ -35,6 +44,7 @@
       padding-bottom: unset;
       border-top: 1px solid rgba($fontOnLight, 0.1);
       border-bottom: 1px solid rgba($fontOnLight, 0.1);
+
 
       &::-webkit-scrollbar {
         display: none;
