@@ -6,7 +6,7 @@ import React from "react";
 import FurtherReadingSection from "@/components/Sections/FurtherReadingSection/FurtherReadingSection";
 import { motion } from "motion/react";
 import Link from "next/link";
-import EmailLink from "@/components/BaseElements/EmailLink";
+
 
 export default function Index() {
     return (
@@ -39,11 +39,10 @@ export default function Index() {
                 >
                     <div className={style.Left}/>
                     <div className={style.Right}>
-                        This project was carried out within the framework of the research project “ZARAH: Women’s
-                        Labour Activism in Eastern Europe and Transnationally, From the Age of Empires to the Late
-                        20th Century” (2020-2026), led by Susan Zimmermann at Central European University
-                        (Vienna, Austria), funded by a European Research Council Advanced Grant
-                        (Grant agreement no. 833691).
+                        This website is based on groundbreaking academic research carried out by a team of ten scholars
+                        within the framework of “ZARAH: Women’s Labour Activism in Eastern Europe and Transnationally,
+                        From the Age of Empires to the Late 20th Century”. This research project is hosted by Central
+                        European University (Vienna, Austria, 2020-2026) and funded by an ERC Advanced Grant.
                     </div>
                 </motion.div>
                 <Spacer size={'xxxl'}/>

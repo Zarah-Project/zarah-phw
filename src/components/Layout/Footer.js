@@ -25,14 +25,19 @@ const Footer = () => {
         <div className={style.Footer}>
             <div className={style.Left}>
                 {title}
-                <Spacer size={'m'}/>
-                <div style={isMobile ? {width: 100, justifySelf: 'center'} : {width: 100}}>
-                    <Photo image={'LOGO-ERC.png'} isExample={true} minHeight={100} imageFit={'contain'}/>
+                <Spacer size={'xl'}/>
+                <div className={style.Horizon2020}>
+                    <div style={{width: '250px'}}>
+                        <Photo image={'LOGO-ERC.png'} isExample={true} minHeight={100} imageFit={'contain'}/>
+                    </div>
+                    <p style={{flex: 1, }}>
+                        Women’s Labour Activism in Central and Eastern Europe and beyond" by the following variety of
+                        the sentence: "This research project, led by Susan Zimmermann at Central European University
+                        (Vienna, Austria), has received funding from the European Research Council (ERC) under the
+                        European Union’s Horizon 2020 research and innovation programme
+                        (Grant agreement No. 833691 – ZARAH).
+                    </p>
                 </div>
-                <Spacer size={'m'}/>
-                <p style={{opacity: 0.5}}>
-                    Created by the ZARAH Team, Central European University, 2025.
-                </p>
             </div>
             <div className={style.Right}>
                 <div className={style.Menu}>

@@ -23,10 +23,10 @@ export default function AboutPage() {
                     transition={{duration: 0.4, delay: 0.1}}
                 >
                     This website builds on the individual and collective research of the ZARAH team.<br/><br/>
-                    ZARAH researcher Zhanna Popova led the conceptualization, writing, curation, and coordination
-                    of this website. She selected and adapted the project’s research results in the form of this
-                    website, writing the texts, selecting the illustrations, and shaping the overall presentation,
-                    while coordinating closely with the research team and designers to bring everything together.
+                    ZARAH researcher Zhanna Popova led the conceptualization, writing, and curation of this website.
+                    She selected and adapted the project’s research results in the form of this website, writing the
+                    texts, selecting the illustrations, and shaping the overall presentation, while coordinating
+                    closely with the research team and designers to bring everything together.
                 </motion.h3>
                 <Spacer size={'xl'}/>
                 <motion.h3
@@ -35,8 +35,8 @@ export default function AboutPage() {
                     whileInView={{opacity: 1, y: 0}}
                     transition={{duration: 0.4, delay: 0.2}}
                 >
-                    The website also builds on the work of the web designers and developer, and integrates
-                    the work of other researchers.
+                    The website also builds on the work of the web designers and the developer, and it also integrates
+                    contributions from other researchers.
                 </motion.h3>
                 <Spacer size={'xxxl'}/>
                 <motion.div
