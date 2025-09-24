@@ -31,8 +31,7 @@ const Footer = () => {
                         <Photo image={'LOGO-ERC.png'} isExample={true} minHeight={100} imageFit={'contain'}/>
                     </div>
                     <p style={{flex: 1, }}>
-                        Women’s Labour Activism in Central and Eastern Europe and beyond" by the following variety of
-                        the sentence: "This research project, led by Susan Zimmermann at Central European University
+                        This research project, led by Susan Zimmermann at Central European University
                         (Vienna, Austria), has received funding from the European Research Council (ERC) under the
                         European Union’s Horizon 2020 research and innovation programme
                         (Grant agreement No. 833691 – ZARAH).
