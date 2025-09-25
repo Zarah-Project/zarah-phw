@@ -35,9 +35,11 @@ export default function NetworksPage({networksData}) {
                     </div>
                     <div className={style.Right}>
                         <p>
-                            Women labour activists from Central, Eastern, and Southeastern Europe built lasting cross-
-                            border ties starting in the nineteenth century. The connections and international gatherings
-                            spotlighted here reflect their participation in organizations whose activities centered on work
+                            Women labour activists from Central, Eastern, and Southeastern Europe built lasting
+                            cross-border ties starting in the nineteenth century. The connections and international
+                            gatherings
+                            spotlighted here reflect their participation in organizations whose activities centered on
+                            work
                             and labour. Women contributed to international trade union federations alongside men, they
                             founded multi-country women's labour associations and committees, and they participated in
                             international labour organizations. Moving between mixed-gender and women-focused
@@ -46,9 +48,17 @@ export default function NetworksPage({networksData}) {
                         </p>
                     </div>
                 </div>
-                <Spacer size={'xxl'} />
+                <Spacer size={'xl'}/>
+                <div className={style.MapInfo}>
+                    <p>
+                        Base maps for this visualization (1938 and 1965) use the
+                        dataset <a href='https://icr.ethz.ch/data/cshapes/' target={'_new'}>CShapes</a> by
+                        Schvitz, Rüegger, Girardin, Cederman, Weidmann, Gleditsch.
+                    </p>
+                </div>
+                <Spacer size={'md'}/>
                 <div className={style.MapContainer}>
-                    <NetworkWrapper data={networksData} />
+                    <NetworkWrapper data={networksData}/>
                 </div>
             </div>
         </>

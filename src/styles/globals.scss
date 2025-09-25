@@ -24,3 +24,27 @@ main {
   height: 100%;
   overflow-x: clip;
 }
+
+.leaflet-control-attribution {
+  a {
+    display: none;
+  }
+
+  span {
+    display: none;
+  }
+
+  div {
+    a {
+        text-decoration: none;
+        color: inherit;
+        font-size: inherit;
+        display: inline-block;
+        border-bottom: 1px dashed;
+
+        &:hover {
+          text-decoration: none;
+        }
+    }
+  }
+}

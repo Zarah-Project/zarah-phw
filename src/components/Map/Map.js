@@ -104,6 +104,9 @@ const SVGMap = ({mapData, onMarkerClick, onDrawerClose}) => {
             attributionControl={false}
         >
             <GeoJSON
+                attribution='<div>Base maps for this visualization (1938 and 1965) use the
+                        dataset <a href="https://icr.ethz.ch/data/cshapes/" target="_blank">CShapes</a> by
+                Schvitz, Rüegger, Girardin, Cederman, Weidmann, Gleditsch.</div>'
                 key={JSON.stringify(geoData)}
                 data={geoData}
                 style={{
