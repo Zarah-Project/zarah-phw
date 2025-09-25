@@ -27,7 +27,7 @@ function WashingtonButton() {
         >
             {shown === 'Europe' ? <IconLeftArrow theme={'light'}/> : <IconRightArrow theme={'dark'}/>}
             <h5>
-                {shown === 'Europe' ? 'Washington DC' : 'Europe'}
+                {shown === 'Europe' ? 'Washington, D.C.' : 'Europe'}
             </h5>
         </button>
     );
