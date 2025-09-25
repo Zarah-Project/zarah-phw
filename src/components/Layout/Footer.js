@@ -30,7 +30,7 @@ const Footer = () => {
                     <div style={{width: '170px', textAlign: 'left'}}>
                         <Photo image={'LOGO-ERC.png'} isExample={true} minHeight={70} imageFit={'contain'}/>
                     </div>
-                    <p style={{flex: 1 }}>
+                    <p>
                         This research project, led by Susan Zimmermann at Central European University
                         (Vienna, Austria), has received funding from the European Research Council (ERC) under the
                         European Union’s Horizon 2020 research and innovation programme
