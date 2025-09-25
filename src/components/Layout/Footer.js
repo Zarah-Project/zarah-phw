@@ -27,8 +27,8 @@ const Footer = () => {
                 {title}
                 <Spacer size={'xl'}/>
                 <div className={style.Horizon2020}>
-                    <div style={{width: '250px'}}>
-                        <Photo image={'LOGO-ERC.png'} isExample={true} minHeight={100} imageFit={'contain'}/>
+                    <div style={{width: '170px', textAlign: 'left'}}>
+                        <Photo image={'LOGO-ERC.png'} isExample={true} minHeight={70} imageFit={'contain'}/>
                     </div>
                     <p style={{flex: 1, }}>
                         This research project, led by Susan Zimmermann at Central European University
