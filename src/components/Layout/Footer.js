@@ -10,15 +10,17 @@ const Footer = () => {
     let title;
 
     if (isMobile) {
-        title = <h3>
-            Women’s Labour Activism in<br/>
-            Central and Eastern Europe and beyond
-        </h3>;
-    } else {
-        title = <h3>
+        title = <h4>
             Women’s Labour Activism<br/>
-            in Central and Eastern Europe and beyond
-        </h3>;
+            in Eastern Europe and Transnationally,<br/>
+            From the Age of Empires<br/> to the Late 20th Century
+        </h4>;
+    } else {
+        title = <h4>
+            Women’s Labour Activism<br/>
+            in Eastern Europe and Transnationally,<br/>
+            From the Age of Empires to the Late 20th Century
+        </h4>;
     }
 
     return (
