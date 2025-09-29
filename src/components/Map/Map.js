@@ -6,8 +6,8 @@ import {
 } from "react-leaflet";
 import L from "leaflet";
 import "leaflet/dist/leaflet.css";
-import world1930 from '../../../public/maps/world_1930_simplified.json';
-import world1960 from '../../../public/maps/world_1960_simplified.json';
+import world1930 from '../../../public/maps/world_borders_1938_simplified.json';
+import world1960 from '../../../public/maps/world_borders_1965_simplified.json';
 import CustomZoomControls from "@/components/Map/CustomZoomControls";
 import DatasetSwitcher from "@/components/Map/DataSetSwitcher";
 import WashingtonButton from "@/components/Map/WashingtonButton";
