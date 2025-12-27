@@ -13,7 +13,6 @@ const RelatedEssays = ({data}) => {
         return (
             <Link key={essay['id']} href={`/essays/${essay['Slug']}`} className={style.Wrapper}>
                 <h4>{essay['Title']}</h4>
-                <p>{truncateWithEllipses(essay['ShortDescription'], 150)}</p>
                 <Photo image={image} minHeight={315} />
                 <Spacer size={'xl'} />
             </Link>
