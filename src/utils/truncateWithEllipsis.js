@@ -1,4 +1,8 @@
 const truncateWithEllipses = (text, max) => {
+    if (!text || text.length <= max) {
+        return text;
+    }
+
     const tokens = text.split(' ')
     let output = ''
 
