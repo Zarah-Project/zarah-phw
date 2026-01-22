@@ -4,7 +4,6 @@ import React, {useRef, useEffect, useState} from "react";
 import {useBoolean, useInterval, useRafLoop, useWindowSize} from "react-use";
 import {useSpring, useTransform} from "framer-motion";
 import CircleImageSlider from "@/components/Sections/OpeningAnimation/CircleImageSlider";
-import CircleVideo from "@/components/Sections/OpeningAnimation/CircleVideo";
 
 const MarqueeItem = (props) => {
     const { children, speed } = props;
@@ -109,7 +108,7 @@ const OpeningAnimation = (props) => {
             <div
                 className={style.imageContainer}
             >
-                <CircleVideo />
+                <CircleImageSlider />
             </div>
 
             {/* Scrolling Text */}

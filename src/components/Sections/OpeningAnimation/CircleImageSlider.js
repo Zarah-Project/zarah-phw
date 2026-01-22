@@ -2,16 +2,16 @@ import React, { useEffect, useState } from 'react';
 import {useMedia} from "react-use";
 
 const images = [
-    'opening01.png',
-    'opening02.png',
-    'opening03.png',
-    'opening04.png',
-    'opening05.png',
-    'opening06.png',
-    'opening07.png',
-    'opening08.png',
-    'opening09.png',
-    'opening10.png'
+    'opening01.jpeg',
+    'opening02.jpeg',
+    'opening03.jpeg',
+    'opening04.jpeg',
+    'opening05.jpeg',
+    'opening06.jpeg',
+    'opening07.jpeg',
+    'opening08.jpeg',
+    'opening09.jpeg',
+    'opening10.jpeg'
 ];
 
 const CircleImageSlider = () => {
