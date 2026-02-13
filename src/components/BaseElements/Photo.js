@@ -10,7 +10,7 @@ const Photo = ({image, isExample=false, minHeight = 300, height, imageFit = 'cov
                     src={isExample ? `/images/content/${image}` : image['url']}
                     alt="Card Image"
                     fill
-                    objectFit={imageFit}
+                    style={{objectFit: imageFit}}
                     priority
                 />
             </div>
